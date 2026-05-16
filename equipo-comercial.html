@@ -1,0 +1,924 @@
+<!--
+================================================================================
+  ARCHIVO:  equipo-comercial.html
+  VERSIÓN:  1.0.0
+  FECHA:    2026-02-19
+  PROPÓSITO: Página de presentación del Grupo Commercial Group Portugal.
+             Perfiles de David Almeida y Carlos Balboa + Metodología Nuclear
+             + Elementos Nucleares del Área Comercial.
+  SISTEMA:  CPII Portugal — Design System v2.0 (Playfair Display + Manrope)
+             Colores: primary #C1A85D | background-dark #161513 | card-dark #1e1b14
+             Compatible con i18n.js del proyecto.
+
+  ÍNDICE MAESTRO:
+  ├── [SEC-01] HEAD — metadatos, fuentes, Tailwind config (idéntico a index.html)
+  ├── [SEC-02] HEADER — nav consistente con index.html
+  ├── [SEC-03] HERO — presentación del grupo + stats
+  ├── [SEC-04] PERFILES — David Almeida + Carlos Balboa (cards expandidas)
+  ├── [SEC-05] METODOLOGÍA NUCLEAR — proceso de captación y venta
+  ├── [SEC-06] ELEMENTOS NUCLEARES — KYC/AML, LOI, Prueba de Fondos, etc.
+  ├── [SEC-07] ÁREAS DE INTERVENCIÓN — tipología de activos
+  ├── [SEC-08] CTA FINAL — criterios de acceso + solicitud
+  └── [SEC-09] FOOTER — idéntico a index.html
+================================================================================
+-->
+<!DOCTYPE html>
+<html lang="pt" class="dark">
+
+<!-- ═══════════════════════════════════════════════════════ [SEC-01] HEAD ══ -->
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description"
+        content="Commercial Group Portugal — Metodologia estruturada de captação e investimento imobiliário comercial. David Almeida e Carlos Balboa." />
+    <title>Grupo Comercial — Commercial Group Portugal | CPII</title>
+
+    <!-- Tipografía: Playfair Display (display) + Manrope (body) -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+
+    <!-- Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        rel="stylesheet" />
+
+    <!-- Design System compartido -->
+    <!-- Tailwind CSS compilado -->
+    <link rel="stylesheet" href="css/tailwind.css" />
+
+    <!-- Estilos base compartidos -->
+    <link rel="stylesheet" href="css/design-system.css" />
+
+    <!-- Motor i18n CPII -->
+    <script src="i18n.js"></script>
+</head>
+
+<body class="bg-background-dark text-white font-body min-h-screen">
+
+    <!-- ══════════════════════════════════════════════ [SEC-02] HEADER / NAV ══ -->
+    <header class="sticky top-0 z-50 w-full border-b border-border-dark bg-background-dark/95 backdrop-blur-md">
+        <div class="mx-auto max-w-7xl px-6 lg:px-10 h-20 flex items-center justify-between">
+
+            <!-- Logotipo -->
+            <div class="flex items-center gap-4 flex-shrink-0">
+                <div class="size-8 text-primary">
+                    <span class="material-symbols-outlined text-3xl">apartment</span>
+                </div>
+                <h2 class="text-white text-xl font-bold tracking-tight font-display"><span data-i18n="navigation.logo.main">CPII</span> <span
+                        class="text-primary font-normal" data-i18n="navigation.logo.suffix">PORTUGAL</span></h2>
+            </div>
+
+            <!-- Navegación principal -->
+            <nav class="hidden md:flex flex-1 justify-center gap-4 lg:gap-6 xl:gap-8">
+                <a class="whitespace-nowrap text-text-secondary hover:text-primary transition-colors text-sm font-medium" href="index.html#inicio"
+                    data-i18n="navigation.inicio">Início</a>
+                <a class="whitespace-nowrap text-primary border-b border-primary pb-1 text-sm font-semibold"
+                    href="equipo-comercial.html" data-i18n="navigation.grupo_comercial">Grupo Comercial</a>
+                <a class="whitespace-nowrap text-text-secondary hover:text-primary transition-colors text-sm font-medium"
+                    href="simulator.html" data-i18n="navigation.simulador">Simulador</a>
+                <a class="whitespace-nowrap text-text-secondary hover:text-primary transition-colors text-sm font-medium"
+                    href="referrals.html" data-i18n="navigation.referrals">Minha Rede</a>
+                <a class="whitespace-nowrap text-text-secondary hover:text-primary transition-colors text-sm font-medium"
+                    href="index.html#como-funciona" data-i18n="navigation.como_funciona">Como Funciona</a>
+                <a class="whitespace-nowrap text-text-secondary hover:text-primary transition-colors text-sm font-medium"
+                    href="onboarding.html" data-i18n="navigation.onboarding">Onboarding</a>
+                <a class="whitespace-nowrap text-text-secondary hover:text-primary transition-colors text-sm font-medium"
+                    href="webinars.html" data-i18n="navigation.webinars">Webinars</a>
+            </nav>
+
+            <!-- Selector de idioma + CTA -->
+            <div class="flex items-center gap-4 flex-shrink-0">
+                <!-- Selector de idioma — id requerido por i18n.js para sincronización -->
+                <select id="lang-selector">
+                    <option value="pt">PT</option>
+                    <option value="es">ES</option>
+                    <option value="en">EN</option>
+                    <option value="fr">FR</option>
+                </select>
+
+                <a href="access-form.html"
+                    class="flex items-center justify-center rounded-xl h-10 px-6 bg-primary hover:bg-primary-hover text-background-dark text-sm font-bold transition-all shadow-[0_0_15px_rgba(193,168,92,0.15)]"
+                    data-i18n="btn.solicitar">
+                    Solicitar Acesso
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ════════════════════════════════════════════════ [SEC-03] HERO ══ -->
+    <section class="relative overflow-hidden bg-gradient-to-br from-card-dark to-background-dark py-20 lg:py-28">
+        <div class="absolute -left-20 top-20 h-96 w-96 rounded-full bg-primary/5 blur-3xl pointer-events-none"></div>
+        <div class="absolute right-10 bottom-10 h-64 w-64 rounded-full bg-teal-900/10 blur-3xl pointer-events-none">
+        </div>
+
+        <div class="mx-auto max-w-7xl px-6 lg:px-10 relative z-10">
+
+            <!-- Breadcrumb -->
+            <div class="flex items-center gap-2 text-xs text-text-secondary mb-8">
+                <a href="index.html" class="hover:text-primary transition-colors">CPII Portugal</a>
+                <span class="material-symbols-outlined text-border-dark" style="font-size:14px;">chevron_right</span>
+                <span class="text-primary">Grupo Comercial</span>
+            </div>
+
+            <div class="flex flex-col lg:flex-row items-start gap-16">
+                <div class="flex-1 space-y-8">
+
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 text-primary text-xs font-bold tracking-widest uppercase mb-6"
+                        data-i18n="team.hero.badge">
+                        <span class="material-symbols-outlined text-sm">verified</span>
+                        OPERAÇÃO INTERNACIONAL AUTORIZADA
+                    </div>
+
+                    <h1 class="text-5xl md:text-7xl font-black text-white leading-[1.1] tracking-tight mb-6 font-display"
+                        data-i18n="team.hero.title" data-i18n-html="true">
+                        Commercial Group<br />
+                        <span class="text-primary italic font-serif font-medium">Portugal</span>
+                    </h1>
+
+                    <p class="text-lg md:text-xl text-text-secondary max-w-2xl font-light leading-relaxed mb-10"
+                        data-i18n="team.hero.desc" data-i18n-html="true">
+                        O grupo comercial mais estruturado da Península Ibérica. Metodologia alinhada com os padrões
+                        internacionais do sector e normas KYC/AML do comércio internacional. <strong
+                            class="text-white font-medium">Não vendemos propriedades — atraímos investimento
+                            estratégico.</strong>
+                    </p>
+
+                    <div class="flex flex-wrap gap-3">
+                        <a href="#perfis" class="..." data-i18n="team.hero.btn.profiles">
+                            <span class="material-symbols-outlined text-lg">groups</span>
+                            Ver Perfis da Equipa
+                        </a>
+                        <a href="#metodologia" class="..." data-i18n="team.hero.btn.method">
+                            <span class="material-symbols-outlined text-lg">account_tree</span>
+                            Metodologia Nuclear
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Stats verticais -->
+                <div class="flex-shrink-0 grid grid-cols-1 gap-4 w-full lg:w-72">
+                    <div class="bg-card-dark border border-border-dark rounded-2xl p-6">
+                        <p class="text-4xl font-black text-primary font-display" data-i18n="team.stat1.value">+25%</p>
+                        <p class="text-sm text-text-secondary mt-1" data-i18n="team.stat1.label">da faturação total
+                            Commercial Group Portugal</p>
+                    </div>
+                    <div class="bg-card-dark border border-border-dark rounded-2xl p-6">
+                        <p class="text-4xl font-black text-primary font-display" data-i18n="team.stat2.value">7/17</p>
+                        <p class="text-sm text-text-secondary mt-1" data-i18n="team.stat2.label">CAPs do país sob
+                            liderança do grupo</p>
+                    </div>
+                    <div class="bg-card-dark border border-border-dark rounded-2xl p-6">
+                        <p class="text-4xl font-black text-primary font-display" data-i18n="team.stat3.value">3+</p>
+                        <p class="text-sm text-text-secondary mt-1" data-i18n="team.stat3.label">anos de metodologia
+                            estruturada e provada</p>
+                    </div>
+                    <div class="bg-primary/10 border border-primary/30 rounded-2xl p-6">
+                        <p class="text-4xl font-black text-primary font-display">1M€</p>
+                        <p class="text-sm text-text-secondary mt-1" data-i18n="team.stat4.label">hito de produção para
+                            Agente Gestor</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════ [SEC-04] PERFIS ══ -->
+    <section id="perfis" class="py-20 bg-background-dark">
+        <div class="mx-auto max-w-7xl px-6 lg:px-10">
+
+            <div class="text-center mb-16">
+                <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4 font-display" data-i18n="team.profiles.title">
+                    A Equipa de Liderança
+                </h2>
+                <p class="text-lg text-text-secondary max-w-2xl mx-auto" data-i18n="team.profiles.desc">
+                    Dois perfis complementares que garantem a excelência metodológica e tecnológica do grupo
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+                <!-- ── DAVID ALMEIDA — Perfil Expandido ── -->
+                <div class="relative bg-card-dark rounded-2xl border border-border-dark overflow-hidden shadow-xl">
+                    <!-- Accent bar dorado -->
+                    <div class="h-1 bg-gradient-to-r from-primary via-yellow-400 to-primary"></div>
+
+                    <div class="p-8 lg:p-10">
+                        <!-- Header perfil -->
+                        <div class="flex items-start gap-5 mb-8">
+                            <div class="relative flex-shrink-0">
+                                <div
+                                    class="w-20 h-20 rounded-full bg-primary/15 border-2 border-primary/40 flex items-center justify-center">
+                                    <span class="text-2xl font-black text-primary font-display">DA</span>
+                                </div>
+                                <div
+                                    class="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-primary flex items-center justify-center border-2 border-card-dark">
+                                    <span class="material-symbols-outlined text-background-dark"
+                                        style="font-size:13px;font-variation-settings:'FILL' 1;">star</span>
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-xs text-text-secondary uppercase tracking-widest mb-1"
+                                    data-i18n="team.da.role">Agente Senior &
+                                    Founder</p>
+                                <h3 class="text-2xl font-bold text-white font-display mb-3">David Almeida</h3>
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="inline-flex items-center gap-1 bg-primary/15 border border-primary/30 text-primary text-xs font-bold px-3 py-1 rounded-full">
+                                        <span class="material-symbols-outlined"
+                                            style="font-size:12px;font-variation-settings:'FILL' 1;">emoji_events</span>
+                                        <span data-i18n="team.da.badge1">Agente do Ano 2025</span>
+                                    </span>
+                                    <span
+                                        class="bg-border-dark text-text-secondary text-xs px-3 py-1 rounded-full border border-border-dark"
+                                        data-i18n="team.da.badge2">
+                                        Operador Internacional
+                                    </span>
+
+                                    <p class="text-xs text-text-secondary uppercase tracking-wider mb-4"
+                                        data-i18n="team.profiles.skills">Áreas de Competência</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Métricas chave -->
+                        <div class="grid grid-cols-2 gap-3 mb-8">
+                            <div class="bg-background-dark rounded-xl p-4 border border-border-dark">
+                                <p class="text-2xl font-black text-primary font-display"
+                                    data-i18n="team.da.metric1.val">+25%</p>
+                                <p class="text-xs text-text-secondary mt-1" data-i18n="team.da.metric1.lab">Faturação
+                                    Commercial Group Portugal</p>
+                            </div>
+                            <div class="bg-background-dark rounded-xl p-4 border border-border-dark">
+                                <p class="text-2xl font-black text-primary font-display"
+                                    data-i18n="team.da.metric2.val">7 CAPs</p>
+                                <p class="text-xs text-text-secondary mt-1" data-i18n="team.da.metric2.lab">do país no
+                                    grupo</p>
+                            </div>
+                            <div class="bg-background-dark rounded-xl p-4 border border-border-dark">
+                                <p class="text-2xl font-black text-primary font-display"
+                                    data-i18n="team.da.metric3.val">3+ anos</p>
+                                <p class="text-xs text-text-secondary mt-1" data-i18n="team.da.metric3.lab">metodologia
+                                    provada</p>
+                            </div>
+                            <div class="bg-background-dark rounded-xl p-4 border border-border-dark">
+                                <p class="text-2xl font-black text-primary font-display"
+                                    data-i18n="team.da.metric4.val">Exclusivo</p>
+                                <p class="text-xs text-text-secondary mt-1" data-i18n="team.da.metric4.lab">Área
+                                    Comercial PT</p>
+                            </div>
+                        </div>
+
+                        <!-- Bio -->
+                        <div class="space-y-4 text-sm text-text-secondary leading-relaxed mb-8" data-i18n="team.da.bio"
+                            data-i18n-html="true">
+                            <p>
+                                David Almeida é o fundador e líder estratégico do <strong class="text-white">Commercial
+                                    Group Portugal</strong>, com marca registada e autorizada. Detentor de um contrato
+                                de exclusividade assinado com a sua companhia
+                                para a área Comercial — um passo que poucos profissionais tiveram a visão e
+                                disciplina de dar.
+                            </p>
+                            <p>
+                                Em 2025, foi nomeado <strong class="text-white">Agente do Ano em Portugal</strong>,
+                                liderando um grupo responsável por mais de 25% da faturação total da sua companhia,
+                                com 7 dos 17 CAPs do país integrados na sua estrutura.
+                            </p>
+                            <p>
+                                Defensor intransigente de uma metodologia baseada em estándares internacionais —
+                                alinhada com os padrões do sector — David posiciona-se como o <strong
+                                    class="text-white">guardião do processo</strong>: o agente que serve o proprietário,
+                                não o mercado.
+                            </p>
+                        </div>
+
+                        <!-- Competências -->
+                        <div class="border-t border-border-dark pt-6">
+                            <p class="text-xs text-text-secondary uppercase tracking-wider mb-4"
+                                data-i18n="team.profiles.skills">Áreas de Competência</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-primary/10 text-primary/80 text-xs px-3 py-1 rounded-full"
+                                    data-i18n="team.da.skill1">Captação Comercial</span>
+                                <span class="bg-primary/10 text-primary/80 text-xs px-3 py-1 rounded-full"
+                                    data-i18n="team.da.skill2">Estudo de Mercado</span>
+                                <span class="bg-primary/10 text-primary/80 text-xs px-3 py-1 rounded-full"
+                                    data-i18n="team.da.skill3">Avaliação de Empresas</span>
+                                <span class="bg-primary/10 text-primary/80 text-xs px-3 py-1 rounded-full"
+                                    data-i18n="team.da.skill4">Liderança de Equipa</span>
+                                <span class="bg-primary/10 text-primary/80 text-xs px-3 py-1 rounded-full"
+                                    data-i18n="team.da.skill5">Negociação Senior</span>
+                                <span class="bg-primary/10 text-primary/80 text-xs px-3 py-1 rounded-full"
+                                    data-i18n="team.da.skill6">Hotéis & Turismo</span>
+                                <span class="bg-primary/10 text-primary/80 text-xs px-3 py-1 rounded-full"
+                                    data-i18n="team.da.skill7">Plano de Negócios</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── CARLOS BALBOA — Perfil Expandido ── -->
+                <div class="relative bg-card-dark rounded-2xl border border-border-dark overflow-hidden shadow-xl">
+                    <!-- Accent bar teal -->
+                    <div class="h-1 bg-gradient-to-r from-teal-700 via-teal-400 to-teal-700"></div>
+
+                    <div class="p-8 lg:p-10">
+                        <!-- Header perfil -->
+                        <div class="flex items-start gap-5 mb-8">
+                            <div class="relative flex-shrink-0">
+                                <div
+                                    class="w-20 h-20 rounded-full bg-teal-500/10 border-2 border-teal-500/40 flex items-center justify-center">
+                                    <span class="text-2xl font-black text-teal-400 font-display">CB</span>
+                                </div>
+                                <div
+                                    class="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-teal-500 flex items-center justify-center border-2 border-card-dark">
+                                    <span class="material-symbols-outlined text-background-dark"
+                                        style="font-size:13px;font-variation-settings:'FILL' 1;">code</span>
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-xs text-text-secondary uppercase tracking-widest mb-1"
+                                    data-i18n="team.cb.role">Senior Agent & CTO
+                                </p>
+                                <h3 class="text-2xl font-bold text-white font-display mb-3">Carlos Balboa</h3>
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="inline-flex items-center gap-1 bg-teal-500/10 border border-teal-500/30 text-teal-400 text-xs font-bold px-3 py-1 rounded-full">
+                                        <span class="material-symbols-outlined" ...>terminal</span>
+                                        <span data-i18n="team.cb.badge1">Chief Technology Officer</span>
+                                    </span>
+                                    <span
+                                        class="bg-border-dark text-text-secondary text-xs px-3 py-1 rounded-full border border-border-dark"
+                                        data-i18n="team.cb.badge2">
+                                        KYC/AML Specialist
+                                    </span>
+
+                                    <p class="text-xs text-text-secondary uppercase tracking-wider mb-4"
+                                        data-i18n="team.profiles.skills">Áreas de Competência</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Métricas chave -->
+                        <div class="grid grid-cols-2 gap-3 mb-8">
+                            <div class="bg-background-dark rounded-xl p-4 border border-border-dark">
+                                <p class="text-2xl font-black text-teal-400 font-display"
+                                    data-i18n="team.cb.metric1.val">CRM</p>
+                                <p class="text-xs text-text-secondary mt-1" data-i18n="team.cb.metric1.lab">Proprietário
+                                    em construção</p>
+                            </div>
+                            <div class="bg-background-dark rounded-xl p-4 border border-border-dark">
+                                <p class="text-2xl font-black text-teal-400 font-display"
+                                    data-i18n="team.cb.metric2.val">CPII</p>
+                                <p class="text-xs text-text-secondary mt-1" data-i18n="team.cb.metric2.lab">Co-fundador
+                                    da plataforma</p>
+                            </div>
+                            <div class="bg-background-dark rounded-xl p-4 border border-border-dark">
+                                <p class="text-2xl font-black text-teal-400 font-display"
+                                    data-i18n="team.cb.metric3.val">KYC</p>
+                                <p class="text-xs text-text-secondary mt-1" data-i18n="team.cb.metric3.lab">Compliance
+                                    internacional</p>
+                            </div>
+                            <div class="bg-background-dark rounded-xl p-4 border border-border-dark">
+                                <p class="text-2xl font-black text-teal-400 font-display"
+                                    data-i18n="team.cb.metric4.val">4</p>
+                                <p class="text-xs text-text-secondary mt-1" data-i18n="team.cb.metric4.lab">Idiomas de
+                                    captação</p>
+                            </div>
+                        </div>
+
+                        <!-- Bio -->
+                        <div class="space-y-4 text-sm text-text-secondary leading-relaxed mb-8" data-i18n="team.cb.bio"
+                            data-i18n-html="true">
+                            <p>
+                                Carlos Balboa é o arquitecto digital e estratégico da atração de investidores do grupo.
+                                Combina uma vasta experiência em <strong class="text-white">mercados internacionais de
+                                    commodities</strong>
+                                com o desenvolvimento das ferramentas digitais que sustentam toda a operação: CRM
+                                proprietário,
+                                plataforma CPII e sistemas de qualificação de investidores.
+                            </p>
+                            <p>
+                                Especialista nas normativas internacionais <strong class="text-white">KYC (Know Your
+                                    Customer)
+                                    e AML (Anti-Money Laundering)</strong>, aplica os padrões do comércio internacional
+                                para
+                                criar uma barreira metodológica e legal que diferencia o grupo de todos os concorrentes.
+                            </p>
+                            <p>
+                                Co-fundador do <strong class="text-white">Club Privado de Inversores Inmobiliarios
+                                    (CPII)</strong>,
+                                responsável pela landing page, CRM e pela estratégia de captação global de leads em 4
+                                idiomas.
+                            </p>
+                        </div>
+
+                        <!-- Competências -->
+                        <div class="border-t border-border-dark pt-6">
+                            <p class="text-xs text-text-secondary uppercase tracking-wider mb-4"
+                                data-i18n="team.profiles.skills">Áreas de Competência</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-teal-500/10 text-teal-400/80 text-xs px-3 py-1 rounded-full"
+                                    data-i18n="team.cb.skill1">Atração de Investidores</span>
+                                <span class="bg-teal-500/10 text-teal-400/80 text-xs px-3 py-1 rounded-full"
+                                    data-i18n="team.cb.skill2">KYC / AML</span>
+                                <span class="bg-teal-500/10 text-teal-400/80 text-xs px-3 py-1 rounded-full"
+                                    data-i18n="team.cb.skill3">CRM & Automação</span>
+                                <span class="bg-teal-500/10 text-teal-400/80 text-xs px-3 py-1 rounded-full"
+                                    data-i18n="team.cb.skill4">Commodities</span>
+                                <span class="bg-teal-500/10 text-teal-400/80 text-xs px-3 py-1 rounded-full"
+                                    data-i18n="team.cb.skill5">Lead Generation</span>
+                                <span class="bg-teal-500/10 text-teal-400/80 text-xs px-3 py-1 rounded-full"
+                                    data-i18n="team.cb.skill6">Estratégia Digital</span>
+                                <span class="bg-teal-500/10 text-teal-400/80 text-xs px-3 py-1 rounded-full"
+                                    data-i18n="team.cb.skill7">Compliance Internacional</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════ [SEC-05] METODOLOGIA NUCLEAR ══ -->
+    <section id="metodologia" class="py-20 bg-gradient-to-b from-card-dark to-background-dark">
+        <div class="mx-auto max-w-7xl px-6 lg:px-10">
+
+            <div class="text-center mb-16">
+                <div
+                    class="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-primary mb-6">
+                    <span class="material-symbols-outlined text-sm">account_tree</span>
+                    <span data-i18n="team.method.badge">Processo Estruturado</span>
+                </div>
+                <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4 font-display" data-i18n="team.method.title"
+                    data-i18n-html="true">
+                    Metodologia <span class="text-primary italic">Nuclear</span>
+                </h2>
+                <p class="text-lg text-text-secondary max-w-2xl mx-auto" data-i18n="team.method.desc">
+                    O processo que diferencia o Commercial Group Portugal de todos os outros.
+                    Alinhado com os padrões internacionais da Commercial Group Portugal e KYC/AML.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+
+                <div>
+                    <h3 class="text-xl font-bold text-white font-display mb-8 flex items-center gap-3">
+                        <span
+                            class="w-8 h-8 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center flex-shrink-0">
+                            <span class="material-symbols-outlined text-primary text-sm">search</span>
+                        </span>
+                        <span data-i18n="team.method.cap.title">Processo de Captação</span>
+                    </h3>
+
+                    <div class="space-y-0">
+
+                        <div class="flex gap-4">
+                            <div class="flex flex-col items-center">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-primary flex items-center justify-center flex-shrink-0 text-background-dark font-black text-sm">
+                                    1</div>
+                                <div class="w-0.5 h-full step-connector mt-2 min-h-8"></div>
+                            </div>
+                            <div class="pb-8">
+                                <p class="font-bold text-white mb-1" data-i18n="team.method.cap.s1.title">Qualificação
+                                    do Proprietário</p>
+                                <p class="text-sm text-text-secondary leading-relaxed"
+                                    data-i18n="team.method.cap.s1.desc">Recolha de necessidades: tempo de
+                                    realização, valor objetivo, condições de venda e objetivos do negócio. Critérios do
+                                    cliente — não do mercado.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="flex flex-col items-center">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center flex-shrink-0 text-primary font-black text-sm">
+                                    2</div>
+                                <div class="w-0.5 h-full step-connector mt-2 min-h-8"></div>
+                            </div>
+                            <div class="pb-8">
+                                <p class="font-bold text-white mb-1" data-i18n="team.method.cap.s2.title">Declaração de
+                                    Autorização de Venda</p>
+                                <p class="text-sm text-text-secondary leading-relaxed"
+                                    data-i18n="team.method.cap.s2.desc">Documento formal com
+                                    identificação do proprietário, Commercial Group Portugal, agente Senior e
+                                    especialista. Inclui
+                                    condições de venda, valor, prazo e honorários.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="flex flex-col items-center">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center flex-shrink-0 text-primary font-black text-sm">
+                                    3</div>
+                                <div class="w-0.5 h-full step-connector mt-2 min-h-8"></div>
+                            </div>
+                            <div class="pb-8">
+                                <p class="font-bold text-white mb-1" data-i18n="team.method.cap.s3.title">Estudo de
+                                    Mercado & Viabilidade</p>
+                                <p class="text-sm text-text-secondary leading-relaxed"
+                                    data-i18n="team.method.cap.s3.desc">Análise comparativa de mercado
+                                    (Oferta vs. Procura), estudo de viabilidade económica e financeira do ativo. Plano
+                                    de Negócio a 5 anos.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="flex flex-col items-center">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center flex-shrink-0 text-primary font-black text-sm">
+                                    4</div>
+                            </div>
+                            <div class="pb-2">
+                                <p class="font-bold text-white mb-1" data-i18n="team.method.cap.s4.title">Ficha de
+                                    Produto Sumária</p>
+                                <p class="text-sm text-text-secondary leading-relaxed"
+                                    data-i18n="team.method.cap.s4.desc">Localização, 2-3 fotografias,
+                                    condições e valor de venda. Apenas o suficiente para despertar interesse — sem
+                                    exposição de informação sensível.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold text-white font-display mb-8 flex items-center gap-3">
+                        <span
+                            class="w-8 h-8 rounded-full bg-teal-500/20 border border-teal-500/40 flex items-center justify-center flex-shrink-0">
+                            <span class="material-symbols-outlined text-teal-400 text-sm">handshake</span>
+                        </span>
+                        <span data-i18n="team.method.sale.title">Processo de Venda</span>
+                    </h3>
+
+                    <div class="space-y-0">
+
+                        <div class="flex gap-4">
+                            <div class="flex flex-col items-center">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-teal-500 flex items-center justify-center flex-shrink-0 text-background-dark font-black text-sm">
+                                    A</div>
+                                <div class="w-0.5 h-full bg-gradient-to-b from-teal-500 to-teal-500/10 mt-2 min-h-8">
+                                </div>
+                            </div>
+                            <div class="pb-8">
+                                <p class="font-bold text-white mb-1" data-i18n="team.method.sale.sa.title">Carta de
+                                    Intenção (LOI)</p>
+                                <p class="text-sm text-text-secondary leading-relaxed"
+                                    data-i18n="team.method.sale.sa.desc">O cliente investidor envia por
+                                    escrito: identificação do agente apresentador, identificação do cliente comprador e
+                                    documentação que pretende verificar. Protege todas as partes.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="flex flex-col items-center">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-teal-500/20 border border-teal-500/40 flex items-center justify-center flex-shrink-0 text-teal-400 font-black text-sm">
+                                    B</div>
+                                <div class="w-0.5 h-full bg-gradient-to-b from-teal-500/40 to-teal-500/10 mt-2 min-h-8">
+                                </div>
+                            </div>
+                            <div class="pb-8">
+                                <p class="font-bold text-white mb-1" data-i18n="team.method.sale.sb.title">Prova de
+                                    Fundos</p>
+                                <p class="text-sm text-text-secondary leading-relaxed"
+                                    data-i18n="team.method.sale.sb.desc">Carta bancária de referência que
+                                    confirma a capacidade financeira do cliente para realizar o negócio. Barreira
+                                    KYC/AML innegociável antes de partilhar informação confidencial.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="flex flex-col items-center">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-teal-500/20 border border-teal-500/40 flex items-center justify-center flex-shrink-0 text-teal-400 font-black text-sm">
+                                    C</div>
+                                <div class="w-0.5 h-full bg-gradient-to-b from-teal-500/40 to-teal-500/10 mt-2 min-h-8">
+                                </div>
+                            </div>
+                            <div class="pb-8">
+                                <p class="font-bold text-white mb-1" data-i18n="team.method.sale.sc.title">Mandato de
+                                    Representação</p>
+                                <p class="text-sm text-text-secondary leading-relaxed"
+                                    data-i18n="team.method.sale.sc.desc">Define quem faz o quê e até que
+                                    ponto. Regista o cliente comprador perante o vendedor. Estrutura a negociação com
+                                    clareza e segurança legal.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="flex flex-col items-center">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-teal-500/20 border border-teal-500/40 flex items-center justify-center flex-shrink-0 text-teal-400 font-black text-sm">
+                                    D</div>
+                            </div>
+                            <div class="pb-2">
+                                <p class="font-bold text-white mb-1" data-i18n="team.method.sale.sd.title">Proposta &
+                                    CPCV</p>
+                                <p class="text-sm text-text-secondary leading-relaxed"
+                                    data-i18n="team.method.sale.sd.desc">Proposta escrita com
+                                    identificação do imóvel, cliente, valor e condições de pagamento. Fecho com Contrato
+                                    de Promessa de Compra e Venda + CMI (obrigatório pela lei portuguesa).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ══════════════════════════════════ [SEC-06] ELEMENTOS NUCLEARES ══ -->
+    <section id="elementos" class="py-20 bg-background-dark">
+        <div class="mx-auto max-w-7xl px-6 lg:px-10">
+
+            <div class="text-center mb-16">
+                <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4 font-display" data-i18n="team.elements.title"
+                    data-i18n-html="true">
+                    Elementos <span class="text-primary italic">Nucleares</span>
+                </h2>
+                <p class="text-text-secondary max-w-2xl mx-auto" data-i18n="team.elements.desc">
+                    Os pilares que tornam a metodologia do grupo incontestável e diferenciada
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <div
+                    class="group bg-card-dark rounded-2xl border border-border-dark hover:border-primary/50 p-6 transition-all hover:-translate-y-1">
+                    <div
+                        class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-primary text-2xl">shield</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2 font-display" data-i18n="team.elements.1.title">KYC /
+                        AML</h3>
+                    <p class="text-sm text-text-secondary leading-relaxed" data-i18n="team.elements.1.desc">
+                        Know Your Customer e Anti-Money Laundering. Normas internacionais do comércio que criam
+                        uma barreira legal e metodológica incontornável. Obrigatório antes de qualquer partilha de
+                        informação sensível.
+                    </p>
+                </div>
+
+                <div
+                    class="group bg-card-dark rounded-2xl border border-border-dark hover:border-primary/50 p-6 transition-all hover:-translate-y-1">
+                    <div
+                        class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-primary text-2xl">description</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2 font-display" data-i18n="team.elements.2.title">Letter
+                        of Intent (LOI)</h3>
+                    <p class="text-sm text-text-secondary leading-relaxed" data-i18n="team.elements.2.desc">
+                        Carta de Intenção em três partes: identificação do agente apresentador, do cliente comprador
+                        e dos documentos a verificar. Protege o agente e identifica o cliente perante o proprietário.
+                    </p>
+                </div>
+
+                <div
+                    class="group bg-card-dark rounded-2xl border border-border-dark hover:border-primary/50 p-6 transition-all hover:-translate-y-1">
+                    <div
+                        class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-primary text-2xl">account_balance</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2 font-display" data-i18n="team.elements.3.title">Prova
+                        de Fundos</h3>
+                    <p class="text-sm text-text-secondary leading-relaxed" data-i18n="team.elements.3.desc">
+                        Confirmação bancária da capacidade financeira do investidor. Elimina testaferros e clientes
+                        não qualificados. Condição sine qua non para aceder a informação confidencial do ativo.
+                    </p>
+                </div>
+
+                <div
+                    class="group bg-card-dark rounded-2xl border border-border-dark hover:border-primary/50 p-6 transition-all hover:-translate-y-1">
+                    <div
+                        class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-primary text-2xl">analytics</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2 font-display" data-i18n="team.elements.4.title">Rácios
+                        de Gestão</h3>
+                    <p class="text-sm text-text-secondary leading-relaxed" data-i18n="team.elements.4.desc"
+                        data-i18n-html="true">
+                        Custos fixos &lt;10%, operacionais 10-12%, pessoal &lt;17%. ROI: excelente em 4 anos,
+                        bom em 5, risco acima de 7. Métricas objetivas para qualificar qualquer empresa ou hotel.
+                    </p>
+                </div>
+
+                <div
+                    class="group bg-card-dark rounded-2xl border border-border-dark hover:border-primary/50 p-6 transition-all hover:-translate-y-1">
+                    <div
+                        class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-primary text-2xl">currency_exchange</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2 font-display" data-i18n="team.elements.5.title">Modelo
+                        de Partilha</h3>
+                    <p class="text-sm text-text-secondary leading-relaxed" data-i18n="team.elements.5.desc">
+                        Referência não qualificada: 10% do honorário. Referência qualificada: 25%. O Senior
+                        partilha apenas se o parceiro cumpre o processo. Simples, transparente e verificável.
+                    </p>
+                </div>
+
+                <div
+                    class="group bg-card-dark rounded-2xl border border-border-dark hover:border-primary/50 p-6 transition-all hover:-translate-y-1">
+                    <div
+                        class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-primary text-2xl">verified_user</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2 font-display" data-i18n="team.elements.6.title">Marca &
+                        PI Registada</h3>
+                    <p class="text-sm text-text-secondary leading-relaxed" data-i18n="team.elements.6.desc">
+                        O Commercial Group Portugal é uma marca registada e autorizada a operar a nível internacional.
+                        Infraestrutura digital alojada em domínios próprios para garantir controlo e
+                        protecção da propriedade intelectual.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════ [SEC-07] ÁREAS DE INTERVENCIÓN ══ -->
+    <section class="py-20 bg-card-dark border-t border-border-dark">
+        <div class="mx-auto max-w-7xl px-6 lg:px-10">
+
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white mb-4 font-display" data-i18n="team.areas.title"
+                    data-i18n-html="true">
+                    Áreas de <span class="text-primary italic">Intervenção</span>
+                </h2>
+                <p class="text-text-secondary max-w-xl mx-auto" data-i18n="team.areas.desc">
+                    Tipologia de ativos onde o grupo opera com metodologia estruturada
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+
+                <div
+                    class="bg-background-dark rounded-xl border border-border-dark p-5 text-center hover:border-primary/40 transition-colors">
+                    <span class="material-symbols-outlined text-primary text-3xl mb-2 block">storefront</span>
+                    <p class="text-sm font-semibold text-white" data-i18n="team.areas.1.title">Comercial</p>
+                    <p class="text-xs text-text-secondary mt-1" data-i18n="team.areas.1.desc">Escritórios · Retalho ·
+                        Logística</p>
+                </div>
+
+                <div
+                    class="bg-background-dark rounded-xl border border-border-dark p-5 text-center hover:border-primary/40 transition-colors">
+                    <span class="material-symbols-outlined text-primary text-3xl mb-2 block">hotel</span>
+                    <p class="text-sm font-semibold text-white" data-i18n="team.areas.2.title">Turismo</p>
+                    <p class="text-xs text-text-secondary mt-1" data-i18n="team.areas.2.desc">Hotéis · Residenciais ·
+                        Projetos</p>
+                </div>
+
+                <div
+                    class="bg-background-dark rounded-xl border border-border-dark p-5 text-center hover:border-primary/40 transition-colors">
+                    <span class="material-symbols-outlined text-primary text-3xl mb-2 block">factory</span>
+                    <p class="text-sm font-semibold text-white" data-i18n="team.areas.3.title">Industrial</p>
+                    <p class="text-xs text-text-secondary mt-1" data-i18n="team.areas.3.desc">Logística · Armazéns ·
+                        Produção</p>
+                </div>
+
+                <div
+                    class="bg-background-dark rounded-xl border border-border-dark p-5 text-center hover:border-primary/40 transition-colors">
+                    <span class="material-symbols-outlined text-primary text-3xl mb-2 block">apartment</span>
+                    <p class="text-sm font-semibold text-white" data-i18n="team.areas.4.title">Promoção</p>
+                    <p class="text-xs text-text-secondary mt-1" data-i18n="team.areas.4.desc">Residencial · Reabilitação
+                    </p>
+                </div>
+
+                <div
+                    class="bg-background-dark rounded-xl border border-border-dark p-5 text-center hover:border-primary/40 transition-colors">
+                    <span class="material-symbols-outlined text-primary text-3xl mb-2 block">business_center</span>
+                    <p class="text-sm font-semibold text-white" data-i18n="team.areas.5.title">Empresas</p>
+                    <p class="text-xs text-text-secondary mt-1" data-i18n="team.areas.5.desc">Aquisições · Posições
+                        societárias</p>
+                </div>
+
+            </div>
+
+            <div class="mt-10 p-6 bg-background-dark rounded-2xl border border-border-dark">
+                <p class="text-xs text-text-secondary uppercase tracking-wider mb-4"
+                    data-i18n="team.areas.examples.title">Exemplos de Ativos em Carteira</p>
+                <div class="flex flex-wrap gap-3">
+                    <span class="bg-primary/10 border border-primary/20 text-primary/80 text-xs px-4 py-2 rounded-full"
+                        data-i18n="team.areas.ex1">Urban / Nobre (pequenos empreendimentos)</span>
+                    <span class="bg-primary/10 border border-primary/20 text-primary/80 text-xs px-4 py-2 rounded-full"
+                        data-i18n="team.areas.ex2">Centro Comercial Matosinhos</span>
+                    <span class="bg-primary/10 border border-primary/20 text-primary/80 text-xs px-4 py-2 rounded-full"
+                        data-i18n="team.areas.ex3">Centro Comercial Leiria</span>
+                    <span class="bg-primary/10 border border-primary/20 text-primary/80 text-xs px-4 py-2 rounded-full"
+                        data-i18n="team.areas.ex4">Empresa Valorização Resíduos Elétricos</span>
+                    <span class="bg-primary/10 border border-primary/20 text-primary/80 text-xs px-4 py-2 rounded-full"
+                        data-i18n="team.areas.ex5">Bombas de Gasolina (Hidrocarbonetes)</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═════════════════════════════════════════════ [SEC-08] CTA FINAL ══ -->
+    <section class="py-20 bg-background-dark border-t border-border-dark">
+        <div class="mx-auto max-w-4xl px-6 lg:px-10 text-center">
+
+            <div
+                class="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-primary mb-8">
+                <span class="material-symbols-outlined text-sm">lock</span>
+                <span data-i18n="team.cta.final.badge">Acesso por Candidatura</span>
+            </div>
+
+            <h2 class="text-3xl lg:text-4xl font-bold text-white mb-6 font-display" data-i18n="team.cta.final.title"
+                data-i18n-html="true">
+                Pronto para integrar<br>
+                <span class="text-primary italic">o grupo comercial?</span>
+            </h2>
+
+            <p class="text-lg text-text-secondary mb-4 max-w-2xl mx-auto" data-i18n="team.cta.final.desc">
+                O acesso ao Commercial Group Portugal está condicionado ao cumprimento
+                dos critérios de candidatura. Todas as candidaturas são analisadas individualmente.
+            </p>
+
+            <div
+                class="inline-flex flex-col sm:flex-row gap-4 bg-card-dark border border-border-dark rounded-2xl p-6 mb-10 text-left">
+                <div class="flex-1">
+                    <p class="text-xs text-primary uppercase tracking-wider font-semibold mb-2"
+                        data-i18n="team.cta.final.p1.title">Agente Especialista Senior</p>
+                    <p class="text-sm text-text-secondary" data-i18n="team.cta.final.p1.desc">Membro da Companhia · 5+
+                        anos · 75% negócios em área comercial · Domínio inglês</p>
+                </div>
+                <div class="w-px bg-border-dark hidden sm:block"></div>
+                <div class="flex-1">
+                    <p class="text-xs text-teal-400 uppercase tracking-wider font-semibold mb-2"
+                        data-i18n="team.cta.final.p2.title">Agente Especialista</p>
+                    <p class="text-sm text-text-secondary" data-i18n="team.cta.final.p2.desc">Membro da Companhia · 3+
+                        anos · 50% negócios em área comercial · Inglês</p>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="access-form.html?tipo=comercial"
+                    class="inline-flex items-center justify-center gap-2 rounded-xl bg-primary hover:bg-primary-hover text-background-dark px-8 py-4 text-base font-bold transition-all shadow-[0_0_20px_rgba(193,168,92,0.3)]">
+                    <span class="material-symbols-outlined">send</span>
+                    <span data-i18n="team.cta.final.btn.submit">Submeter Candidatura</span>
+                </a>
+                <a href="index.html"
+                    class="inline-flex items-center justify-center gap-2 rounded-xl border border-border-dark hover:border-primary bg-transparent text-white px-8 py-4 text-base font-bold transition-all">
+                    <span class="material-symbols-outlined">arrow_back</span>
+                    <span data-i18n="team.cta.final.btn.back">Voltar ao CPII</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════ [SEC-06] FOOTER ══ -->
+    <footer class="border-t border-border-dark py-10 bg-background-dark mt-auto">
+        <div class="mx-auto max-w-7xl px-6 lg:px-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="material-symbols-outlined text-primary text-2xl">apartment</span>
+                        <span class="text-white text-lg font-bold font-display">CPII PORTUGAL</span>
+                    </div>
+                    <p class="text-text-secondary text-sm font-medium leading-relaxed" data-i18n="footer.about">
+                        Clube Privado de Investimento Imobiliário.
+                        Não vendemos imóveis, multiplicamos património.
+                        O clube exclusivo para investidores estratégicos.
+                    </p>
+                </div>
+
+                <div class="flex flex-col items-start md:items-center justify-center">
+                    <h4 class="text-white font-bold mb-4 font-display" data-i18n="footer.cta.title">Pronto para começar?
+                    </h4>
+                    <a href="access-form.html"
+                        class="inline-flex items-center justify-center rounded-xl h-10 px-6 bg-primary hover:bg-primary-hover text-background-dark text-sm font-bold transition-all shadow-[0_0_15px_rgba(193,168,92,0.15)]"
+                        data-i18n="btn.solicitar">
+                        Solicitar Acesso
+                    </a>
+                </div>
+
+                <div class="md:text-right">
+                    <h4 class="text-white font-bold mb-4" data-i18n="footer.legal.title">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="privacy.html"
+                                class="text-text-secondary hover:text-primary transition-colors text-sm"
+                                data-i18n="nav.privacy">Privacidade</a></li>
+                        <li><a href="terms.html"
+                                class="text-text-secondary hover:text-primary transition-colors text-sm"
+                                data-i18n="nav.terms">Termos</a></li>
+                        <li><a href="access-form.html"
+                                class="text-text-secondary hover:text-primary transition-colors text-sm"
+                                data-i18n="footer.legal.support">Suporte</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-border-dark pt-6 flex justify-between items-center">
+                <p class="text-text-secondary text-sm" data-i18n="footer.copy">© 2026 CPII Portugal.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ══════════════════════════════════════════════════ [SEC-07] SCRIPTS ══ -->
+    <script src="utils/tracking.js"></script>
+    <script>
+        CPIITracking.captureReferralFromUrl();
+    </script>
+    <script src="/core/handoff-emitter.js" defer></script>
+</body>
+
+</html>

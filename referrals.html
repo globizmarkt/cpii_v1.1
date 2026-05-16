@@ -1,0 +1,474 @@
+<!--
+================================================================================
+  ARCHIVO:  referrals.html
+  VERSIÓN:  2.1.0
+  FECHA:    2026-04-19
+  PROPÓSITO: A sua rede de crescimento CPII. Visualize a sua estrutura de Revenue Share.
+================================================================================
+-->
+<!DOCTYPE html>
+<html lang="pt" class="dark">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description" content="A sua rede de crescimento CPII. Visualize a sua estrutura de Revenue Share." />
+    <title>A Minha Rede — CPII Portugal</title>
+
+    <!-- Tipografía y Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="css/tailwind.css" />
+
+    <!-- Estilos base compartidos -->
+    <link rel="stylesheet" href="css/design-system.css" />
+
+    <script src="i18n.js"></script>
+</head>
+
+<body class="bg-background-dark text-white font-body min-h-screen flex flex-col">
+
+    <!-- ══════════════════════════════════════════════ [SEC-02] HEADER / NAV ══ -->
+    <header class="sticky top-0 z-50 w-full border-b border-border-dark bg-background-dark/95 backdrop-blur-md">
+        <div class="mx-auto max-w-7xl px-6 lg:px-10 h-20 flex items-center justify-between">
+
+            <!-- Logotipo -->
+            <div class="flex items-center gap-4 flex-shrink-0">
+                <div class="size-8 text-primary">
+                    <span class="material-symbols-outlined text-3xl">apartment</span>
+                </div>
+                <h2 class="text-white text-xl font-bold tracking-tight font-display"><span data-i18n="navigation.logo.main">CPII</span> <span
+                        class="text-primary font-normal" data-i18n="navigation.logo.suffix">PORTUGAL</span></h2>
+            </div>
+
+            <!-- Navegación principal -->
+            <nav class="hidden md:flex flex-1 justify-center gap-4 lg:gap-6 xl:gap-8">
+                <a class="whitespace-nowrap text-text-secondary hover:text-primary transition-colors text-sm font-medium" href="index.html#inicio"
+                    data-i18n="navigation.inicio">Início</a>
+                <a class="whitespace-nowrap text-text-secondary hover:text-primary transition-colors text-sm font-medium"
+                    href="equipo-comercial.html" data-i18n="navigation.grupo_comercial">Grupo Comercial</a>
+                <a class="whitespace-nowrap text-text-secondary hover:text-primary transition-colors text-sm font-medium"
+                    href="simulator.html" data-i18n="navigation.simulador">Simulador</a>
+                <a class="whitespace-nowrap text-primary border-b border-primary pb-1 text-sm font-semibold"
+                    href="referrals.html" data-i18n="navigation.referrals">Minha Rede</a>
+                <a class="whitespace-nowrap text-text-secondary hover:text-primary transition-colors text-sm font-medium"
+                    href="index.html#como-funciona" data-i18n="navigation.como_funciona">Como Funciona</a>
+                <a class="whitespace-nowrap text-text-secondary hover:text-primary transition-colors text-sm font-medium"
+                    href="onboarding.html" data-i18n="navigation.onboarding">Onboarding</a>
+                <a class="whitespace-nowrap text-text-secondary hover:text-primary transition-colors text-sm font-medium"
+                    href="webinars.html" data-i18n="navigation.webinars">Webinars</a>
+            </nav>
+
+            <!-- Selector de idioma + CTA -->
+            <div class="flex items-center gap-4 flex-shrink-0">
+                <!-- Selector de idioma — id requerido por i18n.js para sincronización -->
+                <select id="lang-selector">
+                    <option value="pt">PT</option>
+                    <option value="es">ES</option>
+                    <option value="en">EN</option>
+                    <option value="fr">FR</option>
+                </select>
+
+                <a href="access-form.html"
+                    class="flex items-center justify-center rounded-xl h-10 px-6 bg-primary hover:bg-primary-hover text-background-dark text-sm font-bold transition-all shadow-[0_0_15px_rgba(193,168,92,0.15)]"
+                    data-i18n="btn.solicitar">
+                    Solicitar Acesso
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 w-full max-w-7xl mx-auto px-6 lg:px-10 py-12 flex flex-col gap-8">
+
+        <div class="flex flex-col md:flex-row justify-between items-end gap-6 pb-6 border-b border-border-dark">
+            <div>
+                <h2 class="text-4xl lg:text-5xl font-black text-white leading-tight font-display" data-i18n="ref.title">
+                    A Sua Rede de Crescimento</h2>
+                <p class="text-text-secondary mt-3 max-w-2xl font-light text-base leading-relaxed"
+                    data-i18n="ref.subtitle">
+                    Visualização da sua estrutura de Revenue Share. Esta é uma demonstração do dashboard que terá assim
+                    que o seu acesso for aprovado.
+                </p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+            <div class="lg:col-span-8">
+                <div class="bg-card-dark rounded-2xl border border-border-dark shadow-xl overflow-hidden">
+
+                    <div class="flex justify-between items-center mb-8 px-8 pt-8">
+                        <h3 class="text-xl font-bold text-white font-display" data-i18n="ref.tree.title">Estrutura
+                            Organizacional (Demo)</h3>
+                        <div class="flex gap-4 text-xs uppercase tracking-wider font-bold">
+                            <div class="flex items-center gap-2">
+                                <span
+                                    class="w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_8px_rgba(193,168,93,0.6)]"></span>
+                                <span class="text-text-secondary" data-i18n="ref.tree.active">Ativo</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span
+                                    class="w-2.5 h-2.5 rounded-full bg-border-dark border border-text-secondary"></span>
+                                <span class="text-text-secondary" data-i18n="ref.tree.pending">Pendente</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- [SEC-04] Árbol SVG -->
+                    <div class="w-full overflow-x-auto pb-4 hide-scrollbar">
+                        <div class="relative w-full py-6 min-w-[900px] pr-4" style="min-height: 480px;">
+
+                            <!-- SVG conectores -->
+                            <svg class="absolute inset-0 w-full h-full pointer-events-none z-0" overflow="visible">
+                                <line id="l-root-h" x1="50%" y1="90" x2="50%" y2="130" stroke="rgba(193,168,93,0.35)"
+                                    stroke-width="2" />
+                                <line id="l-h1" x1="27%" y1="130" x2="73%" y2="130" stroke="rgba(193,168,93,0.35)"
+                                    stroke-width="2" />
+                                <line id="l-r1" x1="27%" y1="130" x2="27%" y2="175" stroke="rgba(193,168,93,0.35)"
+                                    stroke-width="2" />
+                                <line id="l-r2" x1="73%" y1="130" x2="73%" y2="175" stroke="rgba(193,168,93,0.35)"
+                                    stroke-width="2" />
+                                <line id="l-r1-down" x1="27%" y1="285" x2="27%" y2="310" stroke="rgba(193,168,93,0.35)"
+                                    stroke-width="2" />
+                                <line id="l-h2-left" x1="14%" y1="310" x2="40%" y2="310" stroke="rgba(193,168,93,0.35)"
+                                    stroke-width="2" />
+                                <line id="l-pa" x1="14%" y1="310" x2="14%" y2="335" stroke="rgba(193,168,93,0.35)"
+                                    stroke-width="2" />
+                                <line id="l-pb" x1="40%" y1="310" x2="40%" y2="335" stroke="rgba(193,168,93,0.35)"
+                                    stroke-width="2" />
+                                <line id="l-r2-down" x1="73%" y1="285" x2="73%" y2="335" stroke="rgba(193,168,93,0.35)"
+                                    stroke-width="2" />
+                            </svg>
+
+                            <!-- NODO RAÍZ -->
+                            <div class="absolute z-10 left-1/2 -translate-x-1/2" style="top: 10px;">
+                                <div
+                                    class="w-56 bg-gradient-to-br from-border-dark to-card-dark rounded-xl border-2 border-primary shadow-[0_0_20px_rgba(193,168,93,0.15)] p-4 flex items-center gap-4">
+                                    <div
+                                        class="h-12 w-12 rounded-full bg-primary/10 text-primary flex items-center justify-center font-display font-bold text-xl border border-primary/30 flex-shrink-0">
+                                        <span data-i18n="ref.tree.you.initial">TÚ</span>
+                                    </div>
+                                    <div>
+                                        <p class="font-display font-bold text-lg text-white">Demo User</p>
+                                        <p class="text-xs text-primary uppercase tracking-widest font-bold mt-1"
+                                            data-i18n="ref.tree.investor">Inversor</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- REFERIDO 1 -->
+                            <div class="absolute z-10" style="top: 175px; left: calc(27% - 100px);">
+                                <div class="w-52 bg-background-dark rounded-xl border border-border-dark p-4 shadow-lg">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-border-dark flex items-center justify-center text-sm font-bold text-primary border border-primary/20 flex-shrink-0">
+                                            R1</div>
+                                        <div>
+                                            <p class="text-sm font-bold text-white font-display"
+                                                data-i18n="ref.tree.ref1">
+                                                Referido 1</p>
+                                            <p
+                                                class="text-[9px] text-primary/80 uppercase tracking-widest flex items-center gap-1 mt-0.5 font-bold">
+                                                <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                                <span data-i18n="ref.tree.level1">Nivel 1</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="bg-card-dark border border-border-dark rounded-lg p-2.5 flex justify-between text-xs">
+                                        <div>
+                                            <p class="text-text-secondary font-bold text-[9px] uppercase tracking-wider"
+                                                data-i18n="ref.tree.vol">Volumen</p>
+                                            <p class="font-mono font-bold text-white mt-0.5">€ 1.200</p>
+                                        </div>
+                                        <div class="text-right">
+                                            <p class="text-text-secondary font-bold text-[9px] uppercase tracking-wider"
+                                                data-i18n="ref.tree.com">Com.</p>
+                                            <p class="font-mono font-bold text-primary mt-0.5">€ 12</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- REFERIDO 2 -->
+                            <div class="absolute z-10" style="top: 175px; left: calc(73% - 100px);">
+                                <div class="w-52 bg-background-dark rounded-xl border border-border-dark p-4 shadow-lg">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-border-dark flex items-center justify-center text-sm font-bold text-primary border border-primary/20 flex-shrink-0">
+                                            R2</div>
+                                        <div>
+                                            <p class="text-sm font-bold text-white font-display"
+                                                data-i18n="ref.tree.ref2">
+                                                Referido 2</p>
+                                            <p
+                                                class="text-[9px] text-primary/80 uppercase tracking-widest flex items-center gap-1 mt-0.5 font-bold">
+                                                <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                                <span data-i18n="ref.tree.level1">Nivel 1</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="bg-card-dark border border-border-dark rounded-lg p-2.5 flex justify-between text-xs">
+                                        <div>
+                                            <p class="text-text-secondary font-bold text-[9px] uppercase tracking-wider"
+                                                data-i18n="ref.tree.vol">Volumen</p>
+                                            <p class="font-mono font-bold text-white mt-0.5">€ 2.400</p>
+                                        </div>
+                                        <div class="text-right">
+                                            <p class="text-text-secondary font-bold text-[9px] uppercase tracking-wider"
+                                                data-i18n="ref.tree.com">Com.</p>
+                                            <p class="font-mono font-bold text-primary mt-0.5">€ 24</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PARTNER A -->
+                            <div class="absolute z-10" style="top: 335px; left: calc(14% - 80px);">
+                                <div class="w-44 bg-card-dark rounded-xl border border-border-dark p-3 shadow-md">
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <div
+                                            class="w-8 h-8 rounded-full bg-border-dark flex items-center justify-center text-[10px] font-bold text-primary border border-primary/20 flex-shrink-0">
+                                            A</div>
+                                        <div>
+                                            <p class="text-sm font-bold text-white font-display">Partner A</p>
+                                            <p
+                                                class="text-[9px] text-primary/80 uppercase tracking-widest flex items-center gap-1 font-bold">
+                                                <span class="w-1 h-1 rounded-full bg-primary"></span>
+                                                <span data-i18n="ref.tree.level2">Nivel 2</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="bg-background-dark border border-border-dark rounded-lg p-2 flex justify-between text-xs">
+                                        <div>
+                                            <p class="text-text-secondary font-bold text-[9px] uppercase"
+                                                data-i18n="ref.tree.vol">Vol</p>
+                                            <p class="font-mono font-bold text-white">€ 600</p>
+                                        </div>
+                                        <div class="text-right">
+                                            <p class="text-text-secondary font-bold text-[9px] uppercase"
+                                                data-i18n="ref.tree.com">Com.</p>
+                                            <p class="font-mono font-bold text-primary">€ 3</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PARTNER B -->
+                            <div class="absolute z-10" style="top: 335px; left: calc(40% - 80px);">
+                                <div class="w-44 bg-card-dark rounded-xl border border-border-dark p-3 shadow-md">
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <div
+                                            class="w-8 h-8 rounded-full bg-border-dark flex items-center justify-center text-[10px] font-bold text-primary border border-primary/20 flex-shrink-0">
+                                            B</div>
+                                        <div>
+                                            <p class="text-sm font-bold text-white font-display">Partner B</p>
+                                            <p
+                                                class="text-[9px] text-primary/80 uppercase tracking-widest flex items-center gap-1 font-bold">
+                                                <span class="w-1 h-1 rounded-full bg-primary"></span>
+                                                <span data-i18n="ref.tree.level2">Nivel 2</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="bg-background-dark border border-border-dark rounded-lg p-2 flex justify-between text-xs">
+                                        <div>
+                                            <p class="text-text-secondary font-bold text-[9px] uppercase"
+                                                data-i18n="ref.tree.vol">Vol</p>
+                                            <p class="font-mono font-bold text-white">€ 1.000</p>
+                                        </div>
+                                        <div class="text-right">
+                                            <p class="text-text-secondary font-bold text-[9px] uppercase"
+                                                data-i18n="ref.tree.com">Com.</p>
+                                            <p class="font-mono font-bold text-primary">€ 5</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PARTNER C -->
+                            <div class="absolute z-10" style="top: 335px; left: calc(73% - 80px);">
+                                <div class="w-44 bg-card-dark rounded-xl border border-border-dark p-3 shadow-md">
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <div
+                                            class="w-8 h-8 rounded-full bg-border-dark flex items-center justify-center text-[10px] font-bold text-primary border border-primary/20 flex-shrink-0">
+                                            C</div>
+                                        <div>
+                                            <p class="text-sm font-bold text-white font-display">Partner C</p>
+                                            <p
+                                                class="text-[9px] text-primary/80 uppercase tracking-widest flex items-center gap-1 font-bold">
+                                                <span class="w-1 h-1 rounded-full bg-primary"></span>
+                                                <span data-i18n="ref.tree.level2">Nivel 2</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="bg-background-dark border border-border-dark rounded-lg p-2 flex justify-between text-xs">
+                                        <div>
+                                            <p class="text-text-secondary font-bold text-[9px] uppercase"
+                                                data-i18n="ref.tree.vol">Vol</p>
+                                            <p class="font-mono font-bold text-white">€ 800</p>
+                                        </div>
+                                        <div class="text-right">
+                                            <p class="text-text-secondary font-bold text-[9px] uppercase"
+                                                data-i18n="ref.tree.com">Com.</p>
+                                            <p class="font-mono font-bold text-primary">€ 4</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8 pt-8 border-t border-border-dark px-8 pb-8">
+                        <div class="bg-background-dark p-5 rounded-xl border border-border-dark text-center">
+                            <p class="text-xs text-text-secondary font-bold uppercase tracking-widest"
+                                data-i18n="ref.tree.level1">Nível 1</p>
+                            <p class="text-3xl font-display font-bold text-white mt-2">2 <span
+                                    class="text-xs font-sans font-normal text-text-secondary"
+                                    data-i18n="ref.stats.people">pessoas</span></p>
+                        </div>
+                        <div class="bg-background-dark p-5 rounded-xl border border-border-dark text-center">
+                            <p class="text-xs text-text-secondary font-bold uppercase tracking-widest"
+                                data-i18n="ref.tree.level2">Nível 2</p>
+                            <p class="text-3xl font-display font-bold text-white mt-2">6 <span
+                                    class="text-xs font-sans font-normal text-text-secondary"
+                                    data-i18n="ref.stats.people">pessoas</span></p>
+                        </div>
+                        <div class="bg-background-dark p-5 rounded-xl border border-border-dark text-center">
+                            <p class="text-xs text-text-secondary font-bold uppercase tracking-widest"
+                                data-i18n="ref.tree.level3">Nível 3</p>
+                            <p class="text-3xl font-display font-bold text-white mt-2">18 <span
+                                    class="text-xs font-sans font-normal text-text-secondary"
+                                    data-i18n="ref.stats.people">pessoas</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-4 flex flex-col gap-5 self-center">
+
+                <div
+                    class="bg-gradient-to-br from-primary to-yellow-700 rounded-2xl shadow-xl p-7 text-background-dark relative overflow-hidden">
+                    <div class="absolute -right-8 -top-8 w-40 h-40 bg-white/20 rounded-full blur-3xl"></div>
+                    <div class="relative z-10">
+                        <h3 class="text-[10px] font-bold uppercase tracking-widest border-b border-black/10 pb-2 mb-4"
+                            data-i18n="ref.summary.title">Revenue Share Generado</h3>
+                        <div class="flex items-baseline gap-2 mb-3">
+                            <span class="text-5xl font-display font-black tracking-tight">€ 334</span>
+                            <span class="text-xl font-bold">.00</span>
+                        </div>
+                        <div
+                            class="flex items-center gap-2 text-sm bg-background-dark/10 w-fit px-3 py-1 rounded-full mb-6 border border-background-dark/10 font-bold">
+                            <span class="material-symbols-outlined text-base">trending_up</span>
+                            <span>+12%</span>
+                            <span class="text-xs font-medium opacity-80" data-i18n="ref.summary.vs">vs mes
+                                anterior</span>
+                        </div>
+                        <div class="border-t border-black/15 pt-4 flex flex-col gap-1.5">
+                            <p class="text-[10px] font-bold uppercase tracking-widest opacity-70 mb-1"
+                                data-i18n="ref.info.title">Información</p>
+                            <div class="flex justify-between text-xs font-medium">
+                                <span data-i18n="ref.info.l1">Revenue Share L1</span>
+                                <span class="font-bold">1%</span>
+                            </div>
+                            <div class="flex justify-between text-xs font-medium">
+                                <span data-i18n="ref.info.l2">Revenue Share L2</span>
+                                <span class="font-bold">0.5%</span>
+                            </div>
+                            <div class="flex justify-between text-xs font-medium">
+                                <span data-i18n="ref.info.l3">Revenue Share L3</span>
+                                <span class="font-bold">0.25%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-card-dark rounded-2xl p-7 text-center border border-border-dark shadow-lg">
+                    <div
+                        class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-5 text-primary border border-primary/30">
+                        <span class="material-symbols-outlined text-2xl">workspace_premium</span>
+                    </div>
+                    <h3 class="text-white font-display font-bold text-xl mb-2" data-i18n="ref.cta.title">¿Listo para
+                        Empezar?</h3>
+                    <p class="text-text-secondary text-sm mb-6 font-light leading-relaxed" data-i18n="ref.cta.desc">
+                        Solicita tu acesso agora e começa a construir a tua rede de investimento.
+                    </p>
+                    <a href="access-form.html"
+                        class="block w-full py-3.5 bg-primary hover:bg-primary-hover text-background-dark text-sm uppercase tracking-widest font-bold rounded-xl transition-colors"
+                        data-i18n="ref.cta.btn">
+                        Solicitar Acesso
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- ══════════════════════════════════════════════════ [SEC-06] FOOTER ══ -->
+    <footer class="border-t border-border-dark py-10 bg-background-dark mt-auto">
+        <div class="mx-auto max-w-7xl px-6 lg:px-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="material-symbols-outlined text-primary text-2xl">apartment</span>
+                        <span class="text-white text-lg font-bold font-display">CPII PORTUGAL</span>
+                    </div>
+                    <p class="text-text-secondary text-sm font-medium leading-relaxed" data-i18n="footer.about">
+                        Clube Privado de Investimento Imobiliário.
+                        Não vendemos imóveis, multiplicamos património.
+                        O clube exclusivo para investidores estratégicos.
+                    </p>
+                </div>
+
+                <div class="flex flex-col items-start md:items-center justify-center">
+                    <h4 class="text-white font-bold mb-4 font-display" data-i18n="footer.cta.title">Pronto para começar?
+                    </h4>
+                    <a href="access-form.html"
+                        class="inline-flex items-center justify-center rounded-xl h-10 px-6 bg-primary hover:bg-primary-hover text-background-dark text-sm font-bold transition-all shadow-[0_0_15px_rgba(193,168,92,0.15)]"
+                        data-i18n="btn.solicitar">
+                        Solicitar Acesso
+                    </a>
+                </div>
+
+                <div class="md:text-right">
+                    <h4 class="text-white font-bold mb-4" data-i18n="footer.legal.title">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="privacy.html"
+                                class="text-text-secondary hover:text-primary transition-colors text-sm"
+                                data-i18n="nav.privacy">Privacidade</a></li>
+                        <li><a href="terms.html"
+                                class="text-text-secondary hover:text-primary transition-colors text-sm"
+                                data-i18n="nav.terms">Termos</a></li>
+                        <li><a href="access-form.html"
+                                class="text-text-secondary hover:text-primary transition-colors text-sm"
+                                data-i18n="footer.legal.support">Suporte</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-border-dark pt-6 flex justify-between items-center">
+                <p class="text-text-secondary text-sm" data-i18n="footer.copy">© 2026 CPII Portugal.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ══════════════════════════════════════════════════ [SEC-07] SCRIPTS ══ -->
+    <script src="utils/tracking.js"></script>
+    <script>
+        // ── Referral capture (centralizada) ───────────────────────────────
+        CPIITracking.captureReferralFromUrl();
+    </script>
+    <script src="/core/handoff-emitter.js" defer></script>
+</body>
+
+</html>

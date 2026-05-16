@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CPII Portugal - Simulador de Riqueza</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#c1a85c",
+                        "primary-hover": "#d4b966",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#161513",
+                        "card-dark": "#1e1b14",
+                        "card-hover": "#2a2720",
+                        "text-secondary": "#b2afa3",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom range slider styling for Webkit/Blink */
+        input[type=range] {
+            -webkit-appearance: none; 
+            background: transparent; 
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+        }
+
+        input[type=range]:focus {
+            outline: none; 
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #161513;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #35332c;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #c1a85c;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display min-h-screen flex flex-col overflow-x-hidden selection:bg-primary selection:text-black">
+<!-- Header -->
+<header class="sticky top-0 z-50 w-full border-b border-[#35332c] bg-[#161513]/90 backdrop-blur-md">
+<div class="mx-auto max-w-[1440px] px-6 lg:px-10 h-20 flex items-center justify-between">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 text-primary">
+<svg class="h-full w-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-white text-xl font-bold tracking-tight">CPII PORTUGAL</h2>
+</div>
+<nav class="hidden md:flex flex-1 justify-center gap-10">
+<a class="text-text-secondary hover:text-primary transition-colors text-sm font-semibold" href="#">Simulador</a>
+<a class="text-text-secondary hover:text-primary transition-colors text-sm font-semibold" href="#">Sobre Nós</a>
+<a class="text-text-secondary hover:text-primary transition-colors text-sm font-semibold" href="#">Oportunidades</a>
+<a class="text-text-secondary hover:text-primary transition-colors text-sm font-semibold" href="#">Contactos</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hidden md:flex items-center justify-center rounded-xl h-10 px-6 bg-transparent border border-[#35332c] hover:border-primary text-white hover:text-primary text-sm font-bold transition-all">
+                    Login
+                </button>
+<button class="flex items-center justify-center rounded-xl h-10 px-6 bg-primary hover:bg-primary-hover text-[#161513] text-sm font-bold transition-all shadow-[0_0_15px_rgba(193,168,92,0.15)] hover:shadow-[0_0_20px_rgba(193,168,92,0.3)]">
+                    Juntar-se Agora
+                </button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 w-full max-w-[1440px] mx-auto p-6 lg:p-10 flex flex-col gap-8">
+<!-- Page Title Section -->
+<div class="flex flex-col md:flex-row justify-between items-end gap-6 pb-6 border-b border-[#35332c]">
+<div class="space-y-2">
+<div class="flex items-center gap-2 text-primary text-sm font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-lg">monitoring</span>
+<span>Ferramenta Financeira</span>
+</div>
+<h1 class="text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
+                    Simulador de <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-[#e5d49a]">Riqueza Exponencial</span>
+</h1>
+<p class="text-text-secondary text-lg max-w-2xl mt-2">
+                    Descubra como o efeito composto da rede CPII pode acelerar a sua independência financeira em comparação com o investimento tradicional.
+                </p>
+</div>
+<div class="flex items-center gap-2 text-text-secondary bg-[#2a2720] px-4 py-2 rounded-lg border border-[#35332c]">
+<span class="material-symbols-outlined text-primary">calendar_today</span>
+<span class="text-sm font-medium">Última atualização: Outubro 2023</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 h-full">
+<!-- Left Panel: Inputs -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<div class="bg-card-dark border border-[#35332c] rounded-2xl p-6 lg:p-8 h-full shadow-2xl shadow-black/50">
+<h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">tune</span>
+                        Parâmetros de Entrada
+                    </h3>
+<div class="space-y-8">
+<!-- Input 1: Ahorro Mensual -->
+<div class="space-y-4 group">
+<div class="flex justify-between items-center">
+<label class="text-sm font-medium text-text-secondary uppercase tracking-wider flex items-center gap-2" for="savings">
+                                    Poupança Mensal
+                                    <span class="material-symbols-outlined text-[16px] text-gray-500 cursor-help" title="Valor que pretende investir mensalmente">info</span>
+</label>
+<div class="bg-[#2a2720] border border-[#35332c] group-hover:border-primary/50 rounded-lg px-3 py-1 flex items-center gap-1 transition-colors">
+<span class="text-primary font-bold">€</span>
+<input class="bg-transparent border-none text-right text-white font-bold w-16 p-0 focus:ring-0 appearance-none" id="savings-input" type="number" value="250"/>
+</div>
+</div>
+<input class="w-full h-2 bg-[#35332c] rounded-lg appearance-none cursor-pointer [&amp;::-webkit-slider-thumb]:w-6 [&amp;::-webkit-slider-thumb]:h-6 [&amp;::-webkit-slider-thumb]:bg-primary [&amp;::-webkit-slider-thumb]:rounded-full [&amp;::-webkit-slider-thumb]:border-4 [&amp;::-webkit-slider-thumb]:border-[#1e1b14] [&amp;::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(193,168,92,0.5)]" id="savings" max="1000" min="50" step="50" type="range" value="250"/>
+<div class="flex justify-between text-xs text-text-secondary font-medium">
+<span>€50</span>
+<span>€1.000</span>
+</div>
+</div>
+<!-- Input 2: Referidos Nivel 1 -->
+<div class="space-y-4 group">
+<div class="flex justify-between items-center">
+<label class="text-sm font-medium text-text-secondary uppercase tracking-wider flex items-center gap-2" for="referrals">
+                                    Referidos Nível 1
+                                    <span class="material-symbols-outlined text-[16px] text-gray-500 cursor-help" title="Número de pessoas que indicou diretamente">info</span>
+</label>
+<div class="bg-[#2a2720] border border-[#35332c] group-hover:border-primary/50 rounded-lg px-3 py-1 flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-primary text-sm">person</span>
+<input class="bg-transparent border-none text-right text-white font-bold w-16 p-0 focus:ring-0 appearance-none" id="referrals-input" type="number" value="5"/>
+</div>
+</div>
+<input class="w-full h-2 bg-[#35332c] rounded-lg appearance-none cursor-pointer [&amp;::-webkit-slider-thumb]:w-6 [&amp;::-webkit-slider-thumb]:h-6 [&amp;::-webkit-slider-thumb]:bg-primary [&amp;::-webkit-slider-thumb]:rounded-full [&amp;::-webkit-slider-thumb]:border-4 [&amp;::-webkit-slider-thumb]:border-[#1e1b14] [&amp;::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(193,168,92,0.5)]" id="referrals" max="50" min="0" step="1" type="range" value="5"/>
+<div class="flex justify-between text-xs text-text-secondary font-medium">
+<span>0</span>
+<span>50</span>
+</div>
+</div>
+<!-- Input 3: Capital Promedio -->
+<div class="space-y-4 group">
+<div class="flex justify-between items-center">
+<label class="text-sm font-medium text-text-secondary uppercase tracking-wider flex items-center gap-2" for="capital">
+                                    Capital Médio Referidos
+                                    <span class="material-symbols-outlined text-[16px] text-gray-500 cursor-help" title="Investimento médio da sua rede">info</span>
+</label>
+<div class="bg-[#2a2720] border border-[#35332c] group-hover:border-primary/50 rounded-lg px-3 py-1 flex items-center gap-1 transition-colors">
+<span class="text-primary font-bold">€</span>
+<input class="bg-transparent border-none text-right text-white font-bold w-20 p-0 focus:ring-0 appearance-none" id="capital-input" type="number" value="5000"/>
+</div>
+</div>
+<input class="w-full h-2 bg-[#35332c] rounded-lg appearance-none cursor-pointer [&amp;::-webkit-slider-thumb]:w-6 [&amp;::-webkit-slider-thumb]:h-6 [&amp;::-webkit-slider-thumb]:bg-primary [&amp;::-webkit-slider-thumb]:rounded-full [&amp;::-webkit-slider-thumb]:border-4 [&amp;::-webkit-slider-thumb]:border-[#1e1b14] [&amp;::-webkit-slider-thumb]:shadow-[0_0_10px_rgba(193,168,92,0.5)]" id="capital" max="50000" min="1000" step="1000" type="range" value="5000"/>
+<div class="flex justify-between text-xs text-text-secondary font-medium">
+<span>€1.000</span>
+<span>€50.000</span>
+</div>
+</div>
+<!-- Info Box -->
+<div class="bg-[#2a2720]/50 rounded-xl p-4 border border-[#35332c] mt-8 flex gap-3 items-start">
+<span class="material-symbols-outlined text-primary mt-1">lightbulb</span>
+<div>
+<h4 class="text-white font-bold text-sm mb-1">Dica de Crescimento</h4>
+<p class="text-xs text-text-secondary leading-relaxed">
+                                     Aumentar os referidos diretos em apenas <strong>2 pessoas</strong> pode acelerar o seu autofinanciamento em até <strong>6 meses</strong>.
+                                 </p>
+</div>
+</div>
+</div>
+<button class="w-full mt-8 bg-white hover:bg-gray-100 text-[#161513] font-bold py-3 px-4 rounded-xl transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">restart_alt</span>
+                        Reiniciar Simulação
+                    </button>
+</div>
+</div>
+<!-- Right Panel: Visualization -->
+<div class="lg:col-span-8 flex flex-col gap-6">
+<!-- KPI Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Card 1 -->
+<div class="bg-card-dark border border-[#35332c] rounded-2xl p-5 relative overflow-hidden group hover:border-primary/30 transition-all">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">account_balance</span>
+</div>
+<p class="text-text-secondary text-xs font-bold uppercase tracking-wider mb-2">Património em 5 Anos</p>
+<div class="flex items-baseline gap-1">
+<span class="text-3xl lg:text-4xl font-black text-white tracking-tight">€ 145.200</span>
+</div>
+<div class="mt-3 flex items-center gap-2">
+<span class="bg-green-500/10 text-green-500 text-xs font-bold px-2 py-1 rounded flex items-center">
+<span class="material-symbols-outlined text-sm mr-1">trending_up</span> +124%
+                             </span>
+<span class="text-xs text-text-secondary">vs. poupança simples</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-card-dark border border-[#35332c] rounded-2xl p-5 relative overflow-hidden group hover:border-primary/30 transition-all">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">hourglass_empty</span>
+</div>
+<p class="text-text-secondary text-xs font-bold uppercase tracking-wider mb-2">Mês de Autofinanciamento</p>
+<div class="flex items-baseline gap-1">
+<span class="text-3xl lg:text-4xl font-black text-primary tracking-tight">Mês 18</span>
+</div>
+<div class="mt-3 flex items-center gap-2">
+<span class="text-xs text-text-secondary">Ponto de equilíbrio estimado</span>
+</div>
+<div class="w-full bg-[#35332c] h-1.5 rounded-full mt-4 overflow-hidden">
+<div class="bg-primary h-full rounded-full w-[65%]"></div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-card-dark border border-[#35332c] rounded-2xl p-5 relative overflow-hidden group hover:border-primary/30 transition-all">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">payments</span>
+</div>
+<p class="text-text-secondary text-xs font-bold uppercase tracking-wider mb-2">Renda Passiva Mensal</p>
+<div class="flex items-baseline gap-1">
+<span class="text-3xl lg:text-4xl font-black text-white tracking-tight">€ 2.500</span>
+</div>
+<div class="mt-3 flex items-center gap-2">
+<span class="text-xs text-text-secondary">Estimativa conservadora</span>
+</div>
+<div class="flex -space-x-2 mt-3">
+<div class="w-6 h-6 rounded-full bg-slate-700 border-2 border-card-dark flex items-center justify-center text-[8px] text-white">€</div>
+<div class="w-6 h-6 rounded-full bg-slate-600 border-2 border-card-dark flex items-center justify-center text-[8px] text-white">€</div>
+<div class="w-6 h-6 rounded-full bg-primary border-2 border-card-dark flex items-center justify-center text-[8px] text-black font-bold">+</div>
+</div>
+</div>
+</div>
+<!-- Main Chart Area -->
+<div class="flex-1 bg-card-dark border border-[#35332c] rounded-2xl p-6 lg:p-8 flex flex-col shadow-2xl shadow-black/50 relative overflow-hidden">
+<div class="flex flex-wrap justify-between items-start mb-8 gap-4 z-10">
+<div>
+<h3 class="text-xl font-bold text-white mb-1">Projeção de Crescimento</h3>
+<p class="text-sm text-text-secondary">Comparação de desempenho acumulado</p>
+</div>
+<div class="flex flex-wrap gap-4">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-white/30"></div>
+<span class="text-xs font-bold text-text-secondary uppercase">Crescimento Individual</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary shadow-[0_0_8px_rgba(193,168,92,0.8)]"></div>
+<span class="text-xs font-bold text-primary uppercase">Crescimento com Rede CPII</span>
+</div>
+</div>
+</div>
+<!-- Chart SVG -->
+<div class="relative flex-1 min-h-[300px] w-full z-10">
+<!-- Chart Grid Lines (Horizontal) -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+<div class="w-full border-t border-[#35332c]/50"></div>
+<div class="w-full border-t border-[#35332c]/50"></div>
+<div class="w-full border-t border-[#35332c]/50"></div>
+<div class="w-full border-t border-[#35332c]/50"></div>
+<div class="w-full border-t border-[#35332c]/50"></div>
+</div>
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 800 400">
+<defs>
+<lineargradient id="goldGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#c1a85c" stop-opacity="0.3"></stop>
+<stop offset="100%" stop-color="#c1a85c" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<!-- Individual Growth Line (Linear/Lower) -->
+<path class="opacity-50" d="M0,380 Q200,340 400,300 T800,220" fill="none" stroke="#525252" stroke-dasharray="5,5" stroke-width="2"></path>
+<!-- Network Growth Area (Gold fill) -->
+<path d="M0,380 Q200,320 400,200 T800,50 V380 H0 Z" fill="url(#goldGradient)"></path>
+<!-- Network Growth Line (Exponential/Gold) -->
+<path class="drop-shadow-[0_0_10px_rgba(193,168,92,0.5)]" d="M0,380 Q200,320 400,200 T800,50" fill="none" stroke="#c1a85c" stroke-linecap="round" stroke-width="4"></path>
+<!-- Data Points -->
+<circle cx="0" cy="380" fill="#1e1b14" r="4" stroke="#c1a85c" stroke-width="2"></circle>
+<circle cx="200" cy="320" fill="#1e1b14" r="4" stroke="#c1a85c" stroke-width="2"></circle>
+<circle class="animate-pulse" cx="400" cy="200" fill="#c1a85c" r="6"></circle> <!-- Highlight Point -->
+<circle cx="600" cy="110" fill="#1e1b14" r="4" stroke="#c1a85c" stroke-width="2"></circle>
+<circle cx="800" cy="50" fill="#c1a85c" r="6" stroke="white" stroke-width="2"></circle>
+<!-- Tooltip (Static Visual) -->
+<g transform="translate(420, 180)">
+<rect fill="#2a2720" height="50" rx="8" stroke="#c1a85c" stroke-width="1" width="100" x="0" y="0"></rect>
+<text fill="#b2afa3" font-family="Manrope" font-size="10" font-weight="bold" x="10" y="20">Ano 3</text>
+<text fill="white" font-family="Manrope" font-size="14" font-weight="800" x="10" y="38">€ 68.450</text>
+</g>
+</svg>
+</div>
+<!-- X Axis Labels -->
+<div class="flex justify-between mt-4 text-xs font-bold text-text-secondary uppercase tracking-widest z-10">
+<span>Hoje</span>
+<span>Ano 1</span>
+<span>Ano 2</span>
+<span>Ano 3</span>
+<span>Ano 4</span>
+<span>Ano 5</span>
+</div>
+<!-- Background Decor -->
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(193,168,92,0.05),transparent_50%)] pointer-events-none"></div>
+</div>
+<!-- Call to Action Footer in Panel -->
+<div class="bg-gradient-to-r from-[#2a2720] to-[#1e1b14] border border-[#35332c] rounded-2xl p-6 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-4">
+<div class="bg-primary/20 p-3 rounded-full text-primary">
+<span class="material-symbols-outlined">diamond</span>
+</div>
+<div>
+<h4 class="text-white font-bold text-lg">Pronto para começar?</h4>
+<p class="text-text-secondary text-sm">Obtenha o seu plano detalhado em PDF agora.</p>
+</div>
+</div>
+<div class="flex gap-3 w-full md:w-auto">
+<button class="flex-1 md:flex-none py-2.5 px-5 rounded-lg border border-[#35332c] hover:border-white/20 text-white font-semibold text-sm transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                             Baixar Relatório
+                        </button>
+<button class="flex-1 md:flex-none py-2.5 px-5 rounded-lg bg-primary hover:bg-primary-hover text-[#161513] font-bold text-sm transition-colors shadow-lg shadow-primary/20">
+                            Falar com Consultor
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Simple Footer -->
+<footer class="border-t border-[#35332c] mt-10 py-8 bg-[#161513]">
+<div class="max-w-[1440px] mx-auto px-6 lg:px-10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-text-secondary">
+<p>© 2023 CPII Portugal. Todos os direitos reservados.</p>
+<div class="flex gap-6">
+<a class="hover:text-primary transition-colors" href="#">Privacidade</a>
+<a class="hover:text-primary transition-colors" href="#">Termos</a>
+<a class="hover:text-primary transition-colors" href="#">Suporte</a>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,49 @@
+<!-- ══════════════════════════════════════════════ [SEC-02] HEADER / NAV ══ -->
+<header class="sticky top-0 z-50 w-full border-b border-border-dark bg-background-dark/95 backdrop-blur-md">
+    <div class="mx-auto max-w-7xl px-6 lg:px-10 h-20 flex items-center justify-between">
+
+        <!-- Logotipo -->
+        <div class="flex items-center gap-4">
+            <div class="size-8 text-primary">
+                <span class="material-symbols-outlined text-3xl">apartment</span>
+            </div>
+            <h2 class="text-white text-xl font-bold tracking-tight font-display">CPII <span
+                    class="text-primary font-normal">PORTUGAL</span></h2>
+        </div>
+
+        <!-- Navegación principal -->
+        <nav class="hidden md:flex gap-8">
+            <a class="text-primary border-b border-primary pb-1 text-sm font-semibold" href="index.html#inicio"
+                data-i18n="nav.inicio">Início</a>
+            <a class="text-text-secondary hover:text-primary transition-colors text-sm font-medium"
+                href="equipo-comercial.html" data-i18n="nav.grupo_comercial">Grupo Comercial</a>
+            <a class="text-text-secondary hover:text-primary transition-colors text-sm font-medium"
+                href="simulator.html" data-i18n="nav.simulador">Simulador</a>
+            <a class="text-text-secondary hover:text-primary transition-colors text-sm font-medium"
+                href="referrals.html" data-i18n="nav.referrals">Minha Rede</a>
+            <a class="text-text-secondary hover:text-primary transition-colors text-sm font-medium"
+                href="index.html#como-funciona" data-i18n="nav.como_funciona">Como Funciona</a>
+            <a class="text-text-secondary hover:text-primary transition-colors text-sm font-medium"
+                href="onboarding.html" data-i18n="nav.onboarding">Onboarding</a>
+            <a class="text-text-secondary hover:text-primary transition-colors text-sm font-medium"
+                href="webinars.html" data-i18n="nav.webinars">Webinars</a>
+        </nav>
+
+        <!-- Selector de idioma + CTA -->
+        <div class="flex items-center gap-4">
+            <!-- Selector de idioma — id requerido por i18n.js para sincronización -->
+            <select id="lang-selector">
+                <option value="pt">PT</option>
+                <option value="es">ES</option>
+                <option value="en">EN</option>
+                <option value="fr">FR</option>
+            </select>
+
+            <a href="access-form.html"
+                class="flex items-center justify-center rounded-xl h-10 px-6 bg-primary hover:bg-primary-hover text-background-dark text-sm font-bold transition-all shadow-[0_0_15px_rgba(193,168,92,0.15)]"
+                data-i18n="btn.solicitar">
+                Solicitar Acesso
+            </a>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,774 @@
+<!--
+================================================================================
+  ARCHIVO:  apps/cpii/scenes/access-form.html
+  VERSIÓN:  1.4.1
+  FECHA:    2026-03-01
+  CAMBIOS v1.4.0: Fix móvil — 4 correcciones de usabilidad (diagnóstico Gemini).
+                  1. Card padding dinámico p-5 sm:p-8 lg:p-10
+                  2. Phone prefix w-[90px] sm:w-[108px]
+                  3. Hero h1 text-4xl sm:text-5xl lg:text-7xl
+                  4. Header "Volver" — texto oculto en móvil
+  CAMBIOS v1.3.0: Credenciales Firebase reales inyectadas (cpii-landing).
+                  UID_GESTOR_DEFAULT actualizado a CTO_CARLOS (padre de huérfanos).
+================================================================================
+-->
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description"
+        content="Solicita acceso al Club Privado de Inversión Inmobiliaria CPII Portugal. Formulario de registro exclusivo para inversores y promotores." />
+    <title>CPII Portugal — Solicitar Acceso</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="css/tailwind.css" />
+    <script src="i18n.js"></script>
+    <script src="utils/tracking.js"></script>
+</head>
+
+<body class="bg-carbon text-text-main min-h-screen flex flex-col overflow-x-hidden antialiased dark">
+
+    <header
+        class="sticky top-0 z-50 flex items-center justify-between border-b border-border-sub bg-carbon/85 px-6 py-4 backdrop-blur-md lg:px-10">
+        <div class="flex items-center gap-3.5">
+            <div
+                class="flex size-9 items-center justify-center rounded-full border border-gold/25 bg-gradient-to-br from-dark-grey to-carbon text-gold shadow-gold-sm">
+                <span class="material-symbols-outlined"
+                    style="font-size:18px;font-variation-settings:'FILL' 0,'wght' 300">apartment</span>
+            </div>
+            <div class="leading-none">
+                <span class="font-display text-lg font-medium tracking-wide text-text-main">CPII</span>
+                <span class="ml-1.5 text-[10px] font-light uppercase tracking-[0.2em] text-gold">Portugal</span>
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <select id="lang-selector"
+                class="appearance-none bg-none bg-transparent border border-gold/25 text-text-muted rounded-md px-3 py-1 text-[10px] font-bold tracking-wider cursor-pointer transition-colors hover:border-gold hover:text-gold outline-none text-center">
+                <option value="pt">PT</option>
+                <option value="es">ES</option>
+                <option value="en">EN</option>
+                <option value="fr">FR</option>
+            </select>
+            <a href="index.html"
+                class="flex items-center gap-1.5 text-xs text-text-muted transition-colors hover:text-gold">
+                <span class="material-symbols-outlined"
+                    style="font-size:14px;font-variation-settings:'FILL' 0,'wght' 300">arrow_back</span>
+                <span class="hidden sm:inline" data-i18n="nav.inicio">Volver al inicio</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="relative z-10 flex flex-1 flex-col lg:flex-row">
+
+        <div
+            class="relative flex w-full flex-col justify-between overflow-hidden bg-carbon-mid px-8 py-12 lg:w-5/12 lg:px-14 lg:py-20 xl:w-1/2">
+            <div
+                class="pointer-events-none absolute -left-32 top-10 h-[500px] w-[500px] rounded-full bg-gold/[0.04] blur-[80px]">
+            </div>
+            <div
+                class="pointer-events-none absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-carbon to-transparent">
+            </div>
+            <div class="relative z-10 flex flex-col gap-10">
+                <div
+                    class="anim-1 inline-flex w-fit items-center gap-2 rounded-full border border-gold/25 bg-gold-dim px-4 py-1.5 text-[10px] font-medium uppercase tracking-[0.18em] text-gold">
+                    <span class="material-symbols-outlined"
+                        style="font-size:13px;font-variation-settings:'FILL' 1,'wght' 400">workspace_premium</span>
+                    <span data-i18n="hero.badge">Acceso Exclusivo</span>
+                </div>
+                <div class="anim-2 space-y-5">
+                    <h1 class="font-display text-4xl font-light leading-[1.05] tracking-tight text-text-main sm:text-5xl lg:text-7xl"
+                        data-i18n="form.hero.title" data-i18n-html="true">
+                        El poder<br />de la <span class="italic text-gold"> Red</span><br />a tu alcance
+                    </h1>
+                    <p class="max-w-sm text-sm leading-relaxed text-text-muted font-light" data-i18n="hero.p"
+                        data-i18n-html="true">
+                        Tu acceso es validado individualmente. Se te asignará un <strong
+                            class="font-medium text-text-main/80">Responsable de Club</strong> según tu país de
+                        residencia para garantizar atención personalizada.
+                    </p>
+                </div>
+                <div class="anim-3 flex items-center gap-4">
+                    <div class="gold-line"></div>
+                    <ul class="flex flex-col gap-3.5">
+                        <li class="flex items-start gap-3 group"><span
+                                class="material-symbols-outlined mt-0.5 text-gold transition-colors group-hover:text-gold-light"
+                                style="font-size:16px;font-variation-settings:'FILL' 1,'wght' 400">check_circle</span><span
+                                class="text-sm font-light text-text-main/85" data-i18n="form.benefit.1">Rentabilidad
+                                verificada y auditada</span></li>
+                        <li class="flex items-start gap-3 group"><span
+                                class="material-symbols-outlined mt-0.5 text-gold transition-colors group-hover:text-gold-light"
+                                style="font-size:16px;font-variation-settings:'FILL' 1,'wght' 400">check_circle</span><span
+                                class="text-sm font-light text-text-main/85" data-i18n="form.benefit.2">Revenue Share
+                                multinivel hasta Nivel 3</span></li>
+                        <li class="flex items-start gap-3 group"><span
+                                class="material-symbols-outlined mt-0.5 text-gold transition-colors group-hover:text-gold-light"
+                                style="font-size:16px;font-variation-settings:'FILL' 1,'wght' 400">check_circle</span><span
+                                class="text-sm font-light text-text-main/85" data-i18n="form.benefit.3">Autofinanciación
+                                garantizada</span></li>
+                        <li class="flex items-start gap-3 group"><span
+                                class="material-symbols-outlined mt-0.5 text-gold transition-colors group-hover:text-gold-light"
+                                style="font-size:16px;font-variation-settings:'FILL' 1,'wght' 400">check_circle</span><span
+                                class="text-sm font-light text-text-main/85" data-i18n="form.benefit.4">Networking con
+                                líderes del sector</span></li>
+                    </ul>
+                </div>
+                <div class="anim-4 mt-8 border-t border-white/10 pt-8">
+                    <p class="mb-6 text-[10px] uppercase tracking-[0.15em] text-text-muted/70"
+                        data-i18n="hero.contact.label">Contactar Gestión</p>
+                    <div class="flex items-center gap-6 mb-4">
+                        <a href="https://wa.me/351912536077" target="_blank" rel="noopener noreferrer"
+                            class="group text-text-muted transition-colors hover:text-gold" aria-label="WhatsApp"><svg
+                                class="h-10 w-10 fill-current" viewBox="0 0 24 24">
+                                <path
+                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                            </svg></a>
+                        <a href="https://t.me/+34672852808" target="_blank" rel="noopener noreferrer"
+                            class="group text-text-muted transition-colors hover:text-gold" aria-label="Telegram"><svg
+                                class="h-10 w-10 fill-current" viewBox="0 0 24 24">
+                                <path
+                                    d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0011.944 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.385 4.025-1.627 4.476-1.635z" />
+                            </svg></a>
+                        <a href="mailto:admin@breederhub.store"
+                            class="group text-text-muted transition-colors hover:text-gold" aria-label="Email"><svg
+                                class="h-10 w-10 fill-current" viewBox="0 0 24 24">
+                                <path
+                                    d="M22 6C22 4.9 21.1 4 20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6ZM20 6L12 11L4 6H20ZM20 18H4V8L12 13L20 8V18Z" />
+                            </svg></a>
+                    </div>
+                    <p class="text-base leading-relaxed text-gold/80 italic font-display border-l-2 border-gold/30 pl-3"
+                        data-i18n="hero.contact.impact">
+                        Ligue-se diretamente à gestão do Clube Privado de Investimento Imobiliário. Operações de grau
+                        institucional, sem intermediários, sem fricção.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="pointer-events-none absolute bottom-10 right-6 font-display text-[10rem] font-light leading-none text-white/[0.02] select-none lg:right-10">
+            II</div>
+
+        <div
+            class="flex w-full items-start justify-center bg-carbon px-4 py-10 lg:w-7/12 lg:items-center lg:px-8 xl:w-1/2">
+            <div class="pointer-events-none absolute inset-0 overflow-hidden opacity-[0.03]">
+                <div class="absolute right-10 top-10 h-80 w-80 rounded-full border border-gold"></div>
+                <div class="absolute bottom-20 left-10 h-48 w-48 rounded-full border border-gold"></div>
+            </div>
+            <div
+                class="anim-4 relative w-full max-w-[500px] rounded-2xl border border-gold/15 bg-dark-grey p-5 shadow-card sm:p-8 lg:p-10">
+                <div class="mb-7 border-b border-border-sub pb-5">
+                    <h2 class="font-display text-2xl font-medium italic text-text-main" data-i18n="form.title">Solicitar
+                        Acceso</h2>
+                    <p class="mt-1.5 text-xs text-text-muted font-light" data-i18n="form.subtitle">Completa tus datos ·
+                        Se te asignará un gestor en tu zona</p>
+                </div>
+
+                <div id="success-message" class="hidden mb-6 rounded-xl border border-gold/30 bg-gold-dim p-5">
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-gold"
+                            style="font-size:22px;font-variation-settings:'FILL' 1,'wght' 400">check_circle</span>
+                        <div>
+                            <h3 class="font-display text-lg italic text-gold" data-i18n="form.success.title">Solicitação
+                                recebida!</h3>
+                            <p class="mt-1 text-xs text-text-muted leading-relaxed" data-i18n="form.success.desc">O seu
+                                Responsável de Club irá contactá-lo em 24–48 horas. Verifique também a sua pasta de
+                                spam.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="access-form" class="flex flex-col gap-5" novalidate>
+
+                    <div class="flex flex-col gap-2">
+                        <label class="text-[10px] uppercase tracking-[0.15em] font-medium text-gold"
+                            data-i18n="form.profile.label">Perfil de acceso</label>
+                        <div class="grid grid-cols-2 rounded-lg bg-carbon p-1 border border-border-sub">
+                            <label class="cursor-pointer"><input id="profile-inversor" class="peer sr-only"
+                                    name="profile_type" type="radio" value="inversor" checked />
+                                <div
+                                    class="flex items-center justify-center gap-1.5 rounded-md py-2.5 text-xs font-medium text-text-muted transition-all peer-checked:bg-gold peer-checked:text-carbon peer-checked:font-semibold peer-checked:shadow-sm">
+                                    <span class="material-symbols-outlined"
+                                        style="font-size:14px;font-variation-settings:'FILL' 0,'wght' 400">trending_up</span><span
+                                        data-i18n="form.profile.inv">Inversor</span>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer"><input id="profile-promotor" class="peer sr-only"
+                                    name="profile_type" type="radio" value="promotor" />
+                                <div
+                                    class="flex items-center justify-center gap-1.5 rounded-md py-2.5 text-xs font-medium text-text-muted transition-all peer-checked:bg-gold peer-checked:text-carbon peer-checked:font-semibold peer-checked:shadow-sm">
+                                    <span class="material-symbols-outlined"
+                                        style="font-size:14px;font-variation-settings:'FILL' 0,'wght' 400">storefront</span><span
+                                        data-i18n="form.profile.pro">Promotor/Gestor</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="grid gap-4">
+                        <div>
+                            <label class="mb-1.5 block text-[10px] uppercase tracking-[0.12em] text-text-muted"
+                                for="fullname"><span data-i18n="form.name.label">Nombre completo</span> <span
+                                    class="text-gold">*</span></label>
+                            <div class="relative group"><span
+                                    class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-text-dim group-focus-within:text-gold transition-colors material-symbols-outlined"
+                                    style="font-size:16px;font-variation-settings:'FILL' 0,'wght' 300">person</span><input
+                                    required id="fullname" name="fullname" type="text" placeholder="Ej. João Silva"
+                                    class="w-full rounded-lg border border-border-sub bg-input-bg py-3 pl-9 pr-4 text-sm text-text-main placeholder-text-dim focus:border-gold focus:outline-none transition-all" />
+                            </div>
+                            <p class="hidden mt-1 text-[10px] text-red-400" id="err-fullname" data-i18n="form.err.name">
+                                Campo obligatorio</p>
+                        </div>
+                        <div>
+                            <label class="mb-1.5 block text-[10px] uppercase tracking-[0.12em] text-text-muted"
+                                for="email"><span data-i18n="form.email.label">Correo electrónico</span> <span
+                                    class="text-gold">*</span></label>
+                            <div class="relative group"><span
+                                    class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-text-dim group-focus-within:text-gold transition-colors material-symbols-outlined"
+                                    style="font-size:16px;font-variation-settings:'FILL' 0,'wght' 300">mail</span><input
+                                    required id="email" name="email" type="email" placeholder="nombre@empresa.com"
+                                    class="w-full rounded-lg border border-border-sub bg-input-bg py-3 pl-9 pr-4 text-sm text-text-main placeholder-text-dim focus:border-gold focus:outline-none transition-all" />
+                            </div>
+                            <p class="hidden mt-1 text-[10px] text-red-400" id="err-email" data-i18n="form.err.email">
+                                Email inválido</p>
+                        </div>
+                        <div>
+                            <label class="mb-1.5 block text-[10px] uppercase tracking-[0.12em] text-text-muted"
+                                for="phone"><span data-i18n="form.phone.label">Teléfono de contacto</span> <span
+                                    class="text-gold">*</span></label>
+                            <div class="flex gap-2">
+                                <select id="phone_prefix" name="phone_prefix"
+                                    class="w-[90px] sm:w-[108px] flex-shrink-0 rounded-lg border border-border-sub bg-input-bg py-3 pl-3 pr-2 text-xs text-text-main focus:border-gold focus:outline-none">
+                                    <option value="+351">🇵🇹 +351</option>
+                                    <option value="+34">🇪🇸 +34</option>
+                                    <option value="+55">🇧🇷 +55</option>
+                                    <option value="+52">🇲🇽 +52</option>
+                                    <option value="+54">🇦🇷 +54</option>
+                                    <option value="+1">🇺🇸 +1</option>
+                                    <option value="+44">🇬🇧 +44</option>
+                                    <option value="+33">🇫🇷 +33</option>
+                                    <option value="+49">🇩🇪 +49</option>
+                                    <option value="+39">🇮🇹 +39</option>
+                                </select>
+                                <input required id="phone" name="phone" type="tel" placeholder="000 000 000"
+                                    class="flex-1 rounded-lg border border-border-sub bg-input-bg py-3 px-4 text-sm text-text-main placeholder-text-dim focus:border-gold focus:outline-none transition-all" />
+                            </div>
+                            <p class="hidden mt-1 text-[10px] text-red-400" id="err-phone" data-i18n="form.err.phone">
+                                Campo obligatorio</p>
+                        </div>
+                        <div>
+                            <label class="mb-1.5 block text-[10px] uppercase tracking-[0.12em] text-text-muted"
+                                for="country"><span data-i18n="form.country.label">País de residencia</span> <span
+                                    class="text-gold">*</span></label>
+                            <select required id="country" name="country"
+                                class="w-full rounded-lg border border-border-sub bg-input-bg py-3 px-4 text-sm text-text-main focus:border-gold focus:outline-none">
+                                <option value="" data-i18n="form.country.ph">Selecciona tu país…</option>
+                                <option value="PT" data-i18n="country.pt">Portugal</option>
+                                <option value="ES" data-i18n="country.es">España</option>
+                                <option value="BR" data-i18n="country.br">Brasil</option>
+                                <option value="MX" data-i18n="country.mx">México</option>
+                                <option value="AR" data-i18n="country.ar">Argentina</option>
+                                <option value="US" data-i18n="country.us">Estados Unidos</option>
+                                <option value="GB" data-i18n="country.gb">Reino Unido</option>
+                                <option value="FR" data-i18n="country.fr">Francia</option>
+                                <option value="DE" data-i18n="country.de">Alemania</option>
+                                <option value="IT" data-i18n="country.it">Italia</option>
+                                <option value="OTHER" data-i18n="country.other">Otro país</option>
+                            </select>
+                            <p class="mt-1.5 text-[10px] text-gold/50 italic"><span
+                                    class="material-symbols-outlined align-middle"
+                                    style="font-size:11px">location_on</span> <span data-i18n="form.country.note">Este
+                                    dato determina tu Responsable de Club — independiente de tu Embajador</span></p>
+                            <p class="hidden mt-1 text-[10px] text-red-400" id="err-country"
+                                data-i18n="form.err.country">Selecciona un país</p>
+                        </div>
+                    </div>
+
+                    <div class="relative py-2">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-border-sub"></div>
+                        </div>
+                        <div class="relative flex justify-center"><span
+                                class="bg-dark-grey px-3 text-[9px] uppercase tracking-[0.2em] text-gold/50"
+                                data-i18n="form.ref.divider">Embajador</span></div>
+                    </div>
+
+                    <div>
+                        <label
+                            class="mb-1.5 flex items-center justify-between text-[10px] uppercase tracking-[0.12em] text-text-muted"
+                            for="embajador-select">
+                            <span><span data-i18n="form.ref.label">¿Quién te invitó?</span> <span
+                                    class="text-gold">*</span></span>
+                            <span id="ref-status" class="font-normal text-text-dim"></span>
+                        </label>
+                        <div class="relative group">
+                            <span
+                                class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-text-dim group-focus-within:text-gold transition-colors material-symbols-outlined"
+                                style="font-size:16px;font-variation-settings:'FILL' 0,'wght' 300">person_search</span>
+                            <select required id="embajador-select" name="referral"
+                                class="w-full appearance-none rounded-lg border border-gold/20 bg-gold/[0.04] py-3 pl-9 pr-8 text-sm text-text-main focus:border-gold focus:bg-input-bg focus:outline-none transition-all">
+                                <option value="" data-i18n="form.ref.ph">— Selecciona tu Embajador —</option>
+                                <option value="david_almeida">David Almeida</option>
+                                <option value="carlos_balboa">Carlos Balboa</option>
+                            </select>
+                            <span
+                                class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-text-dim material-symbols-outlined"
+                                style="font-size:16px;font-variation-settings:'FILL' 0,'wght' 300">expand_more</span>
+                        </div>
+                        <p class="hidden mt-1 text-[10px] text-red-400" id="err-referral" data-i18n="form.err.ref">
+                            Selecciona un Embajador para continuar.</p>
+                        <p class="mt-1.5 text-[10px] text-text-dim" data-i18n="form.ref.note">Solo Embajadores
+                            autorizados. El Embajador no es tu Responsable de Club.</p>
+                    </div>
+
+                    <div class="flex items-start gap-3 rounded-lg border border-border-sub bg-carbon/50 p-3.5">
+                        <div class="flex h-5 items-center pt-0.5"><input required id="terms" name="terms"
+                                type="checkbox"
+                                class="h-4 w-4 cursor-pointer rounded border border-gold/30 bg-input-bg text-gold focus:ring-gold focus:ring-1 focus:ring-offset-0" />
+                        </div>
+                        <label class="text-[11px] leading-relaxed text-text-muted font-light cursor-pointer" for="terms"
+                            data-i18n="form.rgpd" data-i18n-html="true">
+                            Acepto la <a
+                                class="text-text-main/70 hover:text-gold underline underline-offset-2 decoration-white/20 transition-colors"
+                                href="privacy.html">Política de Privacidad</a> y los <a
+                                class="text-text-main/70 hover:text-gold underline underline-offset-2 decoration-white/20 transition-colors"
+                                href="terms.html">Términos de Servicio</a>. Entiendo que mis datos serán tratados
+                            conforme al <strong class="text-text-main/80">RGPD</strong> y que mi solicitud está sujeta a
+                            aprobación.
+                        </label>
+                    </div>
+                    <p class="hidden -mt-3 text-[10px] text-red-400" id="err-terms" data-i18n="form.err.terms">Debes
+                        aceptar los términos para continuar</p>
+
+                    <button id="submit-btn" type="submit"
+                        class="group mt-1 flex w-full items-center justify-center gap-2 rounded-lg bg-gold py-4 text-xs font-semibold uppercase tracking-[0.15em] text-carbon transition-all hover:bg-gold-light hover:shadow-gold active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed">
+                        <span class="btn-text flex items-center gap-2"><span data-i18n="form.btn.submit">Validar
+                                solicitud</span><span
+                                class="material-symbols-outlined transition-transform group-hover:translate-x-1"
+                                style="font-size:15px;font-variation-settings:'FILL' 0,'wght' 400">arrow_forward</span></span>
+                        <span class="btn-loader"><span class="spinner"></span><span
+                                data-i18n="form.btn.sending">Enviando…</span></span>
+                    </button>
+
+                </form>
+
+                <!-- ═══════════════════════════════════ [SEC-10] PEAJE VIP (Golden Gate) ══ -->
+                <div id="vip-gate" class="mt-6 border-t border-lux-gold/10 pt-6" data-gate-component="vip-crm">
+                  <button id="vip-toggle" type="button" 
+                    class="group flex w-full items-center justify-between rounded-lg border border-lux-gold/20 bg-lux-dark px-5 py-3.5 transition-all hover:border-lux-gold/40">
+                    <div class="flex items-center gap-3">
+                      <span class="material-symbols-outlined text-lux-gold" style="font-variation-settings:'FILL' 0,'wght' 300">vpn_key</span>
+                      <span class="text-xs font-semibold uppercase tracking-[0.2em] text-lux-gold" data-i18n="gate.toggle_label">Acceso CRM</span>
+                    </div>
+                    <span id="vip-chevron" class="material-symbols-outlined text-lux-muted transition-transform duration-300" style="font-variation-settings:'FILL' 0,'wght' 300">expand_more</span>
+                  </button>
+                  
+                  <div id="vip-panel" class="hidden overflow-hidden">
+                    <div class="mt-3 rounded-lg border border-lux-gold/10 bg-lux-dark/50 p-5 space-y-4">
+                      <p class="text-[11px] leading-relaxed text-lux-muted italic" data-i18n="gate.aspirational_text">
+                        Espacio exclusivo para Dirección y Embajadores con credenciales activas.
+                      </p>
+                      
+                      <div id="vip-unlock-form" class="space-y-3">
+                        <div class="relative">
+                          <span class="material-symbols-outlined absolute inset-y-0 left-3 flex items-center text-lux-muted" style="font-size:16px;font-variation-settings:'FILL' 0,'wght' 300">lock</span>
+                          <input id="vip-pass" type="password" autocomplete="off"
+                            class="w-full rounded-lg border border-lux-gold/20 bg-lux-darker py-3 pl-9 pr-4 text-sm text-lux-gold caret-lux-gold placeholder-lux-muted focus:border-lux-gold focus:outline-none transition-all"
+                            data-i18n-placeholder="gate.input_placeholder"
+                            placeholder="Clave de acceso" />
+                        </div>
+                        <button id="vip-submit" type="button"
+                          class="w-full rounded-lg bg-lux-gold py-3 text-xs font-bold uppercase tracking-[0.15em] text-lux-dark transition-all hover:bg-lux-gold-light active:scale-[0.98]"
+                          data-i18n="gate.btn_unlock">
+                          Desbloquear
+                        </button>
+                        <p id="vip-error" class="hidden text-center text-[10px] text-red-400 uppercase tracking-wider" data-i18n="gate.error_invalid">Clave incorrecta</p>
+                      </div>
+                      
+                      <div id="vip-success" class="hidden text-center space-y-3">
+                        <div class="flex items-center justify-center gap-2 text-lux-gold">
+                          <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1,'wght' 400">check_circle</span>
+                          <span class="text-xs font-bold uppercase tracking-widest" data-i18n="gate.success_msg">Acceso concedido</span>
+                        </div>
+                        <a id="vip-crm-link" href="https://crm.cpii.digital/golden-gate.html" target="_self"
+                          class="inline-flex items-center justify-center gap-2 rounded-lg border border-lux-gold/30 bg-lux-gold/10 px-6 py-3 text-xs font-bold uppercase tracking-[0.15em] text-lux-gold transition-all hover:bg-lux-gold hover:text-lux-dark"
+                          data-i18n="gate.btn_enter">
+                          Entrar al CRM
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- ═══════════════════════════════════════ FIN SEC-10 ══════════════════════ -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="relative z-10 border-t border-border-sub bg-carbon px-6 py-6 text-center">
+        <p class="text-[9px] uppercase tracking-[0.25em] text-white/15" data-i18n="footer.copy">Confidencial — Apenas
+            para membros autorizados · CPII © 2026</p>
+        <div class="mt-3 flex justify-center gap-6">
+            <a class="text-[11px] text-text-dim hover:text-gold transition-colors" href="onboarding.html"
+                data-i18n="nav.onboarding">Onboarding</a>
+            <a class="text-[11px] text-text-dim hover:text-gold transition-colors" href="privacy.html"
+                data-i18n="nav.privacy">Privacidad</a>
+            <a class="text-[11px] text-text-dim hover:text-gold transition-colors" href="terms.html"
+                data-i18n="nav.terms">Términos</a>
+            <a class="text-[11px] text-text-dim hover:text-gold transition-colors" href="index.html"
+                data-i18n="footer.legal.support">Ayuda</a>
+        </div>
+    </footer>
+
+    <!-- ══════════════════════════════════════ [SEC-07] TABLA DE ASIGNACIÓN ══ -->
+    <script>
+        const CLUB_MANAGER_MAP = {
+            PT: "UID_GESTOR_PORTUGAL",
+            ES: "UID_GESTOR_ESPANA",
+            BR: "UID_GESTOR_BRASIL",
+            MX: "UID_GESTOR_MEXICO",
+            AR: "UID_GESTOR_ARGENTINA",
+            US: "UID_GESTOR_DEFAULT",
+            GB: "UID_GESTOR_DEFAULT",
+            FR: "UID_GESTOR_DEFAULT",
+            DE: "UID_GESTOR_DEFAULT",
+            IT: "UID_GESTOR_DEFAULT",
+            OTHER: "UID_GESTOR_DEFAULT",
+            _DEFAULT: "CTO_CARLOS_CPII",
+        };
+        function getClubManager(countryCode) {
+            return CLUB_MANAGER_MAP[countryCode] || CLUB_MANAGER_MAP._DEFAULT;
+        }
+        window.getClubManager = getClubManager;
+    </script>
+
+    <!-- ════════════════════════════════════ [SEC-08] CAPTURA DE EMBAJADOR ══ -->
+    <script>
+        // Excepcion por origen del Lead en Portugal
+        const EXCEPCIONES_EMBAJADORES = {
+            "pedro_carvalho": "Pedro Carvalho",     // Corrección Regla PT
+            "edmundo_barata": "Edmundo Barata",     // Corrección Regla PT
+            "pedro_lagoa": "Pedro Carvalho",        // Redirección de link antiguo
+            "edmundo_antunes": "Edmundo Barata",
+            "rui_lopes": "Rui Lopes",               // Regla PT
+            "kelly_silva": "Kélly C. Silva",        // Regla PT (Fuerza la tilde en la 'é')
+            "mauricio_caires": "Maurício Caires",   // Fuerza tilde en la í
+            "maria_santos": "Maria da Luz Santos",  // Nombre institucional completo
+            "francisco_dias": "Francisco Dias",
+            "ismael_ferreira": "Ismael Ferreira",
+            "elena_colomina": "Elena Colomina",
+            "francisco_santiago": "Francisco Santiago"
+        };
+
+        const EMBAJADORES_AUTORIZADOS = [
+            "david_almeida",
+            "carlos_balboa",
+            "elena_colomina",
+            "egidio_silva",
+            "elisabete_nascimento",
+            "luis_pereira",
+            "francisco_santiago",
+            "pedro_carvalho",
+            "pedro_lagoa",
+            "edmundo_barata",        // Nuevo slug activo
+            "edmundo_antunes",       // Slug antiguo por seguridad
+            "alexandre_rodrigues",
+            "rui_lopes",             // Nuevo ingreso
+            "kelly_silva",           // Nuevo ingreso
+            "francisco_dias",
+            "mauricio_caires",
+            "ismael_ferreira",
+            "maria_santos",
+            "francisco_santiago"
+        ];
+
+        (function initEmbajador() {
+            // [CPII] Tracking Persistence Fallback
+            if (window.CPIITracking && typeof window.CPIITracking.captureReferralFromUrl === "function") {
+                window.CPIITracking.captureReferralFromUrl({ log: false });
+            }
+
+            // 1. Obtener y limpiar el parámetro de la URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const refRaw = urlParams.get('ref') || localStorage.getItem("cpii_ref") || '';
+            const refNorm = refRaw.toLowerCase().trim();
+
+            if (refNorm) {
+                let displayName = "";
+
+                // 2. Comprobar Excepciones (Prioridad)
+                if (EXCEPCIONES_EMBAJADORES[refNorm]) {
+                    displayName = EXCEPCIONES_EMBAJADORES[refNorm];
+                } else if (EMBAJADORES_AUTORIZADOS.includes(refNorm)) {
+                    // 3. Formateo por defecto (Magia Fantasma)
+                    displayName = refNorm
+                        .split('_')
+                        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                        .join(' ');
+                }
+
+                if (displayName) {
+                    // 4. Inyección en el Select
+                    const select = document.getElementById('embajador-select'); // Asegurar ID correcto
+                    if (!select) return;
+
+                    let optionExists = Array.from(select.options).some(opt => opt.value === refNorm);
+
+                    if (!optionExists) {
+                        const hiddenOption = new Option(displayName, refNorm);
+                        select.add(hiddenOption);
+                    }
+
+                    // Auto-seleccionar y Bloqueo de Seguridad
+                    select.value = refNorm;
+                    select.disabled = true;
+                    select.classList.add("opacity-60", "cursor-not-allowed");
+
+                    console.log("[CPII] Embajador bloqueado (Stealth Mode):", refNorm);
+                }
+            }
+
+            // Lógica de autoselección del tipo de perfil
+            const tipoParam = urlParams.get("tipo");
+            if (tipoParam) {
+                const tipoNorm = tipoParam.toLowerCase();
+                if (tipoNorm === "inversor") document.getElementById("profile-inversor").checked = true;
+                else if (tipoNorm === "promotor" || tipoNorm === "gestor") document.getElementById("profile-promotor").checked = true;
+            }
+        })();
+
+    </script>
+
+    <!-- ════════════════════════ [SEC-09] FIRESTORE — INIT + ENVÍO DE LEAD ══
+    ══════════════════════════════════════════════════════════════════════════
+    v1.3.0 — Credenciales reales inyectadas. Proyecto: cpii-landing
+    _DEFAULT actualizado a CTO_CARLOS_CPII (Padre de Huérfanos)
+    ══════════════════════════════════════════════════════════════════════════ -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+        // Configuración oficial del proyecto cpii-landing
+        const firebaseConfig = {
+            apiKey: "AIzaSyD7_EYohInAK5rgMLFZxrE5jEn2nyyHoEk",
+            authDomain: "cpii-landing.firebaseapp.com",
+            projectId: "cpii-landing",
+            storageBucket: "cpii-landing.firebasestorage.app",
+            messagingSenderId: "963765788097",
+            appId: "1:963765788097:web:d8a8600feb29e9caeda340",
+            measurementId: "G-63MC20GCRY"
+        };
+
+        // URL de tu Cloud Function recién desplegada
+        const TELEGRAM_FUNCTION_URL = "https://us-central1-cpii-landing.cloudfunctions.net/sendLeadToTelegram";
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        function validateForm() {
+            let valid = true;
+            const fullname = document.getElementById("fullname").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            const country = document.getElementById("country").value;
+            const referral = document.getElementById("embajador-select").value;
+            const terms = document.getElementById("terms").checked;
+
+            const showError = (id, show) => document.getElementById("err-" + id).classList.toggle("hidden", !show);
+
+            showError("fullname", !fullname); if (!fullname) valid = false;
+            const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            showError("email", !emailValid); if (!emailValid) valid = false;
+            showError("phone", !phone); if (!phone) valid = false;
+            showError("country", !country); if (!country) valid = false;
+            showError("referral", !referral); if (!referral) valid = false;
+            showError("terms", !terms); if (!terms) valid = false;
+
+            return valid;
+        }
+
+        document.getElementById("access-form").addEventListener("submit", async function (e) {
+            e.preventDefault();
+            if (!validateForm()) return;
+
+            const btn = document.getElementById("submit-btn");
+            btn.disabled = true;
+            btn.innerHTML = '<span class="animate-spin mr-2">⌛</span> Validando...';
+
+            const country = document.getElementById("country").value;
+            const phoneFull = document.getElementById("phone_prefix").value + document.getElementById("phone").value.trim();
+
+            const leadData = {
+                // CAMPOS RAÍZ OBLIGATORIOS POR SENTINEL (hasAll: 'email', 'full_name', 'rgpd_consent', 'tenant_id')
+                tenant_id: "cpii_v1.1",
+                full_name: document.getElementById("fullname").value.trim(),
+                email: document.getElementById("email").value.trim().toLowerCase(),
+                rgpd_consent: document.getElementById("terms").checked,
+                
+                // RESTO DE DATOS
+                tipo: document.querySelector("input[name='profile_type']:checked").value,
+                perfil: {
+                    telefono: phoneFull,
+                    pais: country,
+                    embajador: document.getElementById("embajador-select").value,
+                },
+                metadata: {
+                    club_manager: window.getClubManager ? window.getClubManager(country) : "CTO_CARLOS_CPII",
+                    status: "pending_review",
+                    source: "landing_v1.0",
+                    created_at: new Date().toISOString(),
+                    user_agent: navigator.userAgent
+                },
+            };
+
+            try {
+                // 1. Guardar en Firestore
+                await addDoc(collection(db, "leads"), leadData);
+                console.log("[CPII] ✅ Lead persistido en base de datos.");
+
+                // 2. Disparar alerta a tu Telegram (Mobile Notification)
+                const telegramRes = await fetch(TELEGRAM_FUNCTION_URL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        name: leadData.full_name,
+                        email: leadData.email,
+                        phone: leadData.perfil.telefono,
+                        country: leadData.perfil.pais,
+                        referral: leadData.perfil.embajador
+                    })
+                });
+                if (!telegramRes.ok) {
+                    console.warn("[CPII] ⚠️ Alerta Telegram no confirmada — HTTP " + telegramRes.status);
+                } else {
+                    console.log("[CPII] ✅ Alerta enviada al móvil.");
+                }
+
+                // 3. Sincronizar con Google Sheets (Satélite)
+                const sheetsRes = await fetch("https://script.google.com/macros/s/AKfycbySmskBQ1IEdyQtT4CxYPXrHDaEmuWvH1yaecShoE3Ac-BPl4tuNRqfNwgo0YzzrnKG/exec", {
+                    method: "POST",
+                    headers: { "Content-Type": "text/plain;charset=utf-8" },
+                    body: JSON.stringify(leadData)
+                });
+                if (!sheetsRes.ok) {
+                    console.warn("[CPII] ⚠️ Sincronización Sheets no confirmada — HTTP " + sheetsRes.status);
+                }
+
+                // 4. Mostrar mensaje de éxito
+                this.classList.add("hidden");
+                document.getElementById("success-message").classList.remove("hidden");
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            } catch (error) {
+                console.error("[CPII] Error en el sistema de captación:", error);
+                btn.disabled = false;
+                btn.innerHTML = "Validar Pedido";
+                alert("Error al procesar. Por favor, inténtelo de nuevo.");
+            }
+        });
+    </script>
+    <!-- ═════════════════════════════════ [SEC-10b] LÓGICA PEAJE VIP ══ -->
+    <!-- PILAR B: VALID_KEYS eliminado del cliente — árbitro real: validateAdminGate -->
+    <script>
+    (function() {
+      'use strict';
+
+      // Endpoint del árbitro server-side (PILAR B — no hay claves en cliente)
+      const GATE_ENDPOINT = "https://us-central1-cpii-landing.cloudfunctions.net/validateAdminGate";
+
+      const $ = (id) => document.getElementById(id);
+      const toggle  = $('vip-toggle');
+      const panel   = $('vip-panel');
+      const chevron = $('vip-chevron');
+      const input   = $('vip-pass');
+      const submit  = $('vip-submit');
+      const errMsg  = $('vip-error');
+      const form    = $('vip-unlock-form');
+      const success = $('vip-success');
+
+      if (!toggle || !panel) return; // Guarda de seguridad si el DOM no está listo
+
+      // --- Acordeón ---
+      toggle.addEventListener('click', function() {
+        const isHidden = panel.classList.contains('hidden');
+        panel.classList.toggle('hidden', !isHidden);
+        chevron.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
+      });
+
+      // --- Submit vía Enter ---
+      input.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          submit.click();
+        }
+      });
+
+      // --- Validación Server-Side (PILAR B) — respuesta binaria del árbitro ---
+      submit.addEventListener('click', async function() {
+        const value = input.value.trim();
+        if (!value) {
+          errMsg.classList.remove('hidden');
+          input.focus();
+          return;
+        }
+
+        // Estado de carga
+        submit.disabled = true;
+        submit.textContent = '…';
+
+        try {
+          const response = await fetch(GATE_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ key: value }),
+          });
+
+          const result = await response.json();
+
+          if (response.ok && result.success && result.url) {
+            // Acceso concedido — URL viaja desde el servidor, nunca expuesta en cliente
+            form.classList.add('hidden');
+            errMsg.classList.add('hidden');
+            success.classList.remove('hidden');
+
+            // Recuperar la mochila (idioma) y atarla al enlace de la frontera
+            const currentLang = localStorage.getItem('cpii_locale') || 'pt';
+            const separator = result.url.includes('?') ? '&' : '?';
+            $('vip-crm-link').href = `${result.url}${separator}locale=${currentLang}`;
+
+            // Higiene de seguridad
+            input.value = '';
+            input.blur();
+
+            // Evento canónico para auditoría
+            document.dispatchEvent(new CustomEvent('cpii:telemetry:vip-gate-unlocked', {
+              detail: { gate: 'golden-gate', timestamp: Date.now() },
+              bubbles: true,
+            }));
+          } else {
+            // Respuesta negativa del árbitro
+            errMsg.classList.remove('hidden');
+            input.classList.add('border-red-400');
+            setTimeout(() => input.classList.remove('border-red-400'), 1200);
+            input.focus();
+          }
+        } catch (_err) {
+          // Error de red — no revelar detalles al cliente
+          errMsg.classList.remove('hidden');
+          input.focus();
+        } finally {
+          submit.disabled = false;
+          submit.textContent = submit.dataset.i18n ? submit.dataset.i18n : 'Desbloquear';
+        }
+      });
+    })();
+    </script>
+    <!-- ═══════════════════════════════ FIN SEC-10b ═══════════════════ -->
+    <script src="core/handoff-emitter.js" defer></script>
+</body>
+
+</html>

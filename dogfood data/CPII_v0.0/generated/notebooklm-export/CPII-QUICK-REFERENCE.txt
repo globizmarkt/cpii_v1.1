@@ -1,0 +1,516 @@
+================================================================================
+CPII - QUICK REFERENCE GUIDE
+CONSULTA RAPIDA PARA GOOGLE NOTEBOOKLM
+================================================================================
+
+Fecha: 2026-02-16
+Version: 1.0.0
+Formato: Referencia rapida optimizada
+Maximo: 500 lineas
+
+================================================================================
+SECCION 1: GLOSARIO PRINCIPAL (A-Z)
+================================================================================
+
+ACTIVO INMOBILIARIO
+  Definicion: Propiedad estructurada con rentabilidad, exclusividad y documentacion completa
+  Niveles: Nivel 1 (basico) | Nivel 2 (completo: escrituras, planos, licencias)
+  Estados: draft → revision → published → inversion-abierta → finalizado → vendido
+
+AGENTE PROMOTOR
+  Definicion: Profesional que capta activos off-market bajo estandares del Club
+  Ingresos: 2.5% entrada + 5% venta exclusiva (si mandatario)
+  Carrera: Puede escalar a Gestor de Seccion (1M EUR en 2 años)
+
+ARBITRAJE DE VALOR
+  Formula: Beneficio_Neto = Margen_Bruto - Rendimiento_Inversores - Comisiones_Red - Gastos
+  Ejemplo Catapulta: 30% margen - 20% inversor = 10% beneficio bruto
+  Ejemplo Refugio: 12% margen - 8% inversor = 4% beneficio bruto
+
+AUTOFINANCIACION (HITO RIESGO CERO)
+  Momento: Mes 12-24 con modelo 1x1 mensual
+  Condicion: Comisiones_Red >= Ahorro_Mensual (50 EUR)
+  Impacto: Patrimonio crece sin aportacion propia
+
+CATAPULTA (TIER A)
+  Capital: 100.000 EUR | Duracion: 6 meses
+  Rendimiento: 20% APY | Margen Club: 30%
+  Ejemplos: Preventas, Lordelo, Haven Nobre
+  Caracteristica: Salida coincide con nueva ventana (roll-over)
+
+CPII (CLUB PRIVADO DE INVERSION INMOBILIARIA)
+  Naturaleza: Empresa privada con gobernanza vertical meritocratica
+  Modelo: Transformar ahorro individual en gestion de activos de alto impacto
+  Acceso: Desde 100 EUR, modelo recomendado 50 EUR/mes
+
+DUEÑOS ORIGINALES
+  Actores: David Almeida, Carlos Balboa
+  Poder: Autoridad final, veto absoluto, control 50% nuevas secciones
+  Ingresos: 2.5% gestion inversores por operacion
+
+FONDO DE SOSTENIBILIDAD
+  Captura: 50% obligatorio del beneficio neto de cada operacion
+  Funciones: (1) Reserva contingencia (2) Capital propio (3) Proof of Funds
+  Principio: Nunca menos del 50% → sostenibilidad garantizada
+
+FUNDADOR (NUCLEO DE 10)
+  Acceso: Por invitacion directa, no vitalicio
+  Privilegios: 50% honorarios entrada, 100% honorarios salida, Revenue Share
+  Obligaciones: Documentacion Nivel 2, compliance 50/50, exclusividad off-market
+  Hito graduacion: 1M EUR en 2 años → Gestor de Seccion
+
+GESTOR DE SECCION
+  Requisitos: 1M EUR gestionados + 2 años + semaforo verde
+  Privilegios: 50% beneficio neto, marca propia, autonomia operativa
+  Estructura: 50% Dueños Originales + 50% Gestor graduado
+  Obligaciones: ADN Club, monitorizacion, compliance, arbitraje
+
+HONORARIOS DE GESTION (5%)
+  Gestion inversores: 2.5% (David Almeida, Carlos Balboa)
+  Captacion activo: 2.5% (Agente Promotor)
+  Comision venta: 5% adicional en exclusiva
+  Gasto plataforma: 1% (0.5% Leirum + 0.5% tecnologia propia)
+
+INTERES COMPUESTO
+  Formula: Patrimonio(t+1) = Patrimonio(t) + Ahorro + Rendimientos + Comisiones_Red
+  Motor: Reinversion automatica de beneficios
+  Resultado: Crecimiento exponencial del patrimonio
+
+INVERSOR / PRESCRIPTOR
+  Inversion minima: 100 EUR | Modelo: 50 EUR/mes
+  Activacion: Automatica como Prescriptor tras KYC
+  Mecanismos: Interes compuesto + Revenue Share 3 niveles
+  Hito: Mes 12 → Autofinanciacion
+
+KYC (KNOW YOUR CUSTOMER)
+  Requisito: Obligatorio para activacion como Prescriptor
+  Niveles: 1 (basico) | 2 (estandar) | 3 (avanzado)
+  Documentos: Identidad, residencia, fuente fondos
+
+NIVEL 2 (DOCUMENTACION)
+  Obligatorio: Escrituras, planos, licencias, presupuestos, estudio mercado, contrato
+  Critico: Bloquea publicacion del activo
+  Responsable: Agente Promotor / Fundador
+
+PRESCRIPCION CONTINUA (NORMA 1x1)
+  Regla: Cada asociado suma 1 nuevo inversor cualificado al mes
+  Crecimiento: Mes 1→1 | Mes 6→32 | Mes 12→2.048 | Mes 24→8.388.608
+  Impacto: Red exponencial → comisiones exponenciales
+
+REFUGIO (TIER B)
+  Capital: 1.000.000 EUR | Duracion: 12 meses
+  Rendimiento: 8% APY | Margen Club: 12%
+  Ejemplos: Renta estable, activos residenciales
+  Caracteristica: Capital largo plazo, estabilidad
+
+REVENUE SHARE (MULTINIVEL 3 GENERACIONES)
+  Nivel 1 (hijo): 1% del capital invertido
+  Nivel 2 (nieto): 0.5% del capital invertido
+  Nivel 3 (bisnieto): 0.25% del capital invertido
+  Total: 1.75% del capital invertido
+  Liquidacion: Cierre inversion o reparto anual
+
+SNOWBALL & CATAPULT
+  Modelo: Sistema dual ventanas trimestrales alternas
+  Alternancia: Q1→Catapulta | Q2→Refugio | Q3→Catapulta | Q4→Refugio
+  Estrategia: Acumulacion (Snowball) + Aceleracion (Catapult)
+
+TAKEOVER (INTERVENCION)
+  Motivo: Gestor falla, semaforo rojo, incumplimiento
+  Proceso: Suspension, control activos, proteccion inversores
+  Principio: Inmortalidad del Activo (nunca se pierde gestion)
+
+VENTANA DE INVERSION
+  Frecuencia: Trimestral (cada 3 meses)
+  Acumulacion: 150 EUR (50 EUR x 3 meses)
+  Estados: programada → abierta → cerrada → en-ejecucion → liquidada
+
+================================================================================
+SECCION 2: TOP 10 INTERFACES TYPESCRIPT
+================================================================================
+
+[1] USUARIO / SOCIO
+interface Usuario {
+  id: string;
+  tipo: 'inversor' | 'prescriptor' | 'agente' | 'gestor' | 'fundador';
+  perfil: { nombre, email, pais, referidoPor, enlaceInvitacion };
+  kyc: { verificado, nivelVerificacion: 1|2|3 };
+  red: { nivel1[], nivel2[], nivel3[], totalRed };
+  inversiones: Inversion[];
+  comisiones: Comision[];
+  patrimonio: { capitalAportado, beneficios, comisiones, total };
+}
+
+[2] ACTIVO INMOBILIARIO
+interface ActivoInmobiliario {
+  id: string;
+  tipo: 'preventa' | 'flip' | 'renta-estable' | 'multifamiliar' | 'comercial';
+  ubicacion: { pais, ciudad, direccion };
+  valorTasacion: number;
+  documentacion: { nivel: 1|2, escrituras, planos, licencias };
+  estado: 'draft' | 'published' | 'inversion-abierta' | 'finalizado';
+  captador: { id, nombre, honorarios: 2.5% };
+  rentabilidadEsperada: { tipo: 'catapulta'|'refugio', rendimiento, duracion };
+}
+
+[3] VENTANA DE INVERSION
+interface VentanaInversion {
+  id: string;
+  numero: 1|2|3|4; // Q1, Q2, Q3, Q4
+  año: number;
+  tipo: 'catapulta' | 'refugio';
+  fechaApertura: Date;
+  fechaCierre: Date;
+  capitalObjetivo: 100000 | 1000000;
+  capitalCaptado: number;
+  estado: 'programada' | 'abierta' | 'cerrada' | 'liquidada';
+  rendimiento: { esperado: 20|8, real?: number };
+  inversores: { usuarioId, monto }[];
+}
+
+[4] INVERSION
+interface Inversion {
+  id: string;
+  usuarioId: string;
+  ventanaId: string;
+  monto: number;
+  tipo: 'directa' | 'acumulada' | 'comisiones-reinvertidas';
+  estado: 'pendiente' | 'confirmada' | 'liquidada';
+  rendimiento: { esperado, acumulado, liquidado };
+  comisiones: ComisionInversion[];
+  origen: { ahorroPropio, comisionesRed, beneficiosReinvertidos };
+}
+
+[5] COMISION
+interface Comision {
+  id: string;
+  tipo: 'revenue-share' | 'captacion-activo' | 'venta-exclusiva' | 'gestion-inversores';
+  beneficiarioId: string;
+  monto: number;
+  porcentaje: 1.0 | 0.5 | 0.25 | 2.5 | 5.0;
+  baseCalculo: number;
+  nivel?: 1|2|3; // para revenue-share
+  estado: 'pendiente' | 'aprobada' | 'pagada';
+  fechaGeneracion: Date;
+}
+
+[6] SECCION CERTIFICADA
+interface SeccionCertificada {
+  id: string;
+  nombre: string;
+  gestorId: string;
+  fechaGraduacion: Date;
+  marca: { nombre, cobranding: true };
+  volumenGestionado: { actual, objetivo: 1000000 };
+  beneficios: { participacionGestor: 50%, participacionMatriz: 50% };
+  estado: 'activa' | 'monitoreada' | 'intervenida';
+  cumplimiento: { semaforoSalud: 'verde'|'amarillo'|'rojo' };
+}
+
+[7] ESTRUCTURA RED
+interface EstructuraRed {
+  nivel1: string[]; // Hijos directos (1%)
+  nivel2: string[]; // Nietos (0.5%)
+  nivel3: string[]; // Bisnietos (0.25%)
+  totalRed: number;
+  activos: number; // Miembros activos prescribiendo
+}
+
+[8] PATRIMONIO
+interface Patrimonio {
+  capitalAportado: number; // Ahorro propio
+  beneficiosAcumulados: number; // Rendimientos inversiones
+  comisionesRecibidas: number; // Revenue Share
+  patrimonioTotal: number; // Suma total
+  ultimaActualizacion: Date;
+}
+
+[9] RENTABILIDAD ACTIVO
+interface RentabilidadActivo {
+  tipo: 'catapulta' | 'refugio';
+  rendimientoInversor: 20 | 8; // % APY
+  margenClub: 30 | 12; // %
+  duracion: 6 | 12; // meses
+  proyeccionBeneficio: number;
+}
+
+[10] CALCULO COMISIONES
+interface CalculoComisiones {
+  inversion_base: number;
+  red: EstructuraRed;
+  comisiones_generadas: {
+    nivel_1: { inversores, monto_por_inversor: base * 0.01, total };
+    nivel_2: { inversores, monto_por_inversor: base * 0.005, total };
+    nivel_3: { inversores, monto_por_inversor: base * 0.0025, total };
+    total_comisiones: 1.75% * inversion_base;
+  };
+}
+
+================================================================================
+SECCION 3: TOP 8 WORKFLOWS (PSEUDOCODIGO)
+================================================================================
+
+[WF1] ONBOARDING INVERSOR
+1. crearUsuario(email, nombre, pais, referidoPor?)
+2. solicitarDocumentosKYC(usuarioId)
+3. esperarVerificacionKYC() → BLOQUEANTE
+4. activarPrescriptor(usuarioId) → generarEnlaceInvitacion()
+5. registrarEnRed(usuarioId, referidorId) → propagar 3 niveles
+6. concederAccesoPlataforma(['dashboard', 'ventanas', 'red'])
+7. enviarBienvenida() + asignarFormacion()
+
+[WF2] CICLO AHORRO E INVERSION
+CADA_MES:
+  registrarAhorro(usuarioId, 50 EUR)
+CADA_TRIMESTRE (mes % 3 == 0):
+  IF capitalDisponible >= 100 EUR AND ventanaActiva:
+    realizarInversion(usuarioId, ventanaId, capitalDisponible)
+    generarComisionesRed(usuarioId, capitalDisponible) → 3 niveles
+  IF comisionesMensuales >= 50 EUR:
+    notificarHitoAutofinanciacion(usuarioId)
+
+[WF3] GENERAR COMISIONES RED (MULTINIVEL)
+1. inversor = obtenerUsuario(inversorId)
+2. IF inversor.referidoPor:
+     crearComision(beneficiario: padre, nivel: 1, monto: base * 0.01)
+3. padre = obtenerUsuario(inversor.referidoPor)
+   IF padre.referidoPor:
+     crearComision(beneficiario: abuelo, nivel: 2, monto: base * 0.005)
+4. abuelo = obtenerUsuario(padre.referidoPor)
+   IF abuelo.referidoPor:
+     crearComision(beneficiario: bisabuelo, nivel: 3, monto: base * 0.0025)
+
+[WF4] CAPTAR ACTIVO → PUBLICACION
+1. crearActivo(datos, estado: 'draft')
+   captador.honorarios = valorTasacion * 0.025
+   documentacion.nivel = 1
+2. completarNivel2(activoId, documentos[])
+   validarRequeridos: [escrituras, planos, licencias, presupuestos, estudio, contrato]
+   actualizarEstado('revision')
+3. notificarComite(activoId)
+4. procesarRevisionComite(activoId, decision)
+   IF aprobado:
+     actualizarEstado('published')
+     precioFinal = valorTasacion * 1.05 (+ 5% honorarios)
+   ELSE:
+     rechazar(observaciones)
+
+[WF5] APERTURA Y CIERRE VENTANA
+APERTURA:
+  tipo = (trimestre % 2 == 1) ? 'catapulta' : 'refugio'
+  crearVentana(tipo, capitalObjetivo: tipo=='catapulta'?100K:1M, estado: 'abierta')
+  notificarInversores()
+  activarAcumulacionTrimestral()
+
+CIERRE:
+  procesarInversionesPendientes()
+  actualizarEstado('cerrada')
+  distribuirInversoresEnActivos()
+  programarLiquidacion(fecha: +6m o +12m segun tipo)
+
+[WF6] LIQUIDACION VENTANA
+1. calcularRendimientoReal(ventanaId)
+2. FOR EACH inversor IN ventana.inversores:
+     beneficio = inversor.monto * (rendimiento / 100)
+     acreditarBeneficio(inversor.usuarioId, beneficio)
+3. liquidarComisionesRed(ventanaId) → pagar comisiones pendientes
+4. beneficioNeto = calcularBeneficioNeto() // Margen - Rendimientos - Comisiones - Gastos
+5. dotarFondoSostenibilidad(beneficioNeto * 0.5) // 50% OBLIGATORIO
+6. distribuirBeneficioGestores(beneficioNeto * 0.5)
+7. actualizarEstado('liquidada')
+8. notificarInversores()
+
+[WF7] GRADUACION A GESTOR
+1. verificarRequisitos(candidatoId):
+     - volumen >= 1M EUR
+     - continuidad >= 24 meses
+     - semaforoSalud == 'verde'
+     - KYC.nivelVerificacion >= 2
+2. auditarHistorial(candidatoId) → generar reporte
+3. programarPresentacionComite(candidatoId)
+4. esperarDecisionComite() → votos David + Carlos (poder veto)
+5. IF aprobado:
+     crearSeccionCertificada(nombre, marca, control: 50/50)
+     actualizarUsuario(tipo: 'gestor', seccionId)
+     configurarBeneficiosGestor(participacion: 50%)
+     entregarCredenciales()
+     publicarGraduacion()
+
+[WF8] INTERVENCION SECCION (TAKEOVER)
+1. registrarIncidente(tipo: 'intervencion', motivo, fecha)
+2. actualizarSeccion(estado: 'intervenida', semaforoSalud: 'rojo')
+3. notificarGestor(motivo, plazoCorreccion: '30 dias')
+4. identificarActivosCriticos(seccionId)
+5. FOR EACH activo IN activosCriticos:
+     reasignarGestion(activo.id, responsable: 'comite-temporal')
+6. asegurarLiquidezInversores(seccionId)
+7. programarAuditoriaCompleta(seccionId)
+
+================================================================================
+SECCION 4: DATOS CLAVE CSV (HITOS MES 3, 6, 12, 24)
+================================================================================
+
+SIMULACION 24 MESES: Ahorro 50 EUR/mes + Prescripcion 1x1
+
+MES 3 - PRIMERA INVERSION
+  Ahorro: 50 EUR | Comisiones: 2.38 EUR | Inversion: 154.12 EUR
+  Patrimonio: 154.12 EUR | Red: L1=3, L2=3, L3=1
+  Significado: Ingreso al ciclo de ventanas trimestrales
+
+MES 6 - PRIMERA SALIDA CATAPULTA
+  Ahorro: 50 EUR | Comisiones: 9.25 EUR | Inversion: 169.50 EUR
+  Patrimonio: 323.62 EUR | Red: L1=6, L2=15, L3=20
+  Significado: Validacion del modelo, primer rendimiento real
+
+MES 12 - AUTOFINANCIACION (HITO RIESGO CERO)
+  Ahorro: 50 EUR | Comisiones: 50.00 EUR | Inversion: 271.12 EUR
+  Patrimonio: 818.68 EUR | Red: L1=12, L2=66, L3=220
+  Significado: *** Comisiones = Ahorro → Patrimonio crece sin bolsillo ***
+
+MES 24 - RED CONSOLIDADA
+  Ahorro: 50 EUR | Comisiones: 334.00 EUR | Inversion: 1041.38 EUR
+  Patrimonio: 3721.57 EUR | Red: L1=24, L2=276, L3=2024
+  Significado: Crecimiento exponencial, comisiones 6.7x ahorro
+
+EVOLUCION PATRIMONIO:
+  Mes 3: 154 EUR | Mes 6: 324 EUR | Mes 12: 819 EUR | Mes 24: 3.722 EUR
+  Capital aportado (24m): 1.200 EUR | Patrimonio final: 3.722 EUR
+  ROI 24 meses: +210% | Tasa anual compuesta: +155%
+
+CONTRIBUCIONES AL PATRIMONIO (MES 24):
+  Ahorro propio: 32% (1.200 EUR)
+  Comisiones red: 45% (1.674 EUR)
+  Rendimientos inversion: 23% (856 EUR)
+
+CRECIMIENTO RED EXPONENCIAL:
+  Mes 1: 1 total | Mes 6: 41 (32 nuevos) | Mes 12: 298 (257 nuevos) | Mes 24: 2.324 (2.026 nuevos)
+  Activos prescribiendo: Cumplimiento norma 1x1 mensual
+
+================================================================================
+SECCION 5: FORMULAS Y CALCULOS CLAVE
+================================================================================
+
+COMISIONES REVENUE SHARE (BASE 100 EUR):
+  Nivel 1: 100 * 0.01 = 1.00 EUR
+  Nivel 2: 100 * 0.005 = 0.50 EUR
+  Nivel 3: 100 * 0.0025 = 0.25 EUR
+  TOTAL: 1.75 EUR (1.75% del capital invertido)
+
+MODELO CATAPULTA (100K EUR, 6 MESES):
+  Margen bruto Club: 100.000 * 0.30 = 30.000 EUR
+  Rendimiento inversor: 100.000 * 0.10 = 10.000 EUR (20% APY / 2)
+  Comisiones red: 100.000 * 0.0175 = 1.750 EUR
+  Gastos operativos: 1.000 (plataforma) + 100 (gestion) + 50 (marketing) = 1.150 EUR
+  Beneficio bruto: 30.000 - 10.000 - 1.750 - 1.150 = 17.100 EUR
+  Fondo Sostenibilidad: 17.100 * 0.5 = 8.550 EUR (50% obligatorio)
+  Beneficio gestores: 17.100 * 0.5 = 8.550 EUR
+
+MODELO REFUGIO (1M EUR, 12 MESES):
+  Margen bruto Club: 1.000.000 * 0.12 = 120.000 EUR
+  Rendimiento inversor: 1.000.000 * 0.08 = 80.000 EUR (8% APY)
+  Comisiones red: 1.000.000 * 0.0175 = 17.500 EUR
+  Gastos operativos: 10.000 (plataforma) + 100 (gestion) + 50 (marketing) = 10.150 EUR
+  Beneficio bruto: 120.000 - 80.000 - 17.500 - 10.150 = 12.350 EUR
+  Fondo Sostenibilidad: 12.350 * 0.5 = 6.175 EUR
+  Beneficio gestores: 12.350 * 0.5 = 6.175 EUR
+
+PROYECCIONES PATRIMONIALES (50 EUR/MES):
+  1 año: Capital 600 EUR → Patrimonio 684 EUR (+14%)
+  5 años: Capital 3.000 EUR → Patrimonio 5.200 EUR (+73%)
+  10 años: Capital 6.000 EUR → Patrimonio 18.500 EUR (+208%)
+  15 años: Capital 9.000 EUR → Patrimonio 54.000 EUR (+500%)
+
+CRECIMIENTO RED (NORMA 1x1):
+  Mes 1: 1 + 1 = 2 (1 nuevo)
+  Mes 6: 2^6 = 64 teorico | Real: 41 (estructura 6-15-20)
+  Mes 12: 2^12 = 4.096 teorico | Real: 298 (estructura 12-66-220)
+  Mes 24: 2^24 = 16.777.216 teorico | Real: 2.324 (estructura 24-276-2.024)
+
+HONORARIOS TOTALES POR OPERACION:
+  Entrada activo: 5% integrado en precio
+    - Gestion inversores: 2.5% (David + Carlos)
+    - Captacion activo: 2.5% (Agente)
+  Salida venta: 5% adicional en exclusiva (Agente mandatario)
+  Plataforma: 1% fijo (0.5% Leirum + 0.5% tecnologia)
+
+================================================================================
+SECCION 6: JERARQUIA Y GOBERNANZA
+================================================================================
+
+ESTRUCTURA DE PODER:
+  Nivel 0: Dueños Originales (David Almeida, Carlos Balboa)
+    - Autoridad final y veto absoluto
+    - Control 50% nuevas secciones
+    - Arbitraje supremo
+  
+  Nivel 1: Fundadores (Nucleo de 10) + Gestores de Seccion
+    - Fundadores: Por invitacion, 50/50 honorarios entrada
+    - Gestores: Graduados 1M EUR, 50% beneficio seccion
+  
+  Nivel 2: Agentes Promotores
+    - Captan activos, 2.5% entrada + 5% salida
+    - Carrera hacia gestor
+  
+  Nivel 3: Prescriptores e Inversores
+    - Red 1x1 mensual, Revenue Share 3 niveles
+    - Ahorro 50 EUR/mes, autofinanciacion mes 12-24
+
+TOMA DE DECISIONES:
+  Tipo: Empresa privada, verticalidad meritocratica
+  Comite: David Almeida, Carlos Balboa, Edmundo
+  Poder veto: Exclusivo Dueños Originales
+  Rol consultivo: Fundadores, Prescriptores organizados (no vinculante)
+  Principio: Agilidad decisional, sin paralisis consenso
+
+CONTROL DE CALIDAD:
+  Semaforo Salud: Verde (operativo) | Amarillo (monitoreado) | Rojo (intervencion)
+  Monitorizacion: Continua sobre gestores y secciones
+  Takeover: Activado si gestor falla → Inmortalidad Activo
+  Auditoria: Periodica, obligatoria para graduacion gestor
+
+================================================================================
+SECCION 7: CASOS DE USO RAPIDOS
+================================================================================
+
+CASO 1: INVERSOR QUE ALCANZA AUTOFINANCIACION
+  Perfil: Ana, 50 EUR/mes, cumple norma 1x1
+  Mes 0: Registro + KYC → Prescriptor activo
+  Mes 3: Primera inversion 154 EUR (3x50 + comisiones)
+  Mes 6: Salida catapulta, patrimonio 324 EUR
+  Mes 12: Comisiones = 50 EUR/mes → AUTOFINANCIACION ALCANZADA
+  Resultado: De aqui en adelante patrimonio crece sin aportacion propia
+
+CASO 2: AGENTE QUE GRADUA A GESTOR
+  Perfil: Miguel, agente promotor
+  Año 1: Capta 5 activos (promedio 200K EUR c/u) = 1M EUR gestionado
+  Año 2: Mantiene continuidad 24 meses, semaforo verde
+  Graduacion: Comite aprueba → Seccion Certificada creada
+  Beneficio: 50% beneficio neto seccion, marca propia, autonomia
+  Estructura: 50% Miguel + 50% Dueños Originales
+
+CASO 3: SECCION INTERVENIDA (TAKEOVER)
+  Escenario: Gestor Pablo falla en protocolos, semaforo rojo
+  Accion 1: Club registra incidente, suspende operaciones seccion
+  Accion 2: Control activos criticos reasignado a Comite
+  Accion 3: Inversores protegidos, liquidez asegurada
+  Accion 4: Pablo notificado, plazo correccion 30 dias
+  Resultado: Inmortalidad Activo → operaciones continuan bajo control matriz
+
+CASO 4: PRESCRIPTOR EXPANDE RED
+  Mes 1: Carlos invita a Pedro (L1)
+  Mes 2: Pedro invita a Laura (L2 para Carlos, L1 para Pedro)
+  Mes 3: Laura invita a Sofia (L3 para Carlos, L2 para Pedro, L1 para Laura)
+  Inversion Sofia 150 EUR:
+    - Laura recibe: 150 * 0.01 = 1.50 EUR (L1)
+    - Pedro recibe: 150 * 0.005 = 0.75 EUR (L2)
+    - Carlos recibe: 150 * 0.0025 = 0.375 EUR (L3)
+  Total comisiones: 2.625 EUR (1.75% del capital)
+
+================================================================================
+FIN QUICK REFERENCE
+================================================================================
+
+Total lineas: ~465
+Optimizado para: Consulta rapida en Google NotebookLM
+Cobertura: Glosario A-Z, Top 10 Schemas, Top 8 Workflows, Datos CSV, Formulas
+Audiencia: Todos los perfiles (desarrolladores, gestores, inversores)

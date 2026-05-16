@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CPII Portugal Prototype Review Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;family=Noto+Sans:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#eebd2b",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#181611",
+                        "surface-dark": "#232018",
+                        "surface-light": "#393528"
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, #393528 1px, transparent 1px), linear-gradient(to bottom, #393528 1px, transparent 1px)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for the sidebar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #181611; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #393528; 
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #eebd2b; 
+        }
+
+        /* SVG Connection Lines Animation */
+        .connector-path {
+            stroke-dasharray: 10;
+            animation: dash 30s linear infinite;
+        }
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -1000;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-white font-display overflow-hidden h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex-none z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-b-surface-light bg-background-dark/95 backdrop-blur-md px-10 py-3">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined text-3xl">hub</span>
+</div>
+<div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">CPII PORTUGAL</h2>
+<p class="text-xs text-gray-400 font-medium">PROTOTYPE HUB v0.9.2</p>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<nav class="flex items-center gap-1 bg-surface-dark p-1 rounded-full border border-surface-light">
+<a class="text-primary bg-surface-light/50 px-4 py-1.5 rounded-full text-sm font-bold leading-normal transition-colors" href="#">Home</a>
+<a class="text-gray-400 hover:text-white px-4 py-1.5 rounded-full text-sm font-medium leading-normal transition-colors" href="#">Simulador</a>
+<a class="text-gray-400 hover:text-white px-4 py-1.5 rounded-full text-sm font-medium leading-normal transition-colors" href="#">Rede</a>
+<a class="text-gray-400 hover:text-white px-4 py-1.5 rounded-full text-sm font-medium leading-normal transition-colors" href="#">Registro</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 cursor-pointer rounded-xl h-10 px-4 bg-primary hover:bg-yellow-400 text-background-dark text-sm font-bold leading-normal tracking-[0.015em] transition-colors">
+<span class="material-symbols-outlined text-lg">ios_share</span>
+<span class="truncate">Share Preview</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-surface-light" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBUTfy0k_edkzRp0ZiYJj82PPcrH31C0dmCz_CrxAoeMRde0PhuVLJIxsZFS94BaN3EfBUH2LfW2izQ6K7gGAQrUXQTbE2wH8NIHQejQR7MWDRJOGHP1lgDgy6f7FHxQ7hMJDP5_ua0IDRZ2Ot6eYxOObNxrk8wn2waByuuBzNUkXbME2IpynP97CZRWY4ca1coKs6YXi1-EqdpKjdMBDLz4gu6q8bcorVyZcDjrm750EkkUAEIltBVQ3FxWYgjeseB0MnMKgCNgbM");'></div>
+</div>
+</div>
+</header>
+<!-- Main Workspace Area -->
+<main class="flex-1 flex overflow-hidden relative">
+<!-- Infinite Canvas Background -->
+<div class="absolute inset-0 bg-background-dark bg-[size:40px_40px] opacity-20 pointer-events-none" style="background-image: linear-gradient(to right, #393528 1px, transparent 1px), linear-gradient(to bottom, #393528 1px, transparent 1px);"></div>
+<!-- Canvas Content -->
+<div class="flex-1 overflow-auto relative p-20 cursor-grab active:cursor-grabbing">
+<!-- SVG Connector Layer (Absolute positioned behind cards) -->
+<svg class="absolute top-0 left-0 w-[2000px] h-[1500px] pointer-events-none z-0" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<lineargradient id="goldGradient" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" style="stop-color:#393528;stop-opacity:1"></stop>
+<stop offset="50%" style="stop-color:#eebd2b;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#393528;stop-opacity:1"></stop>
+</lineargradient>
+</defs>
+<!-- Central to Registration (Top Left) -->
+<path class="connector-path" d="M 800 600 C 600 600, 600 300, 400 300" fill="none" stroke="url(#goldGradient)" stroke-width="2"></path>
+<!-- Central to Simulator (Top Right) -->
+<path class="connector-path" d="M 1200 600 C 1400 600, 1400 300, 1600 300" fill="none" stroke="url(#goldGradient)" stroke-width="2" style="animation-direction: reverse;"></path>
+<!-- Central to Article (Bottom Left) -->
+<path class="connector-path" d="M 800 800 C 600 800, 600 1100, 400 1100" fill="none" stroke="url(#goldGradient)" stroke-width="2"></path>
+<!-- Central to Dashboard (Bottom Right) -->
+<path class="connector-path" d="M 1200 800 C 1400 800, 1400 1100, 1600 1100" fill="none" stroke="url(#goldGradient)" stroke-width="2" style="animation-direction: reverse;"></path>
+</svg>
+<div class="relative w-[2000px] h-[1500px] z-10">
+<!-- Central Hub: Landing Page -->
+<div class="absolute left-[800px] top-[500px] w-[400px] group">
+<div class="absolute -top-12 left-0 right-0 text-center">
+<span class="bg-primary text-background-dark text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Main Entry</span>
+<h3 class="text-xl font-bold mt-2 text-white">Luxury Landing Hub</h3>
+</div>
+<div class="bg-surface-dark rounded-xl border-2 border-primary shadow-[0_0_50px_rgba(238,189,43,0.15)] overflow-hidden transition-transform transform group-hover:scale-105 duration-300">
+<div class="relative aspect-[16/10] bg-surface-light">
+<img alt="Luxury modern architecture dark theme landing page" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="Luxury modern architecture dark theme landing page" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOEodPAF8h2PpmjK0yzW2Y1uj5PZmsV0lP4s7wUkF-tXoZ3z85pluIpwQckh87XDm2HQDNLot6I9DrkLsFT6-qb0ubAj6A0ieXrfEM5CsDtJgLv-VzQIpkDrsb3kX3mFiyJwIiBCy_xflbuAxIzEZyCeQqgul05YGrfGYBse328smx17ZXw2BBl_qjxLahkaZIxHGPTHQu1Vv0ObtSZO7AOEg4sI_K24RLipMLlsJih-8Ccg9GvYObjZQNzG_tm2U4E70YdXxrndM"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark to-transparent opacity-80"></div>
+<div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+<div>
+<p class="text-xs text-gray-300 uppercase tracking-widest mb-1">Status</p>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<span class="text-sm font-medium">Production Ready</span>
+</div>
+</div>
+<button class="bg-white/10 hover:bg-white/20 backdrop-blur-md p-2 rounded-lg text-white transition-colors">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<div class="p-4 border-t border-surface-light flex gap-2">
+<div class="flex -space-x-2">
+<img alt="Team member avatar" class="w-8 h-8 rounded-full border-2 border-surface-dark" data-alt="Team member avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9cRTCEvWmNzBMV_3fE02iwGCG4z0gboMMfMkdLkHeQHLB-YEIhxjHOBYJzSj59Nb1cSKlwXzj1ffXzKdxCZMOHRUwU1widRZH6BpVHD4nysGuTng-wn5iWpd0fQk65TFAlIf26N7GkDIaM1j1fqzwycUHvWIyxPakzKKPbTNKjSN0qxt9G02oCTGY_bbPyA95GV7RmLpojJNKhZ4UuITqQtKdq3nHDQegqAroUFgkDKK5ZEcR8uYpMC6_l8i1titnR1JtmOMLx18"/>
+<img alt="Team member avatar" class="w-8 h-8 rounded-full border-2 border-surface-dark" data-alt="Team member avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwImRWSTJcUfhV496Q7mUrW4r49WRUGmoTE_10A84kt0fc5sRVNBdJbNjcVAtE0Ps2eYIuLTq4gKY7IsKEKxZ4Nlxf5UmyL4JZECv-pRfs7Y3CzGm0wQrSSR7UT1X49r_2SHRKrO9-0pLxk1uyaF4jAK9Qyoz8h_fQ1vMmpNZlGwl6Qtj4TaIyHKb90q7ggI5bjRypSKtHi3hPW4u7aHj9aHYIvYwqvYS9DvkXF4xeqcf4A71Tu-q1YKl-49zJzRQgaRp0CPPNk7Y"/>
+</div>
+<div class="flex-1"></div>
+<span class="text-xs text-gray-500 self-center">Updated 2h ago</span>
+</div>
+</div>
+</div>
+<!-- Satellite: Registration (Top Left) -->
+<div class="absolute left-[100px] top-[150px] w-[300px] group">
+<div class="absolute -top-8 left-0 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">app_registration</span>
+<h4 class="text-lg font-bold text-gray-300 group-hover:text-white transition-colors">Private Registration</h4>
+</div>
+<div class="bg-surface-dark rounded-xl border border-surface-light hover:border-primary/50 overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1">
+<div class="relative aspect-[16/10] bg-surface-light">
+<img alt="Minimalist dark form UI" class="w-full h-full object-cover opacity-60 group-hover:opacity-90 transition-opacity" data-alt="Minimalist dark form UI" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrX11ud5QLxPqP05_fIrD1_AolMDplnTNP8EYxHyB3QUz-bh3hcnMQc7SzPjI3G-t3PY2FM_BrVGTAbn8myLZ4GWt4-VnbbAsYXtKMMw8x37oJXdVXSRyRvuB-2xwTIwPAbkj4hEcn8ijfjB4trDN0h-A95yi26Vk_g2rQIVBJ-poH_YhvUN8AaI3gmJ4R-RiY5HIQf_NJK9RM4cGq7NsVrGxv66hx-7RNS8ROfJH2Sdg4uwe6iHj1NATtlv_5-y4Ey1Kw_Oke3UQ"/>
+<div class="absolute top-2 right-2 bg-black/60 backdrop-blur-sm px-2 py-1 rounded text-[10px] font-bold text-yellow-500 border border-yellow-500/30">IN PROGRESS</div>
+</div>
+<div class="p-3">
+<div class="flex justify-between items-center">
+<span class="text-xs text-gray-500">Flow: User Onboarding</span>
+<span class="material-symbols-outlined text-gray-500 text-sm">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Satellite: Simulator (Top Right) -->
+<div class="absolute left-[1600px] top-[150px] w-[300px] group">
+<div class="absolute -top-8 right-0 flex items-center gap-2 flex-row-reverse">
+<span class="material-symbols-outlined text-primary">monitoring</span>
+<h4 class="text-lg font-bold text-gray-300 group-hover:text-white transition-colors">Wealth Simulator</h4>
+</div>
+<div class="bg-surface-dark rounded-xl border border-surface-light hover:border-primary/50 overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1">
+<div class="relative aspect-[16/10] bg-surface-light">
+<img alt="Financial dashboard with charts" class="w-full h-full object-cover opacity-60 group-hover:opacity-90 transition-opacity" data-alt="Financial dashboard with charts" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDANzX_dTuPSrf_RBDz6yw4HjAmIn5Wuwu3bTxkrVGaTP2uvAxdactbPhL-rNwnGebMfFg837CUEHWKUXpSecPsYw5f4nih0PvBfMqtyBFr7EVKLqsj7V5mRjR5vRiFg9WFfJSyIvSfgETCSR3WTm44meoxxEdO4EdBZlPtfunJun6Tvj_FSW3j9zHXILxa5NDFZ4uOm3v9piFs31B2cezHMX4burORdXA6Fdp1Z1IrSwPEolMLs41da2lT0yIyDaWmGVzR5kDjamY"/>
+</div>
+<div class="p-3">
+<div class="flex justify-between items-center">
+<span class="text-xs text-gray-500">Flow: Investment Projection</span>
+<span class="material-symbols-outlined text-gray-500 text-sm">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Satellite: Article (Bottom Left) -->
+<div class="absolute left-[100px] top-[950px] w-[300px] group">
+<div class="absolute -top-8 left-0 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">article</span>
+<h4 class="text-lg font-bold text-gray-300 group-hover:text-white transition-colors">Economic Insight</h4>
+</div>
+<div class="bg-surface-dark rounded-xl border border-surface-light hover:border-primary/50 overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1">
+<div class="relative aspect-[16/10] bg-surface-light">
+<img alt="Financial report document close up" class="w-full h-full object-cover opacity-60 group-hover:opacity-90 transition-opacity" data-alt="Financial report document close up" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATZXjLWMse1SZfcT9Il3GL_UqQuqIaYjn61aneOhVh3p2zfJ88IHHV6OoSKqWtmZrXxem6-KH7NPhKXO7NZmcgZ6VHLLPdFHMfMAa_ixRyJuHGpm3kS-o-Sk04L2VEyBFZS8tR7OUEbEVd23LZ64RJk08iC1ZeF4XSpayg5W2mmXnl1vBb80FhI1bEQzy2pxyOAvyWkrvJWKhphCpMqhkTwTSaJYixWinx38hro5APRo9Ot2ybPUUK6rvyZX2VwqDdSW6FrcwMoYI"/>
+</div>
+<div class="p-3">
+<div class="flex justify-between items-center">
+<span class="text-xs text-gray-500">Flow: Content Consumption</span>
+<span class="material-symbols-outlined text-gray-500 text-sm">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Satellite: Agent Preview (Bottom Right) -->
+<div class="absolute left-[1600px] top-[950px] w-[300px] group">
+<div class="absolute -top-8 right-0 flex items-center gap-2 flex-row-reverse">
+<span class="material-symbols-outlined text-primary">badge</span>
+<h4 class="text-lg font-bold text-gray-300 group-hover:text-white transition-colors">Agent Dashboard</h4>
+</div>
+<div class="bg-surface-dark rounded-xl border border-surface-light hover:border-primary/50 overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1">
+<div class="relative aspect-[16/10] bg-surface-light">
+<img alt="User profile dark mode dashboard" class="w-full h-full object-cover opacity-60 group-hover:opacity-90 transition-opacity" data-alt="User profile dark mode dashboard" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQyQkUyCJuaOf0ysqIJB-30L8YZZzT-xzN3SrLxGHdH7AJ3OX3KOjHyUCPw6NR69ZoIIcuWI8ymQPGq7SLm4NwoAnOJrxPkMqccmVJ_ewo2PkHetwqghoCsFCBRPsOmXO1Dq9TbpLQdsgicFbb5cd0VfJhVALhP4l80tDpSpZaB4LT9aPwyTdnCIDj6rElWIgd3-Pi_W8WQadOwclSnJFJqZtgjmqjqg3vJDBjWFg3VtAM1DF9Be8GYjnX4YPH7ojl6-6yfeUlnVs"/>
+</div>
+<div class="p-3">
+<div class="flex justify-between items-center">
+<span class="text-xs text-gray-500">Flow: Member Area</span>
+<span class="material-symbols-outlined text-gray-500 text-sm">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Sidebar: Finetuning Panel -->
+<aside class="w-80 flex-none bg-surface-dark border-l border-surface-light flex flex-col z-20 shadow-2xl">
+<div class="p-6 border-b border-surface-light">
+<h3 class="text-white text-lg font-bold mb-1">Finetuning Status</h3>
+<p class="text-xs text-gray-400">Track visual &amp; functional adjustments.</p>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-6">
+<!-- Section 1 -->
+<div>
+<h4 class="text-xs uppercase tracking-widest text-primary font-bold mb-3 pl-2">Design System</h4>
+<div class="space-y-2">
+<div class="flex items-start gap-3 p-2 rounded-lg hover:bg-surface-light/30 transition-colors cursor-pointer group">
+<div class="mt-0.5 text-primary">
+<span class="material-symbols-outlined text-base">check_circle</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-medium text-gray-200 group-hover:text-white">Gold Palette Applied</p>
+<p class="text-xs text-gray-500">Global theme update v2</p>
+</div>
+</div>
+<div class="flex items-start gap-3 p-2 rounded-lg hover:bg-surface-light/30 transition-colors cursor-pointer group">
+<div class="mt-0.5 text-primary">
+<span class="material-symbols-outlined text-base">check_circle</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-medium text-gray-200 group-hover:text-white">Typography Scale</p>
+<p class="text-xs text-gray-500">Manrope headers fixed</p>
+</div>
+</div>
+<div class="flex items-start gap-3 p-2 rounded-lg hover:bg-surface-light/30 transition-colors cursor-pointer group">
+<div class="mt-0.5 text-gray-600">
+<span class="material-symbols-outlined text-base">radio_button_unchecked</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-medium text-gray-400 group-hover:text-white">Icon Set Unification</p>
+<p class="text-xs text-gray-600">Pending Material Symbols</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 2 -->
+<div>
+<h4 class="text-xs uppercase tracking-widest text-primary font-bold mb-3 pl-2">Content &amp; Copy</h4>
+<div class="space-y-2">
+<div class="flex items-start gap-3 p-2 rounded-lg hover:bg-surface-light/30 transition-colors cursor-pointer group">
+<div class="mt-0.5 text-primary">
+<span class="material-symbols-outlined text-base">check_circle</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-medium text-gray-200 group-hover:text-white">PT Translation</p>
+<p class="text-xs text-gray-500">Landing page complete</p>
+</div>
+</div>
+<div class="flex items-start gap-3 p-2 rounded-lg bg-red-500/10 hover:bg-red-500/20 transition-colors cursor-pointer border border-red-500/20">
+<div class="mt-0.5 text-red-500">
+<span class="material-symbols-outlined text-base">error</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-medium text-red-200">Legal Disclaimers</p>
+<p class="text-xs text-red-400/70">Missing on Registration</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 3 -->
+<div>
+<h4 class="text-xs uppercase tracking-widest text-primary font-bold mb-3 pl-2">Development</h4>
+<div class="space-y-2">
+<div class="flex items-start gap-3 p-2 rounded-lg bg-yellow-500/10 hover:bg-yellow-500/20 transition-colors cursor-pointer border border-yellow-500/20">
+<div class="mt-0.5 text-yellow-500">
+<span class="material-symbols-outlined text-base">warning</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-medium text-yellow-200">Mobile Responsiveness</p>
+<p class="text-xs text-yellow-400/70">Breakpoints issue on Simulator</p>
+</div>
+</div>
+<div class="flex items-start gap-3 p-2 rounded-lg hover:bg-surface-light/30 transition-colors cursor-pointer group">
+<div class="mt-0.5 text-gray-600">
+<span class="material-symbols-outlined text-base">radio_button_unchecked</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-medium text-gray-400 group-hover:text-white">API Integration</p>
+<p class="text-xs text-gray-600">Wealth data hookup</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer of Sidebar -->
+<div class="p-4 border-t border-surface-light bg-surface-dark">
+<div class="flex items-center gap-3 mb-4">
+<div class="h-1 flex-1 bg-surface-light rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[72%]"></div>
+</div>
+<span class="text-xs font-bold text-primary">72%</span>
+</div>
+<button class="w-full py-2.5 rounded-lg border border-primary text-primary hover:bg-primary hover:text-background-dark font-bold text-sm transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">flag</span>
+                    Mark Review Complete
+                </button>
+</div>
+</aside>
+</main>
+</body></html>

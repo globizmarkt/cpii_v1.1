@@ -1,0 +1,524 @@
+<!--
+================================================================================
+  ARCHIVO:  webinars.html
+  VERSIÓN:  2.1.0
+  FECHA:    2026-04-19
+  PROPÓSITO: Breeder Hub CPII — Comités de Inversión, Deal Flow y Archivo
+             de Sesiones. Puerta de conversión audiovisual hacia access-form.
+================================================================================
+-->
+<!DOCTYPE html>
+<html lang="pt" class="dark">
+
+<!-- ════════════════════════════════════════════════════════ [SEC-01] HEAD ══ -->
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description" content="CPII Portugal — Comités de Investimento, Deal Flow e Sessões ao Vivo." />
+    <title>Comités & Sessões — CPII Portugal</title>
+
+    <!-- Tipografía y Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        rel="stylesheet" />
+
+    <!-- Design System compartido -->
+    <!-- Tailwind CSS compilado -->
+    <link rel="stylesheet" href="css/tailwind.css" />
+
+    <!-- Estilos base compartidos -->
+    <link rel="stylesheet" href="css/design-system.css" />
+
+    <!-- Motor i18n CPII -->
+    <script src="i18n.js"></script>
+</head>
+
+<body class="bg-background-dark text-white font-body min-h-screen">
+
+    <!-- ══════════════════════════════════════════════ [SEC-02] HEADER / NAV ══ -->
+    <header class="sticky top-0 z-50 w-full border-b border-border-dark bg-background-dark/95 backdrop-blur-md">
+        <div class="mx-auto max-w-7xl px-6 lg:px-10 h-20 flex items-center justify-between">
+
+            <!-- Logotipo -->
+            <div class="flex items-center gap-4 flex-shrink-0">
+                <div class="size-8 text-primary">
+                    <span class="material-symbols-outlined text-3xl">apartment</span>
+                </div>
+                <h2 class="text-white text-xl font-bold tracking-tight font-display"><span data-i18n="navigation.logo.main">CPII</span> <span
+                        class="text-primary font-normal" data-i18n="navigation.logo.suffix">PORTUGAL</span></h2>
+            </div>
+
+            <!-- Navegación principal -->
+            <nav class="hidden md:flex flex-1 justify-center gap-4 lg:gap-6 xl:gap-8">
+                <a class="whitespace-nowrap text-text-secondary hover:text-primary transition-colors text-sm font-medium" href="index.html#inicio"
+                    data-i18n="navigation.inicio">Início</a>
+                <a class="whitespace-nowrap text-text-secondary hover:text-primary transition-colors text-sm font-medium"
+                    href="equipo-comercial.html" data-i18n="navigation.grupo_comercial">Grupo Comercial</a>
+                <a class="whitespace-nowrap text-text-secondary hover:text-primary transition-colors text-sm font-medium"
+                    href="simulator.html" data-i18n="navigation.simulador">Simulador</a>
+                <a class="whitespace-nowrap text-text-secondary hover:text-primary transition-colors text-sm font-medium"
+                    href="referrals.html" data-i18n="navigation.referrals">Minha Rede</a>
+                <a class="whitespace-nowrap text-text-secondary hover:text-primary transition-colors text-sm font-medium"
+                    href="index.html#como-funciona" data-i18n="navigation.como_funciona">Como Funciona</a>
+                <a class="whitespace-nowrap text-text-secondary hover:text-primary transition-colors text-sm font-medium"
+                    href="onboarding.html" data-i18n="navigation.onboarding">Onboarding</a>
+                <a class="whitespace-nowrap text-primary border-b border-primary pb-1 text-sm font-semibold"
+                    href="webinars.html" data-i18n="navigation.webinars">Webinars</a>
+            </nav>
+
+            <!-- Selector de idioma + CTA -->
+            <div class="flex items-center gap-4 flex-shrink-0">
+                <!-- Selector de idioma — id requerido por i18n.js para sincronización -->
+                <select id="lang-selector">
+                    <option value="pt">PT</option>
+                    <option value="es">ES</option>
+                    <option value="en">EN</option>
+                    <option value="fr">FR</option>
+                </select>
+
+                <a href="access-form.html"
+                    class="flex items-center justify-center rounded-xl h-10 px-6 bg-primary hover:bg-primary-hover text-background-dark text-sm font-bold transition-all shadow-[0_0_15px_rgba(193,168,92,0.15)]"
+                    data-i18n="btn.solicitar">
+                    Solicitar Acesso
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ══════════════════════════════════════════════════════ [SEC-03] HERO ══ -->
+    <section class="relative overflow-hidden border-b border-border-dark py-20 bg-card-dark hero-pattern">
+        <div class="mx-auto max-w-7xl px-6 lg:px-10 relative z-10 text-center">
+            <div
+                class="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-primary mb-6">
+                <span class="material-symbols-outlined text-sm">verified</span>
+                <span data-i18n="webinars.hero.badge">CPII Portugal</span>
+            </div>
+            <h1
+                class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight font-display text-white mb-6">
+                <span data-i18n="webinars.hero.title.main">Comités &</span><br />
+                <span class="text-primary italic" data-i18n="webinars.hero.title.highlight">Sessões ao Vivo</span>
+            </h1>
+            <p class="text-lg text-text-secondary max-w-2xl mx-auto" data-i18n="webinars.hero.p">
+                Análises de Deal Flow, Due Diligence e abertura de janelas de liquidez. Sessões restritas a membros
+                verificados do Clube.
+            </p>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════ [SEC-05] CALENDÁRIO + TABS + COUNTDOWN ══ -->
+    <section class="py-20 bg-card-dark border-b border-border-dark hero-pattern" id="comites">
+        <div class="mx-auto max-w-7xl px-6 lg:px-10">
+
+            <div class="mb-10 flex flex-col md:flex-row items-start md:items-end justify-between gap-6">
+                <div>
+                    <h2 class="text-2xl font-bold text-white font-display mb-4" data-i18n="webinars.cal.title">Próximos
+                        Comités</h2>
+                    <div class="flex bg-background-dark p-1.5 rounded-lg border border-border-dark">
+                        <button onclick="switchTab('public')" id="tab-btn-public"
+                            class="px-6 py-2.5 text-sm font-bold rounded-md transition-all text-text-secondary hover:text-white"
+                            data-i18n="webinars.tab.public">
+                            Conteúdo Público
+                        </button>
+                        <button onclick="switchTab('private')" id="tab-btn-private"
+                            class="px-6 py-2.5 text-sm font-bold rounded-md transition-all bg-primary text-background-dark shadow-sm"
+                            data-i18n="webinars.tab.private">
+                            Comités (Acesso Restrito)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Countdown — solo visible en tab Comités -->
+                <div id="countdown-widget"
+                    class="bg-background-dark border border-primary/20 rounded-xl px-5 py-4 flex items-center gap-4">
+                    <div class="flex items-center gap-1.5">
+                        <span class="live-dot w-2 h-2 bg-primary"></span>
+                        <span class="text-[10px] text-primary font-bold uppercase tracking-wider"
+                            data-i18n="webinars.countdown.label">Evento em</span>
+                    </div>
+                    <div class="flex gap-2" id="countdown-wrap">
+                        <div class="countdown-unit">
+                            <p class="text-xl font-black text-white font-display" id="cd-days">--</p>
+                            <p class="text-[9px] text-text-secondary uppercase tracking-wider"
+                                data-i18n="webinars.countdown.days">Dias</p>
+                        </div>
+                        <div class="countdown-unit">
+                            <p class="text-xl font-black text-white font-display" id="cd-hours">--</p>
+                            <p class="text-[9px] text-text-secondary uppercase tracking-wider"
+                                data-i18n="webinars.countdown.hours">Horas</p>
+                        </div>
+                        <div class="countdown-unit">
+                            <p class="text-xl font-black text-white font-display" id="cd-mins">--</p>
+                            <p class="text-[9px] text-text-secondary uppercase tracking-wider"
+                                data-i18n="webinars.countdown.mins">Min</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: CONTEÚDO PÚBLICO -->
+            <div id="tab-content-public" class="hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div
+                        class="bg-background-dark border border-border-dark rounded-xl overflow-hidden group hover:border-primary/30 transition-colors">
+                        <div class="aspect-video bg-[#1a1814] relative flex items-center justify-center">
+                            <span
+                                class="material-symbols-outlined text-5xl text-primary/30 group-hover:text-primary transition-colors">play_circle</span>
+                            <div
+                                class="absolute top-4 left-4 bg-background-dark/80 px-2 py-1 rounded text-[10px] font-bold text-text-secondary uppercase tracking-wider border border-border-dark">
+                                Teaser</div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-lg font-bold text-white font-display mb-2" data-i18n="webinars.pub.1.title">
+                                A Metodologia do Commercial Group Portugal</h4>
+                            <p class="text-sm text-text-secondary mb-4" data-i18n="webinars.pub.1.desc">Descubra os
+                                pilares do nosso proceso de captação estruturada e por que a barreira KYC/AML é
+                                inegociável.</p>
+                            <a href="access-form.html"
+                                class="text-xs text-primary font-bold uppercase tracking-widest hover:text-primary-hover flex items-center gap-1">
+                                Solicitar Acesso <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-background-dark border border-border-dark rounded-xl overflow-hidden group hover:border-primary/30 transition-colors">
+                        <div class="aspect-video bg-[#1a1814] relative flex items-center justify-center">
+                            <span
+                                class="material-symbols-outlined text-5xl text-primary/30 group-hover:text-primary transition-colors">play_circle</span>
+                            <div
+                                class="absolute top-4 left-4 bg-background-dark/80 px-2 py-1 rounded text-[10px] font-bold text-text-secondary uppercase tracking-wider border border-border-dark">
+                                Case Study</div>
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-lg font-bold text-white font-display mb-2" data-i18n="webinars.pub.2.title">
+                                Análise: Arbitragem no Eixo Lisboa-Porto</h4>
+                            <p class="text-sm text-text-secondary mb-4" data-i18n="webinars.pub.2.desc">Resumo da última
+                                operação liquidada (Tier A). Como identificamos o ativo e executamos a saída em 4 meses.
+                            </p>
+                            <a href="access-form.html"
+                                class="text-xs text-primary font-bold uppercase tracking-widest hover:text-primary-hover flex items-center gap-1">
+                                Solicitar Acesso <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: COMITÉS (ACESSO RESTRITO) -->
+            <div id="tab-content-private">
+
+                <!-- Evento principal — 28 MAR -->
+                <div
+                    class="bg-background-dark border border-primary/30 rounded-xl p-6 lg:p-8 flex flex-col md:flex-row items-start md:items-center gap-8 relative overflow-hidden shadow-[0_0_20px_rgba(193,168,92,0.05)] mb-6">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+
+                    <div class="flex-shrink-0 text-center md:border-r md:border-border-dark md:pr-8 min-w-[150px]">
+                        <p class="text-primary text-sm font-bold uppercase tracking-widest mb-1"
+                            data-i18n="webinars.cal.e1.month">MAR</p>
+                        <p class="text-5xl font-black text-white font-display mb-1" data-i18n="webinars.cal.e1.day">28
+                        </p>
+                        <p class="text-text-secondary text-xs" data-i18n="webinars.cal.e1.datetime">Sábado · 10:00 WET
+                        </p>
+                    </div>
+
+                    <div class="flex-1">
+                        <div
+                            class="inline-flex items-center gap-1 bg-primary/10 text-primary text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider mb-3">
+                            <span class="material-symbols-outlined text-[12px]">lock</span>
+                            <span data-i18n="webinars.cal.live">Sessão Restrita</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2 font-display" data-i18n="webinars.cal.e1.name">
+                            Análise de Deal Flow: Tier A</h3>
+                        <p class="text-sm text-text-secondary mb-4" data-i18n="webinars.cal.e1.desc">
+                            Apresentação e análise de rentabilidade operacional de novas captações off-market para o
+                            ciclo corto. Abertura da janela de liquidez para membros verificados.
+                        </p>
+                        <div class="flex items-center gap-3">
+                            <div class="flex -space-x-2">
+                                <div
+                                    class="w-8 h-8 rounded-full bg-primary/20 border-2 border-background-dark flex items-center justify-center text-[10px] font-bold text-primary">
+                                    DA</div>
+                                <div
+                                    class="w-8 h-8 rounded-full bg-teal-500/20 border-2 border-background-dark flex items-center justify-center text-[10px] font-bold text-teal-400">
+                                    CB</div>
+                            </div>
+                            <span class="text-xs text-text-secondary" data-i18n="webinars.cal.e1.speakers">Direção
+                                Executiva CPII</span>
+                        </div>
+                    </div>
+
+                    <div class="flex-shrink-0 w-full md:w-auto">
+                        <a href="access-form.html"
+                            class="block w-full text-center bg-primary hover:bg-primary-hover text-background-dark px-6 py-3 rounded-lg text-sm font-bold transition-colors"
+                            data-i18n="webinars.btn.reserve">
+                            Solicitar Acesso
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Eventos secundarios — 25 ABR + 30 MAI -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div
+                        class="bg-background-dark border border-border-dark rounded-xl p-5 flex items-center gap-5 hover:border-primary/30 transition-colors">
+                        <div class="flex-shrink-0 text-center min-w-[60px]">
+                            <p class="text-primary text-xs font-bold uppercase tracking-widest"
+                                data-i18n="webinars.cal.e2.month">ABR</p>
+                            <p class="text-3xl font-black text-white font-display" data-i18n="webinars.cal.e2.day">25
+                            </p>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="text-base font-bold text-white font-display mb-1"
+                                data-i18n="webinars.cal.e2.name">Comité de Investimento: Tier B</h4>
+                            <p class="text-xs text-text-secondary mb-2" data-i18n="webinars.cal.e2.time">Sábado · 10:00
+                                WET · Exclusivo</p>
+                            <a href="access-form.html"
+                                class="text-xs text-primary font-bold flex items-center gap-1 hover:gap-2 transition-all">
+                                <span data-i18n="webinars.btn.reserve">Solicitar Acesso</span> <span
+                                    class="material-symbols-outlined" style="font-size:13px">arrow_forward</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-background-dark border border-border-dark rounded-xl p-5 flex items-center gap-5 hover:border-primary/30 transition-colors">
+                        <div class="flex-shrink-0 text-center min-w-[60px]">
+                            <p class="text-primary text-xs font-bold uppercase tracking-widest"
+                                data-i18n="webinars.cal.e3.month">MAI</p>
+                            <p class="text-3xl font-black text-white font-display" data-i18n="webinars.cal.e3.day">30
+                            </p>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="text-base font-bold text-white font-display mb-1"
+                                data-i18n="webinars.cal.e3.name">Sessão de Due Diligence Avançada</h4>
+                            <p class="text-xs text-text-secondary mb-2" data-i18n="webinars.cal.e3.time">Sábado · 10:00
+                                WET · Exclusivo</p>
+                            <a href="access-form.html"
+                                class="text-xs text-primary font-bold flex items-center gap-1 hover:gap-2 transition-all">
+                                <span data-i18n="webinars.btn.reserve">Solicitar Acesso</span> <span
+                                    class="material-symbols-outlined" style="font-size:13px">arrow_forward</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- / TAB COMITÉS -->
+
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════ [SEC-04] MODELOS DE INVESTIMENTO ══ -->
+    <section class="py-20 bg-background-dark">
+        <div class="mx-auto max-w-7xl px-6 lg:px-10">
+            <div class="mb-12">
+                <h2 class="text-2xl font-bold text-white font-display" data-i18n="webinars.master.title">Modelos de
+                    Investimento</h2>
+                <div class="w-12 h-1 bg-primary mt-4"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Tier A -->
+                <div
+                    class="group bg-card-dark rounded-2xl border border-border-dark overflow-hidden hover:border-primary/50 transition-colors">
+                    <div
+                        class="aspect-video relative bg-background-dark flex items-center justify-center border-b border-border-dark">
+                        <span
+                            class="material-symbols-outlined text-6xl text-primary/40 group-hover:text-primary transition-colors">rocket_launch</span>
+                        <div class="absolute inset-0 bg-gradient-to-t from-card-dark to-transparent opacity-50"></div>
+                        <div
+                            class="absolute bottom-4 left-4 bg-background-dark/80 backdrop-blur px-3 py-1 rounded text-xs font-bold text-primary tracking-widest border border-primary/20">
+                            TIER A</div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold text-white mb-3 font-display"
+                            data-i18n="webinars.master.tiera.title">Catapulta: Crescimento Exponencial</h3>
+                        <p class="text-sm text-text-secondary leading-relaxed mb-4"
+                            data-i18n="webinars.master.tiera.desc">
+                            Ciclos curtos (6 meses) con rentabilidade agressiva (até 20% APY). Desenhado para
+                            investidores que procuram escalar o seu capital rapidamente através de operações de
+                            arbitragem imobiliária.
+                        </p>
+                        <a href="access-form.html?tipo=inversor"
+                            class="text-primary text-sm font-bold flex items-center gap-2 hover:gap-3 transition-all"
+                            data-i18n="webinars.btn.watch">
+                            Ver Análise <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- Tier B -->
+                <div
+                    class="group bg-card-dark rounded-2xl border border-border-dark overflow-hidden hover:border-teal-500/50 transition-colors">
+                    <div
+                        class="aspect-video relative bg-background-dark flex items-center justify-center border-b border-border-dark">
+                        <span
+                            class="material-symbols-outlined text-6xl text-teal-500/40 group-hover:text-teal-400 transition-colors">shield</span>
+                        <div class="absolute inset-0 bg-gradient-to-t from-card-dark to-transparent opacity-50"></div>
+                        <div
+                            class="absolute bottom-4 left-4 bg-background-dark/80 backdrop-blur px-3 py-1 rounded text-xs font-bold text-teal-400 tracking-widest border border-teal-500/20">
+                            TIER B</div>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-xl font-bold text-white mb-3 font-display"
+                            data-i18n="webinars.master.tierb.title">Refúgio: Preservação de Património</h3>
+                        <p class="text-sm text-text-secondary leading-relaxed mb-4"
+                            data-i18n="webinars.master.tierb.desc">
+                            Ciclos anuais com rentabilidade estável (8% APY). Foco em ativos maduros e seguros,
+                            desenhado para investidores que procuram proteger o capital contra a inflação com risco
+                            mínimo.
+                        </p>
+                        <a href="access-form.html?tipo=inversor"
+                            class="text-teal-400 text-sm font-bold flex items-center gap-2 hover:gap-3 transition-all"
+                            data-i18n="webinars.btn.watch">
+                            Ver Análise <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════ [SEC-06] GRABACIONES BLOQUEADAS ══ -->
+    <section class="py-24 bg-background-dark relative">
+        <div class="mx-auto max-w-5xl px-6 text-center">
+            <div class="relative rounded-2xl border border-border-dark bg-card-dark p-12 overflow-hidden">
+                <div
+                    class="absolute inset-0 opacity-20 grid grid-cols-3 gap-4 p-8 filter blur-[3px] pointer-events-none select-none">
+                    <div class="bg-border-dark rounded-lg aspect-video"></div>
+                    <div class="bg-border-dark rounded-lg aspect-video"></div>
+                    <div class="bg-border-dark rounded-lg aspect-video"></div>
+                    <div class="bg-border-dark rounded-lg aspect-video"></div>
+                    <div class="bg-border-dark rounded-lg aspect-video"></div>
+                    <div class="bg-border-dark rounded-lg aspect-video"></div>
+                </div>
+                <div class="relative z-10 flex flex-col items-center">
+                    <div
+                        class="w-20 h-20 rounded-full bg-background-dark border border-border-dark flex items-center justify-center mb-6 shadow-2xl">
+                        <span class="material-symbols-outlined text-4xl text-primary"
+                            style="font-variation-settings:'FILL' 1">lock</span>
+                    </div>
+                    <h2 class="text-3xl font-bold text-white font-display mb-4" data-i18n="webinars.locked.title">+25
+                        Gravações Exclusivas</h2>
+                    <p class="text-text-secondary text-sm max-w-md mx-auto mb-8" data-i18n="webinars.locked.desc">
+                        O acesso ao arquivo histórico de análises de mercado, operações fechadas e sessões de Deal Flow
+                        é restrito a membros verificados do Clube.
+                    </p>
+                    <a href="access-form.html"
+                        class="inline-flex items-center gap-2 rounded-xl bg-transparent border-2 border-primary hover:bg-primary hover:text-background-dark text-primary px-8 py-4 text-sm font-bold transition-all shadow-[0_0_15px_rgba(193,168,92,0.1)]">
+                        <span class="material-symbols-outlined text-lg">key</span>
+                        <span data-i18n="webinars.locked.btn">Solicitar Acesso para Desbloquear</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════ [SEC-06] FOOTER ══ -->
+    <footer class="border-t border-border-dark py-10 bg-background-dark mt-auto">
+        <div class="mx-auto max-w-7xl px-6 lg:px-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="material-symbols-outlined text-primary text-2xl">apartment</span>
+                        <span class="text-white text-lg font-bold font-display">CPII PORTUGAL</span>
+                    </div>
+                    <p class="text-text-secondary text-sm font-medium leading-relaxed" data-i18n="footer.about">
+                        Clube Privado de Investimento Imobiliário.
+                        Não vendemos imóveis, multiplicamos património.
+                        O clube exclusivo para investidores estratégicos.
+                    </p>
+                </div>
+
+                <div class="flex flex-col items-start md:items-center justify-center">
+                    <h4 class="text-white font-bold mb-4 font-display" data-i18n="footer.cta.title">Pronto para começar?
+                    </h4>
+                    <a href="access-form.html"
+                        class="inline-flex items-center justify-center rounded-xl h-10 px-6 bg-primary hover:bg-primary-hover text-background-dark text-sm font-bold transition-all shadow-[0_0_15px_rgba(193,168,92,0.15)]"
+                        data-i18n="btn.solicitar">
+                        Solicitar Acesso
+                    </a>
+                </div>
+
+                <div class="md:text-right">
+                    <h4 class="text-white font-bold mb-4" data-i18n="footer.legal.title">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="privacy.html"
+                                class="text-text-secondary hover:text-primary transition-colors text-sm"
+                                data-i18n="nav.privacy">Privacidade</a></li>
+                        <li><a href="terms.html"
+                                class="text-text-secondary hover:text-primary transition-colors text-sm"
+                                data-i18n="nav.terms">Termos</a></li>
+                        <li><a href="access-form.html"
+                                class="text-text-secondary hover:text-primary transition-colors text-sm"
+                                data-i18n="footer.legal.support">Suporte</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-border-dark pt-6 flex justify-between items-center">
+                <p class="text-text-secondary text-sm" data-i18n="footer.copy">© 2026 CPII Portugal.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ══════════════════════════════════════════════════ [SEC-07] SCRIPTS ══ -->
+    <script src="utils/tracking.js"></script>
+    <script>
+        // ── Lógica del Sistema de Tabs ──────────────────────────────────────────
+        function switchTab(tabId) {
+            const btnPublic = document.getElementById('tab-btn-public');
+            const btnPrivate = document.getElementById('tab-btn-private');
+            const contentPublic = document.getElementById('tab-content-public');
+            const contentPrivate = document.getElementById('tab-content-private');
+            const countdownWidget = document.getElementById('countdown-widget');
+
+            const baseClass = "px-6 py-2.5 text-sm font-bold rounded-md transition-all text-text-secondary hover:text-white";
+            const activeClass = "px-6 py-2.5 text-sm font-bold rounded-md transition-all bg-primary text-background-dark shadow-sm";
+
+            btnPublic.className = baseClass;
+            btnPrivate.className = baseClass;
+            contentPublic.classList.add('hidden');
+            contentPrivate.classList.add('hidden');
+            countdownWidget.classList.add('hidden');
+
+            if (tabId === 'public') {
+                btnPublic.className = activeClass;
+                contentPublic.classList.remove('hidden');
+            } else {
+                btnPrivate.className = activeClass;
+                contentPrivate.classList.remove('hidden');
+                countdownWidget.classList.remove('hidden');
+            }
+        }
+
+        // ── Countdown al 28 MAR 2026 · 10:00 WET (UTC+0) ────────────────────────
+        (function initCountdown() {
+            const target = new Date("2026-03-28T10:00:00Z").getTime();
+
+            function update() {
+                const diff = target - Date.now();
+                if (diff <= 0) {
+                    const wrap = document.getElementById("countdown-wrap");
+                    if (wrap) wrap.innerHTML = '<span class="text-primary font-bold text-sm uppercase tracking-widest"><span class="material-symbols-outlined text-sm align-middle mr-1">lock</span>Sessão em Curso</span>';
+                    return;
+                }
+                const d = Math.floor(diff / 86400000);
+                const h = Math.floor((diff % 86400000) / 3600000);
+                const m = Math.floor((diff % 3600000) / 60000);
+                const cdDays = document.getElementById("cd-days");
+                const cdHours = document.getElementById("cd-hours");
+                const cdMins = document.getElementById("cd-mins");
+                if (cdDays) cdDays.textContent = String(d).padStart(2, "0");
+                if (cdHours) cdHours.textContent = String(h).padStart(2, "0");
+                if (cdMins) cdMins.textContent = String(m).padStart(2, "0");
+            }
+            update();
+            setInterval(update, 60000);
+        })();
+
+        // ── Referral capture (centralizada) ─────────────────────────────────────
+        CPIITracking.captureReferralFromUrl();
+    </script>
+    <script src="/core/handoff-emitter.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+node_modules/
+.env
+.env.local
+*.env
+core/env.local.js
+dist/
+.DS_Store
+session_memory/
+
+# Backup local — no se despliega en Vercel
+backup_pre_sutura/

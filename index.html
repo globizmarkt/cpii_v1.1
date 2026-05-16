@@ -1,0 +1,661 @@
+<!--
+================================================================================
+  ARCHIVO:  index.html
+  VERSIÓN:  2.0.0
+  FECHA:    2026-02-17
+  PROPÓSITO: Landing principal CPII. Integración sistema i18n (4 idiomas:
+             PT/ES/EN/FR), design system unificado (Playfair Display + Manrope),
+             selector de idioma en header, hooks data-i18n en todos los elementos
+             de texto visible, links legales conectados (privacy.html / terms.html),
+             copyright 2026, meta description SEO.
+  AUTOR:    Claude Sonnet 4.6 — Protocolo Cartografía Quirúrgica v3.1
+
+  ÍNDICE MAESTRO [SEC-XX]:
+  ├── [SEC-01] HEAD — metadatos, fuentes, i18n.js, Tailwind config
+  ├── [SEC-02] HEADER — nav + selector de idioma PT/ES/EN/FR
+  ├── [SEC-03] HERO — badge + título (3 nodos i18n) + CTA + preview card
+  ├── [SEC-04] TRES VÍAS DE ACCESO — cards Inversor / Promotor / Gestor
+  ├── [SEC-05] CTA FINAL
+  ├── [SEC-06] FOOTER — grid 3 columnas + copyright 2026 + links legales
+  └── [SEC-07] SCRIPT — captura referral sessionStorage (sin cambios)
+
+  DEPENDENCIAS:
+  · Tailwind CSS CDN v3 (plugins: forms, container-queries)
+  · Google Fonts: Playfair Display + Manrope
+  · Google Material Symbols Outlined
+  · i18n.js (motor de traducción CPII — debe existir en la misma carpeta)
+
+  NOTAS DE ARQUITECTURA i18n:
+  · El selector de idioma tiene id="lang-selector" para sincronización
+    automática con el valor guardado en localStorage ('cpii_lang').
+  · El título hero está separado en 3 nodos independientes:
+    data-i18n="hero.title.main" / "hero.title.highlight" / "hero.title.suffix"
+    para preservar el estilo dorado-itálico del <span> central.
+  · Los botones CTA mantienen sus href con parámetros ?tipo= intactos.
+================================================================================
+-->
+<!DOCTYPE html>
+<html lang="pt" class="dark">
+
+<!-- ═══════════════════════════════════════════════════════ [SEC-01] HEAD ══ -->
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description"
+        content="CPII Portugal — Club Privado de Inversión Inmobiliaria. Accede a oportunidades exclusivas de alto rendimiento y construye tu patrimonio con el poder de la red." />
+    <title>CPII Portugal — Club Privado de Inversión Inmobiliaria</title>
+
+    <!-- Tipografía: Playfair Display (display) + Manrope (body) -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+
+    <!-- Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        rel="stylesheet" />
+
+    <!-- Design System compartido -->
+    <!-- Tailwind CSS compilado -->
+    <link rel="stylesheet" href="css/tailwind.css" />
+
+    <!-- Estilos base compartidos -->
+
+    <!-- Motor i18n CPII -->
+    <script src="i18n.js"></script>
+
+</head>
+
+<body class="bg-background-dark text-white font-body min-h-screen">
+
+    <!-- ══════════════════════════════════════════════ [SEC-02] HEADER / NAV ══ -->
+    <header class="sticky top-0 z-50 w-full border-b border-border-dark bg-background-dark/95 backdrop-blur-md">
+        <div class="mx-auto max-w-7xl px-6 lg:px-10 h-20 flex items-center justify-between">
+
+            <!-- Logotipo -->
+            <div class="flex items-center gap-4 flex-shrink-0">
+                <div class="size-8 text-primary">
+                    <span class="material-symbols-outlined text-3xl">apartment</span>
+                </div>
+                <h2 class="text-white text-xl font-bold tracking-tight font-display"><span data-i18n="navigation.logo.main">CPII</span> <span
+                        class="text-primary font-normal" data-i18n="navigation.logo.suffix">PORTUGAL</span></h2>
+            </div>
+
+            <!-- Navegación principal -->
+            <nav class="hidden md:flex flex-1 justify-center gap-4 lg:gap-6 xl:gap-8">
+                <a class="whitespace-nowrap text-primary border-b border-primary pb-1 text-sm font-semibold" href="#inicio"
+                    data-i18n="navigation.inicio">Início</a>
+                <a class="whitespace-nowrap text-text-secondary hover:text-primary transition-colors text-sm font-medium"
+                    href="equipo-comercial.html" data-i18n="navigation.grupo_comercial">Grupo Comercial</a>
+                <a class="whitespace-nowrap text-text-secondary hover:text-primary transition-colors text-sm font-medium"
+                    href="simulator.html" data-i18n="navigation.simulador">Simulador</a>
+                <a class="whitespace-nowrap text-text-secondary hover:text-primary transition-colors text-sm font-medium"
+                    href="referrals.html" data-i18n="navigation.referrals">Minha Rede</a>
+                <a class="whitespace-nowrap text-text-secondary hover:text-primary transition-colors text-sm font-medium"
+                    href="#como-funciona" data-i18n="navigation.como_funciona">Como Funciona</a>
+                <a class="whitespace-nowrap text-text-secondary hover:text-primary transition-colors text-sm font-medium"
+                    href="onboarding.html" data-i18n="navigation.onboarding">Onboarding</a>
+                <a class="whitespace-nowrap text-text-secondary hover:text-primary transition-colors text-sm font-medium"
+                    href="webinars.html" data-i18n="navigation.webinars">Webinars</a>
+            </nav>
+
+            <!-- Selector de idioma + CTA -->
+            <div class="flex items-center gap-4 flex-shrink-0">
+                <!-- Selector de idioma — id requerido por i18n.js para sincronización -->
+                <select id="lang-selector" class="appearance-none bg-none bg-transparent border border-gold/25 text-text-muted rounded-md px-3 py-1 text-[10px] font-bold tracking-wider cursor-pointer transition-colors hover:border-gold hover:text-gold outline-none text-center">
+                    <option value="pt">PT</option>
+                    <option value="es">ES</option>
+                    <option value="en">EN</option>
+                    <option value="fr">FR</option>
+                </select>
+
+                <a href="access-form.html"
+                    class="flex items-center justify-center rounded-xl h-10 px-6 bg-primary hover:bg-primary-hover text-background-dark text-sm font-bold transition-all shadow-[0_0_15px_rgba(193,168,92,0.15)]"
+                    data-i18n="btn.solicitar">
+                    Solicitar Acesso
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ══════════════════════════════════════════════════ [SEC-03] HERO ══ -->
+    <section id="inicio"
+        class="relative overflow-hidden bg-gradient-to-br from-card-dark to-background-dark py-20 lg:py-32">
+        <div class="absolute -left-20 top-20 h-96 w-96 rounded-full bg-primary/5 blur-3xl pointer-events-none"></div>
+
+        <div class="mx-auto max-w-7xl px-6 lg:px-10 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+
+                <!-- Texto hero -->
+                <div class="flex-1 space-y-8">
+
+                    <!-- Badge -->
+                    <div
+                        class="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-primary">
+                        <span class="material-symbols-outlined text-sm">workspace_premium</span>
+                        <span data-i18n="hero.badge">Clube Privado de Investimento</span>
+                    </div>
+
+                    <!-- Título — 3 nodos independientes para preservar estilo del highlight -->
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight font-display">
+                        <span data-i18n="hero.title.main">Construa o seu</span>
+                        <span class="text-primary italic"> <span data-i18n="hero.title.highlight">Património</span>
+                        </span>
+                        <span data-i18n="hero.title.suffix">com Investimento Inteligente</span>
+                    </h1>
+
+                    <!-- Párrafo -->
+                    <p class="text-lg text-text-secondary max-w-2xl leading-relaxed" data-i18n="hero.p">
+                        Aceda a oportunidades exclusivas de investimento imobiliário de alto rendimento.
+                        Una-se a uma rede de investidores seletos e aproveite o poder do Revenue Share
+                        para acelerar o seu caminho para a Autofinanciação.
+                    </p>
+
+                    <!-- CTAs -->
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="access-form.html"
+                            class="inline-flex items-center justify-center gap-2 rounded-xl bg-primary hover:bg-primary-hover text-background-dark px-8 py-4 text-base font-bold transition-all shadow-[0_0_20px_rgba(193,168,92,0.2)]">
+                            <span data-i18n="btn.solicitar">Solicitar Acesso</span>
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </a>
+                        <a href="simulator.html"
+                            class="inline-flex items-center justify-center gap-2 rounded-xl border border-border-dark hover:border-primary bg-transparent text-white px-8 py-4 text-base font-bold transition-all">
+                            <span class="material-symbols-outlined">monitoring</span>
+                            <span data-i18n="btn.simulador">Simulador ROI</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Preview card -->
+                <div class="flex-1 relative">
+                    <div class="aspect-square max-w-md mx-auto relative">
+                        <div class="absolute inset-0 bg-primary/20 rounded-2xl blur-3xl pointer-events-none"></div>
+                        <div class="relative bg-card-dark rounded-2xl border border-border-dark p-8 shadow-2xl">
+                            <div class="space-y-6">
+
+                                <div class="flex items-center justify-between pb-4 border-b border-border-dark">
+                                    <span class="text-sm text-text-secondary uppercase tracking-wider"
+                                        data-i18n="preview.label">Património Projetado</span>
+                                    <span class="text-xs text-primary" data-i18n="preview.months">24 meses</span>
+                                </div>
+
+                                <div>
+                                    <p class="text-5xl font-black text-white font-display">€ 3.721</p>
+                                    <p class="text-sm text-text-secondary mt-2" data-i18n="preview.subtitle">Com 50€/mês
+                                        + Rede Nível 1</p>
+                                </div>
+
+                                <div class="space-y-3 pt-4 border-t border-border-dark">
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-text-secondary" data-i18n="preview.row1">Poupança
+                                            Pessoal</span>
+                                        <span class="text-white font-medium" data-i18n="preview.row1_val">€ 1.200</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-text-secondary" data-i18n="preview.row2">Revenue Share
+                                            (Rede)</span>
+                                        <span class="text-primary font-medium" data-i18n="preview.row2_val">€ 334</span>
+                                    </div>
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-text-secondary" data-i18n="preview.row3">Rendimento
+                                            Investimento</span>
+                                        <span class="text-primary font-medium" data-i18n="preview.row3_val">€ 2.187</span>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="bg-primary/10 border border-primary/30 rounded-lg p-4 flex items-center gap-3">
+                                    <span class="material-symbols-outlined text-primary">verified</span>
+                                    <div>
+                                        <p class="text-sm font-bold text-primary" data-i18n="preview.autofinance">
+                                            Autofinanciamento: Mês 12</p>
+                                        <p class="text-xs text-text-secondary" data-i18n="preview.autofinance_sub">
+                                            Património > Poupança Acumulada</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════ [SEC-04] TRES VÍAS DE ACCESO ══ -->
+    <section id="como-funciona" class="py-20 bg-background-dark">
+        <div class="mx-auto max-w-7xl px-6 lg:px-10">
+
+            <div class="text-center mb-16">
+                <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4 font-display"
+                    data-i18n="section.access.title">Três Vias de Acesso</h2>
+                <p class="text-lg text-text-secondary max-w-2xl mx-auto" data-i18n="section.access.subtitle">
+                    Escolha o perfil que melhor se adapta aos seus objetivos financeiros e capacidades
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <!-- Card 1: Inversor -->
+                <div
+                    class="group relative bg-card-dark rounded-2xl border border-border-dark hover:border-primary/50 p-8 transition-all hover:-translate-y-2 shadow-xl">
+                    <div class="absolute -top-4 left-8 bg-primary text-background-dark px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+                        data-i18n="card.inversor.badge">
+                        Mais Popular
+                    </div>
+                    <div class="flex flex-col h-full">
+                        <div class="mb-6">
+                            <div
+                                class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-primary text-3xl">account_balance</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-2 font-display" data-i18n="card.inversor.title">
+                                Investidor</h3>
+                            <p class="text-text-secondary text-sm mb-4" data-i18n="card.inversor.subtitle">Construa
+                                património a partir de 100€</p>
+                            <div class="flex items-baseline gap-1 mb-2">
+                                <span class="text-4xl font-black text-white" data-i18n="card.inversor.price">€100</span>
+                                <span class="text-text-secondary text-sm"
+                                    data-i18n="card.inversor.price_suffix">/inicial</span>
+                            </div>
+                            <p class="text-primary text-sm font-medium" data-i18n="card.inversor.price_alt">ou 50€/mês
+                                recorrente</p>
+                        </div>
+                        <ul class="space-y-3 flex-1 mb-6">
+                            <li class="flex items-start gap-2">
+                                <span class="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span>
+                                <span class="text-sm text-text-secondary" data-i18n="card.inversor.f1">Acesso a Janelas
+                                    de Investimento (Tier A e B)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span>
+                                <span class="text-sm text-text-secondary" data-i18n="card.inversor.f2">Revenue Share até
+                                    Nível 3</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span>
+                                <span class="text-sm text-text-secondary" data-i18n="card.inversor.f3">Rentabilidade:
+                                    8-20% APY</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span>
+                                <span class="text-sm text-text-secondary" data-i18n="card.inversor.f4">Dashboard de
+                                    acompanhamento</span>
+                            </li>
+                        </ul>
+                        <a href="access-form.html?tipo=inversor"
+                            class="w-full py-3 bg-primary hover:bg-primary-hover text-background-dark font-bold text-sm rounded-lg transition-colors text-center"
+                            data-i18n="card.inversor.cta">
+                            Quero Ser Investidor
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 2: Promotor/Agente -->
+                <div
+                    class="group relative bg-card-dark rounded-2xl border border-border-dark hover:border-primary/50 p-8 transition-all hover:-translate-y-2 shadow-xl">
+                    <div class="flex flex-col h-full">
+                        <div class="mb-6">
+                            <div
+                                class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-primary text-3xl">handshake</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-2 font-display" data-i18n="card.promotor.title">
+                                Promotor / Agente</h3>
+                            <p class="text-text-secondary text-sm mb-4" data-i18n="card.promotor.subtitle">Capture
+                                ativos off-market</p>
+                            <div class="flex items-baseline gap-1 mb-2">
+                                <span class="text-4xl font-black text-white" data-i18n="card.promotor.price">Rede</span>
+                            </div>
+                            <p class="text-primary text-sm font-medium" data-i18n="card.promotor.price_alt">Acesso por
+                                networking</p>
+                        </div>
+                        <ul class="space-y-3 flex-1 mb-6">
+                            <li class="flex items-start gap-2">
+                                <span class="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span>
+                                <span class="text-sm text-text-secondary" data-i18n="card.promotor.f1">Comissões por
+                                    captação de ativos</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span>
+                                <span class="text-sm text-text-secondary" data-i18n="card.promotor.f2">Revenue Share na
+                                    sua rede</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span>
+                                <span class="text-sm text-text-secondary" data-i18n="card.promotor.f3">Ferramentas de
+                                    prospeção</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span>
+                                <span class="text-sm text-text-secondary" data-i18n="card.promotor.f4">Formação
+                                    especializada</span>
+                            </li>
+                        </ul>
+                        <a href="access-form.html?tipo=promotor"
+                            class="w-full py-3 bg-transparent border border-primary hover:bg-primary hover:text-background-dark text-primary font-bold text-sm rounded-lg transition-all text-center"
+                            data-i18n="card.promotor.cta">
+                            Quero Ser Promotor
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 3: Gestor -->
+                <div
+                    class="group relative bg-card-dark rounded-2xl border border-border-dark hover:border-primary/50 p-8 transition-all hover:-translate-y-2 shadow-xl">
+                    <div class="absolute -top-4 left-8 bg-gradient-to-r from-primary to-yellow-600 text-background-dark px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+                        data-i18n="card.gestor.badge">
+                        Elite
+                    </div>
+                    <div class="flex flex-col h-full">
+                        <div class="mb-6">
+                            <div
+                                class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-primary text-3xl">workspace_premium</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-2 font-display" data-i18n="card.gestor.title">
+                                Gestor</h3>
+                            <p class="text-text-secondary text-sm mb-4" data-i18n="card.gestor.subtitle">Liderança
+                                estratégica</p>
+                            <div class="flex items-baseline gap-1 mb-2">
+                                <span class="text-4xl font-black text-white" data-i18n="card.gestor.price">1M€</span>
+                            </div>
+                            <p class="text-primary text-sm font-medium" data-i18n="card.gestor.price_alt">em 2 anos de
+                                volume</p>
+                        </div>
+                        <ul class="space-y-3 flex-1 mb-6">
+                            <li class="flex items-start gap-2">
+                                <span class="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span>
+                                <span class="text-sm text-text-secondary" data-i18n="card.gestor.f1">Revenue Share
+                                    alargado</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span>
+                                <span class="text-sm text-text-secondary" data-i18n="card.gestor.f2">Bónus por marcos de
+                                    equipa</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span>
+                                <span class="text-sm text-text-secondary" data-i18n="card.gestor.f3">Acesso a deals
+                                    premium</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="material-symbols-outlined text-primary text-sm mt-0.5">check_circle</span>
+                                <span class="text-sm text-text-secondary" data-i18n="card.gestor.f4">Mentoria
+                                    executiva</span>
+                            </li>
+                        </ul>
+                        <a href="access-form.html?tipo=gestor"
+                            class="w-full py-3 bg-transparent border border-primary hover:bg-primary hover:text-background-dark text-primary font-bold text-sm rounded-lg transition-all text-center"
+                            data-i18n="card.gestor.cta">
+                            Quero Ser Gestor
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════ [SEC-05] EQUIPA COMERCIAL + CTA FINAL ══ -->
+    <!--
+      ÍNDICE SEC-05 (substituído):
+      · [SEC-05a] Header + stats bar — métricas de autoridade do grupo
+      · [SEC-05b] Cards de equipa — David Almeida + Carlos Balboa
+      · [SEC-05c] CTA duplo — equipo-comercial.html + access-form.html
+    -->
+    <section id="equipa-comercial"
+        class="py-20 bg-gradient-to-b from-background-dark to-card-dark relative overflow-hidden">
+
+        <div class="absolute -right-20 bottom-20 h-96 w-96 rounded-full bg-primary/5 blur-3xl pointer-events-none">
+        </div>
+        <div
+            class="absolute left-1/2 top-0 h-px w-3/4 -translate-x-1/2 bg-gradient-to-r from-transparent via-border-dark to-transparent">
+        </div>
+
+        <div class="mx-auto max-w-7xl px-6 lg:px-10 relative z-10">
+
+            <!-- ── [SEC-05a] HEADER ── -->
+            <div class="text-center mb-14">
+                <div
+                    class="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-primary mb-6">
+                    <span class="material-symbols-outlined text-sm">groups</span>
+                    <span data-i18n="team.badge">Commercial Group Portugal</span>
+                </div>
+                <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4 font-display">
+                    <span data-i18n="team.title.main">O Grupo Comercial mais</span><br>
+                    <span class="text-primary italic" data-i18n="team.title.highlight">estruturado de Portugal</span>
+                </h2>
+                <p class="text-lg text-text-secondary max-w-2xl mx-auto" data-i18n="team.subtitle">
+                    Não vendemos propriedades — atraímos investimento estratégico. Uma fórmula de sucesso alinhada com
+                    os padrões internacionais da Commercial Group Portugal e KYC/AML.
+                </p>
+            </div>
+
+            <!-- ── [SEC-05a] STATS BAR ── -->
+            <div
+                class="grid grid-cols-3 divide-x divide-border-dark border border-border-dark rounded-2xl overflow-hidden mb-14 bg-card-dark/50">
+                <div class="py-8 px-6 text-center">
+                    <p class="text-4xl font-black text-primary font-display" data-i18n="team.stat1.value">+25%</p>
+                    <p class="text-xs text-text-secondary uppercase tracking-wider mt-2" data-i18n="team.stat1.label">da
+                        faturação total Commercial Group Portugal</p>
+                </div>
+                <div class="py-8 px-6 text-center">
+                    <p class="text-4xl font-black text-primary font-display" data-i18n="team.stat2.value">7/17</p>
+                    <p class="text-xs text-text-secondary uppercase tracking-wider mt-2" data-i18n="team.stat2.label">
+                        CAPs do país no nosso grupo</p>
+                </div>
+                <div class="py-8 px-6 text-center">
+                    <p class="text-4xl font-black text-primary font-display" data-i18n="team.stat3.value">3+</p>
+                    <p class="text-xs text-text-secondary uppercase tracking-wider mt-2" data-i18n="team.stat3.label">
+                        anos de metodologia provada</p>
+                </div>
+            </div>
+
+            <!-- ── [SEC-05b] CARDS DE EQUIPA ── -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-14">
+
+                <!-- Card: David Almeida -->
+                <div
+                    class="group relative bg-card-dark rounded-2xl border border-border-dark hover:border-primary/50 p-8 transition-all hover:-translate-y-1 shadow-xl overflow-hidden">
+                    <div
+                        class="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary via-yellow-400 to-primary opacity-80">
+                    </div>
+                    <div class="flex items-center gap-5 mb-6">
+                        <div class="relative flex-shrink-0">
+                            <div
+                                class="w-16 h-16 rounded-full bg-primary/15 border border-primary/30 flex items-center justify-center group-hover:scale-105 transition-transform">
+                                <span class="text-xl font-black text-primary font-display">DA</span>
+                            </div>
+                            <div
+                                class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-primary flex items-center justify-center border-2 border-card-dark">
+                                <span class="material-symbols-outlined text-background-dark"
+                                    style="font-size:11px;font-variation-settings:'FILL' 1;">star</span>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-xs text-text-secondary uppercase tracking-widest mb-1"
+                                data-i18n="team.da.role">Agente Senior & Founder</p>
+                            <h3 class="text-2xl font-bold text-white font-display">David Almeida</h3>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-5">
+                        <span
+                            class="inline-flex items-center gap-1 bg-primary/15 border border-primary/30 text-primary text-xs font-bold px-3 py-1 rounded-full">
+                            <span class="material-symbols-outlined"
+                                style="font-size:12px;font-variation-settings:'FILL' 1;">emoji_events</span>
+                            <span data-i18n="team.da.badge1">Agente do Ano 2025</span>
+                        </span>
+                        <span
+                            class="inline-flex bg-border-dark/80 text-text-secondary text-xs font-medium px-3 py-1 rounded-full border border-border-dark"
+                            data-i18n="team.da.badge2">
+                            Commercial Group Portugal
+                        </span>
+                        <span
+                            class="inline-flex bg-border-dark/80 text-text-secondary text-xs font-medium px-3 py-1 rounded-full border border-border-dark"
+                            data-i18n="team.da.badge3">
+                            Exclusividade Comercial PT
+                        </span>
+                    </div>
+                    <p class="text-sm text-text-secondary leading-relaxed mb-6" data-i18n="team.da.bio"
+                        data-i18n-html="true">
+                        Fundador e líder estratégico do grupo. Responsável por mais de
+                        <strong class="text-white">25% da faturação total da Commercial Group Portugal</strong>,
+                        com contrato de exclusividade assinado para a área Comercial.
+                        Mentor de referência e guardião da metodologia de captação estruturada no mercado ibérico.
+                    </p>
+                    <div class="pt-4 border-t border-border-dark text-xs text-text-secondary">
+                        <span class="text-primary font-semibold" data-i18n="team.da.focus.label">Foco: </span>
+                        <span data-i18n="team.da.focus.text">Liderança · Captação Senior · Estratégia de Mercado</span>
+                    </div>
+                </div>
+
+                <!-- Card: Carlos Balboa -->
+                <div
+                    class="group relative bg-card-dark rounded-2xl border border-border-dark hover:border-primary/50 p-8 transition-all hover:-translate-y-1 shadow-xl overflow-hidden">
+                    <div
+                        class="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-teal-600 via-teal-400 to-teal-600 opacity-70">
+                    </div>
+                    <div class="flex items-center gap-5 mb-6">
+                        <div class="relative flex-shrink-0">
+                            <div
+                                class="w-16 h-16 rounded-full bg-teal-500/10 border border-teal-500/30 flex items-center justify-center group-hover:scale-105 transition-transform">
+                                <span class="text-xl font-black text-teal-400 font-display">CB</span>
+                            </div>
+                            <div
+                                class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-teal-500 flex items-center justify-center border-2 border-card-dark">
+                                <span class="material-symbols-outlined text-background-dark"
+                                    style="font-size:11px;font-variation-settings:'FILL' 1;">code</span>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-xs text-text-secondary uppercase tracking-widest mb-1"
+                                data-i18n="team.cb.role">Senior Agent & CTO</p>
+                            <h3 class="text-2xl font-bold text-white font-display">Carlos Balboa</h3>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-5">
+                        <span
+                            class="inline-flex items-center gap-1 bg-teal-500/10 border border-teal-500/30 text-teal-400 text-xs font-bold px-3 py-1 rounded-full">
+                            <span class="material-symbols-outlined"
+                                style="font-size:12px;font-variation-settings:'FILL' 1;">terminal</span>
+                            <span data-i18n="team.cb.badge1">Chief Technology Officer</span>
+                        </span>
+                        <span
+                            class="inline-flex bg-border-dark/80 text-text-secondary text-xs font-medium px-3 py-1 rounded-full border border-border-dark"
+                            data-i18n="team.cb.badge2">
+                            KYC/AML Specialist
+                        </span>
+                        <span
+                            class="inline-flex bg-border-dark/80 text-text-secondary text-xs font-medium px-3 py-1 rounded-full border border-border-dark"
+                            data-i18n="team.cb.badge3">
+                            Co-fundador CPII
+                        </span>
+                    </div>
+                    <p class="text-sm text-text-secondary leading-relaxed mb-6" data-i18n="team.cb.bio"
+                        data-i18n-html="true">
+                        Arquitecto digital do grupo. Combina experiência em mercados internacionais de commodities com
+                        o desenvolvimento do <strong class="text-white">CRM proprietário e da plataforma CPII</strong>.
+                        Especialista em compliance internacional e atração de investidores estratégicos à escala global.
+                    </p>
+                    <div class="pt-4 border-t border-border-dark text-xs text-text-secondary">
+                        <span class="text-teal-400 font-semibold" data-i18n="team.cb.focus.label">Foco: </span>
+                        <span data-i18n="team.cb.focus.text">Tecnologia · Atração de Investidores · Compliance
+                            Internacional</span>
+                    </div>
+                </div>
+
+            </div><!-- /grid cards -->
+
+            <!-- ── [SEC-05c] CTA DUPLO ── -->
+            <div class="rounded-2xl border border-border-dark bg-card-dark/50 p-8 lg:p-12">
+                <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+                    <div class="lg:flex-1">
+                        <p class="text-xs text-primary uppercase tracking-widest font-semibold mb-2"
+                            data-i18n="team.cta.pre">Acesso condicionado aos critérios do grupo</p>
+                        <h3 class="text-2xl lg:text-3xl font-bold text-white mb-3 font-display">
+                            <span data-i18n="team.cta.title.main">Conheça a metodologia</span><br>
+                            <span class="text-primary italic" data-i18n="team.cta.title.highlight">e os elementos
+                                nucleares</span>
+                        </h3>
+                        <p class="text-text-secondary text-sm leading-relaxed max-w-lg" data-i18n="team.cta.subtitle">
+                            Aceda aos perfis completos do grupo, à metodologia de captação estruturada e aos
+                            princípios de compliance internacional que diferenciam a Commercial Group Portugal.
+                        </p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row lg:flex-col gap-3 flex-shrink-0">
+                        <a href="equipo-comercial.html"
+                            class="inline-flex items-center justify-center gap-2 rounded-xl bg-primary hover:bg-primary-hover text-background-dark px-8 py-4 text-sm font-bold transition-all shadow-[0_0_20px_rgba(193,168,92,0.25)]">
+                            <span class="material-symbols-outlined text-lg">groups</span>
+                            <span data-i18n="team.cta.btn.primary">Conhecer o Grupo Comercial</span>
+                        </a>
+                        <a href="access-form.html"
+                            class="inline-flex items-center justify-center gap-2 rounded-xl border border-border-dark hover:border-primary bg-transparent text-white px-8 py-4 text-sm font-bold transition-all">
+                            <span class="material-symbols-outlined text-lg">login</span>
+                            <span data-i18n="team.cta.btn.secondary">Solicitar Acesso Agora</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════ [SEC-06] FOOTER ══ -->
+    <footer class="border-t border-border-dark py-10 bg-background-dark mt-auto">
+        <div class="mx-auto max-w-7xl px-6 lg:px-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="material-symbols-outlined text-primary text-2xl">apartment</span>
+                        <span class="text-white text-lg font-bold font-display" data-i18n="footer.logo">CPII PORTUGAL</span>
+                    </div>
+                    <p class="text-text-secondary text-sm font-medium leading-relaxed" data-i18n="footer.about">
+                        Clube Privado de Investimento Imobiliário.
+                        Não vendemos imóveis, multiplicamos património.
+                        O clube exclusivo para investidores estratégicos.
+                    </p>
+                </div>
+
+                <div class="flex flex-col items-start md:items-center justify-center">
+                    <h4 class="text-white font-bold mb-4 font-display" data-i18n="footer.cta_title">Pronto para começar?
+                    </h4>
+                    <a href="access-form.html"
+                        class="inline-flex items-center justify-center rounded-xl h-10 px-6 bg-primary hover:bg-primary-hover text-background-dark text-sm font-bold transition-all shadow-[0_0_15px_rgba(193,168,92,0.15)]"
+                        data-i18n="btn.solicitar">
+                        Solicitar Acesso
+                    </a>
+                </div>
+
+                <div class="md:text-right">
+                    <h4 class="text-white font-bold mb-4" data-i18n="footer.legal_title">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="privacy.html"
+                                class="text-text-secondary hover:text-primary transition-colors text-sm"
+                                data-i18n="navigation.privacy">Privacidade</a></li>
+                        <li><a href="terms.html"
+                                class="text-text-secondary hover:text-primary transition-colors text-sm"
+                                data-i18n="navigation.terms">Termos</a></li>
+                        <li><a href="access-form.html"
+                                class="text-text-secondary hover:text-primary transition-colors text-sm"
+                                data-i18n="footer.legal_support">Suporte</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-border-dark pt-6 flex justify-between items-center">
+                <p class="text-text-secondary text-sm" data-i18n="footer.copy">© 2026 CPII Portugal.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ══════════════════════════════════ [SEC-07] SCRIPT — REFERRAL CAPTURE ══ -->
+    <script src="utils/tracking.js"></script>
+    <script>
+        // Captura declarativa centralizada de referral (?ref=)
+        CPIITracking.captureReferralFromUrl();
+    </script>
+</body>
+
+</html>

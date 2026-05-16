@@ -1,0 +1,393 @@
+<!--
+================================================================================
+  ARCHIVO:  simulator.html
+  VERSIÓN:  2.1.1
+  FECHA:    2026-02-24
+  PROPÓSITO: Simulador de Riqueza Exponencial CPII (CPII Portugal).
+             Calcula el efecto compuesto del ahorro y la red de Revenue Share.
+  CHANGELOG v2.1.1 [CHAPA Y PINTURA — VIBE-CPII-08.2]:
+  ├── FIX: md:grid-cols-12 + md:items-start — breakpoint bajado a 768px, sin estiramiento
+  ├── FIX: md:col-span-5 lg:col-span-4 — proporciones conservadoras en tablet
+  ├── ADD: md:sticky md:top-28 — panel izquierdo anclado al scroll (fijación magnética)
+  ├── FIX: md:col-span-7 lg:col-span-8 + min-w-0 — prevención de desbordamiento tabla
+  └── ADD: sm:grid-cols-3 + min-h-[400px] — KPIs en fila y altura mínima garantizada
+================================================================================
+-->
+<!DOCTYPE html>
+<html lang="pt" class="dark">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description"
+        content="Simulador de Riqueza Exponencial CPII. Descubra como o efeito composto da rede pode acelerar a sua independência financeira." />
+    <title>Simulador ROI — CPII Portugal</title>
+
+    <!-- Tipografía: Playfair Display (display) + Manrope (body) -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+
+    <!-- Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        rel="stylesheet" />
+
+    <!-- Design System compartido -->
+    <!-- Tailwind CSS compilado -->
+    <link rel="stylesheet" href="css/tailwind.css" />
+
+    <!-- Estilos base compartidos -->
+    <link rel="stylesheet" href="css/design-system.css" />
+
+    <!-- Motor i18n CPII -->
+    <script src="i18n.js"></script>
+</head>
+
+<body class="bg-background-dark text-white font-body min-h-screen flex flex-col">
+
+    <!-- ══════════════════════════════════════════════ [SEC-02] HEADER / NAV ══ -->
+    <header class="sticky top-0 z-50 w-full border-b border-border-dark bg-background-dark/95 backdrop-blur-md">
+        <div class="mx-auto max-w-7xl px-6 lg:px-10 h-20 flex items-center justify-between">
+
+            <!-- Logotipo -->
+            <div class="flex items-center gap-4 flex-shrink-0">
+                <div class="size-8 text-primary">
+                    <span class="material-symbols-outlined text-3xl">apartment</span>
+                </div>
+                <h2 class="text-white text-xl font-bold tracking-tight font-display"><span data-i18n="navigation.logo.main">CPII</span> <span
+                        class="text-primary font-normal" data-i18n="navigation.logo.suffix">PORTUGAL</span></h2>
+            </div>
+
+            <!-- Navegación principal -->
+            <nav class="hidden md:flex flex-1 justify-center gap-4 lg:gap-6 xl:gap-8">
+                <a class="whitespace-nowrap text-text-secondary hover:text-primary transition-colors text-sm font-medium" href="index.html#inicio"
+                    data-i18n="navigation.inicio">Início</a>
+                <a class="whitespace-nowrap text-text-secondary hover:text-primary transition-colors text-sm font-medium"
+                    href="equipo-comercial.html" data-i18n="navigation.grupo_comercial">Grupo Comercial</a>
+                <a class="whitespace-nowrap text-primary border-b border-primary pb-1 text-sm font-semibold"
+                    href="simulator.html" data-i18n="navigation.simulador">Simulador</a>
+                <a class="whitespace-nowrap text-text-secondary hover:text-primary transition-colors text-sm font-medium"
+                    href="referrals.html" data-i18n="navigation.referrals">Minha Rede</a>
+                <a class="whitespace-nowrap text-text-secondary hover:text-primary transition-colors text-sm font-medium"
+                    href="index.html#como-funciona" data-i18n="navigation.como_funciona">Como Funciona</a>
+                <a class="whitespace-nowrap text-text-secondary hover:text-primary transition-colors text-sm font-medium"
+                    href="onboarding.html" data-i18n="navigation.onboarding">Onboarding</a>
+                <a class="whitespace-nowrap text-text-secondary hover:text-primary transition-colors text-sm font-medium"
+                    href="webinars.html" data-i18n="navigation.webinars">Webinars</a>
+            </nav>
+
+            <!-- Selector de idioma + CTA -->
+            <div class="flex items-center gap-4 flex-shrink-0">
+                <!-- Selector de idioma — id requerido por i18n.js para sincronización -->
+                <select id="lang-selector">
+                    <option value="pt">PT</option>
+                    <option value="es">ES</option>
+                    <option value="en">EN</option>
+                    <option value="fr">FR</option>
+                </select>
+
+                <a href="access-form.html"
+                    class="flex items-center justify-center rounded-xl h-10 px-6 bg-primary hover:bg-primary-hover text-background-dark text-sm font-bold transition-all shadow-[0_0_15px_rgba(193,168,92,0.15)]"
+                    data-i18n="btn.solicitar">
+                    Solicitar Acesso
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 w-full max-w-7xl mx-auto px-6 lg:px-10 py-12 flex flex-col gap-8">
+
+        <div class="flex flex-col md:flex-row justify-between items-end gap-6 pb-6 border-b border-border-dark">
+            <div class="space-y-2">
+                <div class="flex items-center gap-2 text-primary text-sm font-bold uppercase tracking-widest">
+                    <span class="material-symbols-outlined text-lg">monitoring</span>
+                    <span data-i18n="sim.hero.badge">Ferramenta Financeira</span>
+                </div>
+                <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                    <h1 class="text-4xl lg:text-6xl font-black text-white leading-tight font-display">
+                        <span data-i18n="sim.hero.title.main">Simulador de</span> <span class="text-primary italic"
+                            data-i18n="sim.hero.title.highlight">Riqueza Exponencial</span>
+                    </h1>
+                    <a href="referrals.html"
+                        class="inline-flex items-center gap-2 rounded-xl border border-primary/30 bg-primary/10 hover:bg-primary/20 text-primary px-4 py-2 text-xs font-bold transition-all h-fit self-start sm:self-center"
+                        data-i18n="btn.ver_rede_demo">
+                        <span class="material-symbols-outlined text-sm">account_tree</span>
+                        Ver Estrutura de Rede Demo
+                    </a>
+                </div>
+                <p class="text-text-secondary text-lg max-w-2xl font-light" data-i18n="sim.hero.p">
+                    Descubra como o efeito composto da rede CPII pode acelerar a sua independência financeira.
+                </p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:items-start">
+
+            <div class="md:col-span-5 lg:col-span-4 flex flex-col gap-6 md:sticky md:top-28">
+                <div class="bg-card-dark border border-border-dark rounded-2xl p-6 lg:p-8 shadow-xl">
+                    <h3 class="text-xl font-bold text-white mb-8 flex items-center gap-2 font-display">
+                        <span class="material-symbols-outlined text-primary text-2xl">tune</span>
+                        <span data-i18n="sim.controls.title">Parâmetros</span>
+                    </h3>
+
+                    <div class="space-y-10">
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <label class="text-xs font-bold text-text-secondary uppercase tracking-widest"
+                                    data-i18n="sim.controls.savings">Poupança Mensal</label>
+                                <span class="text-primary font-mono font-bold">€<span id="savings-val">50</span></span>
+                            </div>
+                            <input class="w-full h-1.5 bg-border-dark rounded-lg appearance-none cursor-pointer"
+                                id="savings" max="1000" min="50" step="50" type="range" value="50" />
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <label class="text-xs font-bold text-text-secondary uppercase tracking-widest"
+                                    data-i18n="sim.controls.term">Prazo (Meses)</label>
+                                <span class="text-primary font-mono font-bold"><span id="term-val">24</span> <span
+                                        data-i18n="sim.controls.term.unit">m</span></span>
+                            </div>
+                            <input class="w-full h-1.5 bg-border-dark rounded-lg appearance-none cursor-pointer"
+                                id="term" max="60" min="6" step="6" type="range" value="24" />
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <label class="text-xs font-bold text-text-secondary uppercase tracking-widest"
+                                    data-i18n="sim.controls.network">Rede Direta (Nível 1)</label>
+                                <span class="text-primary font-mono font-bold"><span id="referrals-val">1</span> <span
+                                        data-i18n="sim.controls.network.unit">pessoas</span></span>
+                            </div>
+                            <input class="w-full h-1.5 bg-border-dark rounded-lg appearance-none cursor-pointer"
+                                id="referrals" max="20" min="0" step="1" type="range" value="1" />
+                        </div>
+                    </div>
+
+                    <button onclick="resetSimulation()"
+                        class="w-full mt-10 border border-primary text-primary hover:bg-primary hover:text-background-dark font-bold py-3 rounded-xl transition-all flex items-center justify-center gap-2 text-sm uppercase tracking-widest">
+                        <span class="material-symbols-outlined text-lg">restart_alt</span>
+                        <span data-i18n="sim.btn.reset">Reiniciar</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="md:col-span-7 lg:col-span-8 flex flex-col gap-6 min-w-0">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="bg-card-dark border border-border-dark rounded-2xl p-6 shadow-md">
+                        <p class="text-text-secondary text-[10px] font-bold uppercase tracking-[0.2em] mb-4"
+                            data-i18n="sim.kpi.patrimony">Património Final</p>
+                        <span id="total-patrimony" class="text-3xl font-bold text-white tracking-tight font-display">€
+                            0</span>
+                    </div>
+
+                    <div
+                        class="bg-card-dark border border-border-dark rounded-2xl p-6 border-l-primary border-l-4 shadow-md">
+                        <p class="text-text-secondary text-[10px] font-bold uppercase tracking-[0.2em] mb-4"
+                            data-i18n="sim.kpi.autofinance">Autofinanciamento</p>
+                        <span id="autofinance-month"
+                            class="text-3xl font-bold text-primary tracking-tight font-display">Mês --</span>
+                    </div>
+
+                    <div class="bg-card-dark border border-border-dark rounded-2xl p-6 shadow-md">
+                        <p class="text-text-secondary text-[10px] font-bold uppercase tracking-[0.2em] mb-4"
+                            data-i18n="sim.kpi.revenue">Revenue Share</p>
+                        <span id="total-revenue" class="text-3xl font-bold text-white tracking-tight font-display">€
+                            0</span>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-card-dark border border-border-dark rounded-2xl p-6 lg:p-8 flex-1 shadow-xl min-h-[400px]">
+                    <h3 class="text-xl font-bold text-white mb-6 font-display" data-i18n="sim.table.title">Projeção de
+                        Crescimento</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="text-left border-b border-border-dark text-text-secondary">
+                                    <th class="pb-4 text-[10px] font-bold uppercase tracking-widest"
+                                        data-i18n="sim.table.th.month">Mês</th>
+                                    <th class="pb-4 text-[10px] font-bold uppercase tracking-widest text-right"
+                                        data-i18n="sim.table.th.savings">Poupança</th>
+                                    <th class="pb-4 text-[10px] font-bold uppercase tracking-widest text-right"
+                                        data-i18n="sim.table.th.network">Comissões Rede</th>
+                                    <th class="pb-4 text-[10px] font-bold uppercase tracking-widest text-right"
+                                        data-i18n="sim.table.th.total">Património Total</th>
+                                </tr>
+                            </thead>
+                            <tbody id="results-table" class="text-sm font-light">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-12 p-6 bg-card-dark/50 border border-border-dark rounded-xl anim-5">
+            <h4 class="text-xs font-bold text-primary uppercase tracking-widest mb-3" data-i18n="sim.footer.title">
+                Metodología de Proyección</h4>
+            <p class="text-xs text-text-secondary leading-relaxed font-light" data-i18n="sim.footer.text">
+                Este simulador utiliza el modelo financiero <strong>CPII Portugal</strong>. Las proyecciones se calculan
+                aplicando un coeficiente de aceleración de 1.5x por cada miembro activo en la red directa y una tasa de
+                capitalización compuesta basada en el histórico de activos Tier A y B. El objetivo es identificar el
+                hito de Autofinanciación, donde el flujo de Revenue Share neutraliza el esfuerzo de ahorro personal.
+            </p>
+        </div>
+    </main>
+
+    <!-- ══════════════════════════════════════════════════ [SEC-06] FOOTER ══ -->
+    <footer class="border-t border-border-dark py-10 bg-background-dark mt-auto">
+        <div class="mx-auto max-w-7xl px-6 lg:px-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="material-symbols-outlined text-primary text-2xl">apartment</span>
+                        <span class="text-white text-lg font-bold font-display">CPII PORTUGAL</span>
+                    </div>
+                    <p class="text-text-secondary text-sm font-medium leading-relaxed" data-i18n="footer.about">
+                        Clube Privado de Investimento Imobiliário.
+                        Não vendemos imóveis, multiplicamos património.
+                        O clube exclusivo para investidores estratégicos.
+                    </p>
+                </div>
+
+                <div class="flex flex-col items-start md:items-center justify-center">
+                    <h4 class="text-white font-bold mb-4 font-display" data-i18n="footer.cta.title">Pronto para começar?
+                    </h4>
+                    <a href="access-form.html"
+                        class="inline-flex items-center justify-center rounded-xl h-10 px-6 bg-primary hover:bg-primary-hover text-background-dark text-sm font-bold transition-all shadow-[0_0_15px_rgba(193,168,92,0.15)]"
+                        data-i18n="btn.solicitar">
+                        Solicitar Acesso
+                    </a>
+                </div>
+
+                <div class="md:text-right">
+                    <h4 class="text-white font-bold mb-4" data-i18n="footer.legal.title">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="privacy.html"
+                                class="text-text-secondary hover:text-primary transition-colors text-sm"
+                                data-i18n="nav.privacy">Privacidade</a></li>
+                        <li><a href="terms.html"
+                                class="text-text-secondary hover:text-primary transition-colors text-sm"
+                                data-i18n="nav.terms">Termos</a></li>
+                        <li><a href="access-form.html"
+                                class="text-text-secondary hover:text-primary transition-colors text-sm"
+                                data-i18n="footer.legal.support">Suporte</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-border-dark pt-6 flex justify-between items-center">
+                <p class="text-text-secondary text-sm" data-i18n="footer.copy">© 2026 CPII Portugal.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ══════════════════════════════════════════════════ [SEC-07] SCRIPTS ══ -->
+    <script src="utils/tracking.js"></script>
+    <script>
+        // ── LÓGICA DEL SIMULADOR (Corregida v2.0.2) ──
+        const baseData = [
+            { month: 6, commissions: 25, investment: 67 },
+            { month: 12, commissions: 50, investment: 143.68 },
+            { month: 18, commissions: 135, investment: 400 },   // Nodo interpolado
+            { month: 24, commissions: 334, investment: 1041 },
+            { month: 30, commissions: 500, investment: 1800 },  // Nodo interpolado
+            { month: 36, commissions: 750, investment: 2800 },
+            { month: 42, commissions: 1100, investment: 4100 }, // Nodo interpolado
+            { month: 48, commissions: 1600, investment: 5900 },
+            { month: 54, commissions: 2400, investment: 8500 }, // Nodo interpolado
+            { month: 60, commissions: 3500, investment: 12000 }
+        ];
+
+        const inputs = ['savings', 'term', 'referrals'];
+        inputs.forEach(id => {
+            document.getElementById(id).addEventListener('input', (e) => {
+                document.getElementById(`${id}-val`).textContent = e.target.value;
+                updateSimulation();
+            });
+        });
+
+        // [BUGFIX 1] Helper con micro-diccionario local
+        function getTranslation(key, defaultText) {
+            const lang = localStorage.getItem("cpii_locale") || "pt";
+            const localDict = {
+                "pt": { "sim.js.month": "Mês" },
+                "es": { "sim.js.month": "Mes" },
+                "en": { "sim.js.month": "Month" },
+                "fr": { "sim.js.month": "Mois" }
+            };
+            return localDict[lang]?.[key] || defaultText;
+        }
+
+        function updateSimulation() {
+            const savings = parseFloat(document.getElementById('savings').value);
+            const term = parseInt(document.getElementById('term').value);
+            const referrals = parseInt(document.getElementById('referrals').value);
+
+            // [BUGFIX 2] Eliminado el "|| 0.1" que causaba las comisiones fantasma
+            const networkFactor = referrals * 1.5;
+            const ratio = savings / 50;
+
+            const results = baseData.filter(d => d.month <= term);
+            let tableHtml = '';
+            let foundAutofinance = false;
+
+            // Textos dinámicos traducidos correctamente
+            const mesTxt = getTranslation("sim.js.month", "Mês");
+
+            results.forEach(r => {
+                const comms = r.commissions * networkFactor * ratio;
+                const total = (r.month * savings) + comms + (r.investment * ratio);
+
+                // Si comms es 0, isAutofinanced será falso automáticamente
+                const isAutofinanced = comms > 0 && comms >= savings;
+
+                if (isAutofinanced && !foundAutofinance) {
+                    document.getElementById('autofinance-month').textContent = `${mesTxt} ${r.month}`;
+                    foundAutofinance = true;
+                }
+
+                tableHtml += `
+                    <tr class="border-b border-border-dark/50 hover:bg-primary/5 transition-colors">
+                        <td class="py-4 font-bold text-primary">${mesTxt} ${r.month}</td>
+                        <td class="py-4 text-right text-text-secondary font-mono">€${(r.month * savings).toLocaleString()}</td>
+                        <td class="py-4 text-right ${isAutofinanced ? 'text-green-500' : 'text-text-secondary'} font-mono">€${Math.round(comms).toLocaleString()}</td>
+                        <td class="py-4 text-right text-white font-bold font-mono">€${Math.round(total).toLocaleString()}</td>
+                    </tr>
+                `;
+            });
+
+            if (!foundAutofinance) document.getElementById('autofinance-month').textContent = `--`;
+
+            document.getElementById('results-table').innerHTML = tableHtml;
+
+            const final = results[results.length - 1];
+            const finalComms = final.commissions * networkFactor * ratio;
+            const finalTotal = (final.month * savings) + finalComms + (final.investment * ratio);
+
+            document.getElementById('total-patrimony').textContent = `€ ${Math.round(finalTotal).toLocaleString()}`;
+            document.getElementById('total-revenue').textContent = `€ ${Math.round(finalComms).toLocaleString()}`;
+        }
+
+        function resetSimulation() {
+            document.getElementById('savings').value = 50;
+            document.getElementById('term').value = 24;
+            document.getElementById('referrals').value = 1;
+            inputs.forEach(id => document.getElementById(`${id}-val`).textContent = document.getElementById(id).value);
+            updateSimulation();
+        }
+
+        // Suscribirse a cambios de idioma para repintar la tabla
+        document.addEventListener('cpii:lang:change', () => {
+            setTimeout(updateSimulation, 50); // Dar tiempo a i18n.js a cambiar el lang
+        });
+
+        // ── Referral capture (centralizada) ───────────────────────────────
+        CPIITracking.captureReferralFromUrl();
+
+        // Init
+        updateSimulation();
+    </script>
+    <script src="/core/handoff-emitter.js" defer></script>
+</body>
+</html>

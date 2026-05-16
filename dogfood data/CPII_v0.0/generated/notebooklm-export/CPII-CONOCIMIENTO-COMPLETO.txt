@@ -1,0 +1,2799 @@
+================================================================================
+CPII - CONOCIMIENTO COMPLETO
+EXPORTACION PARA GOOGLE NOTEBOOKLM
+================================================================================
+
+Fecha de generacion: 2026-02-16
+Version: 1.0.0
+Fuente: Documentacion oficial CPII
+Estructura: 5 documentos fusionados en orden
+
+================================================================================
+TABLA DE CONTENIDOS
+================================================================================
+
+1. DOCUMENTO 0: Indice Maestro del CPII
+   - Vision general del sistema de documentacion
+   - Mapa conceptual completo
+   - Indices tematicos y alfabeticos
+   - Guias de uso por perfil profesional
+
+2. DOCUMENTO 1: Resumen Ejecutivo CPII
+   - Vision, mision y propuesta de valor
+   - Modelo de negocio y diferenciadores
+   - Estructura organizacional y gobernanza
+   - Arquitectura financiera y proyecciones
+   - Factores criticos de exito
+
+3. DOCUMENTO 2: Ontologia y Glosario Central
+   - Entidades fundamentales (Club, Activo, Fondo)
+   - Roles y actores (Dueños, Fundadores, Inversores, Gestores)
+   - Conceptos financieros (Revenue Share, Interes Compuesto)
+   - Procesos y ciclos (Snowball & Catapult, Ventanas)
+   - Taxonomia jerarquica completa
+
+4. DOCUMENTO 3: Arquitectura de Datos
+   - Schemas TypeScript de entidades core
+   - Modelos de negocio (Tier A Catapulta, Tier B Refugio)
+   - Estructuras de datos financieros
+   - Modelos de relaciones y grafos
+   - Dataset de simulacion 24 meses
+
+5. DOCUMENTO 4: Flujos de Procesos y Workflows
+   - Ciclo de vida del inversor
+   - Ciclo de vida del activo
+   - Proceso de ventanas de inversion
+   - Flujo de Revenue Share multinivel
+   - Proceso de graduacion a gestor
+   - Workflows de gobernanza y takeover
+
+
+================================================================================
+=== DOCUMENTO 0: INDICE MAESTRO DEL CPII ===
+================================================================================
+
+---
+tipo: indice-maestro
+dominio: club-privado-inversion-inmobiliaria
+version: 1.0.0
+fecha: 2026-02-15
+tags: [cpii, indice, navegacion, referencias]
+metadatos:
+  proposito: "Indice central y mapa de navegacion de toda la documentacion"
+  audiencia: ["desarrolladores", "arquitectos", "gestores", "analistas"]
+---
+
+# Indice Maestro del CPII - Sistema de Documentacion
+
+## Vision General
+
+Este indice maestro proporciona navegacion estructurada a toda la documentacion del **Club Privado de Inversion Inmobiliaria (CPII)**. La documentacion esta organizada en capas para facilitar tanto la comprension humana como la integracion tecnica con sistemas de vibecoding.
+
+---
+
+## Mapa Conceptual del Sistema
+
+```
+CPII (Club Privado de Inversion Inmobiliaria)
+│
+├─── [1] CONCEPTOS FUNDAMENTALES
+│    ├── Ontologia y Glosario
+│    ├── Taxonomia de Roles
+│    ├── Modelo de Negocio
+│    └── Principios de Gobernanza
+│
+├─── [2] ARQUITECTURA TECNICA
+│    ├── Schemas de Datos
+│    ├── Modelos de Entidades
+│    ├── Relaciones y Grafos
+│    └── APIs y Eventos
+│
+├─── [3] OPERACIONES Y PROCESOS
+│    ├── Ciclos de Vida
+│    ├── Workflows
+│    ├── Reglas de Negocio
+│    └── Automatizaciones
+│
+├─── [4] MODELOS FINANCIEROS
+│    ├── Revenue Share
+│    ├── Honorarios
+│    ├── Ventanas de Inversion
+│    └── Proyecciones
+│
+└─── [5] GUIAS OPERATIVAS
+     ├── Guia del Inversor
+     ├── Guia del Agente
+     ├── Guia del Gestor
+     └── Guia de Compliance
+```
+
+---
+
+## Documentos Principales
+
+### 01. Ontologia y Glosario Central
+**Archivo:** `01-ontologia-glosario-cpii.md`
+
+**Proposito:** Definir vocabulario controlado, taxonomia y conceptos fundamentales del CPII.
+
+**Contenido Principal:**
+- Entidades fundamentales (Club, Activo, Fondo de Sostenibilidad)
+- Roles y actores (Dueños, Fundadores, Inversores, Prescriptores, Agentes, Gestores)
+- Conceptos financieros (Interes Compuesto, Revenue Share, Honorarios, Arbitraje)
+- Procesos y ciclos (Snowball & Catapulta, Ventanas, Prescripcion)
+- Estructuras organizacionales
+- Taxonomia jerarquica completa
+
+**Para quien:**
+- Desarrolladores: Entender entidades y relaciones
+- Gestores: Comprender estructura completa
+- Inversores: Familiarizarse con terminologia
+
+**Referencias internas:**
+```
+→ Relacionado con: 02-arquitectura-datos-cpii.md (schemas)
+→ Relacionado con: 03-flujos-procesos-cpii.md (workflows)
+→ Relacionado con: 04-modelos-financieros-cpii.md (calculos)
+```
+
+---
+
+### 02. Arquitectura de Datos
+**Archivo:** `02-arquitectura-datos-cpii.md`
+
+**Proposito:** Definir estructuras de datos, schemas y modelos para vibecoding.
+
+**Contenido Principal:**
+- Schemas TypeScript de entidades core:
+  - Usuario/Socio
+  - Activo Inmobiliario
+  - Ventana de Inversion
+  - Inversion
+  - Comision
+  - Seccion Certificada
+- Modelos de negocio (Tier A Catapulta, Tier B Refugio)
+- Modelo de Revenue Share
+- Modelo de Honorarios
+- Estructuras de datos financieros
+- Dataset de simulacion 24 meses
+- Modelos de relaciones y grafos
+- Metadatos de integracion
+
+**Para quien:**
+- Desarrolladores: Implementar schemas en codigo
+- Arquitectos de datos: Diseñar bases de datos
+- Analistas: Entender estructura de informacion
+
+**Referencias internas:**
+```
+→ Basado en: 01-ontologia-glosario-cpii.md (conceptos)
+→ Usado en: 03-flujos-procesos-cpii.md (operaciones)
+→ Alimenta: 04-modelos-financieros-cpii.md (calculos)
+```
+
+---
+
+### 03. Flujos de Procesos y Workflows
+**Archivo:** `03-flujos-procesos-cpii.md`
+
+**Proposito:** Documentar flujos operativos, workflows y logica de negocio.
+
+**Contenido Principal:**
+- Ciclo de vida del inversor (registro, KYC, inversion, autofinanciacion)
+- Ciclo de vida del activo (draft → published → liquidado → vendido)
+- Proceso de ventanas de inversion (apertura, cierre, liquidacion)
+- Flujo de Revenue Share (calculo y propagacion multinivel)
+- Proceso de graduacion a gestor
+- Workflows de gobernanza (decisiones, intervenciones)
+
+**Para quien:**
+- Desarrolladores: Implementar logica de procesos
+- Gestores operativos: Entender flujos diarios
+- Auditores: Verificar compliance
+
+**Referencias internas:**
+```
+→ Implementa conceptos de: 01-ontologia-glosario-cpii.md
+→ Usa estructuras de: 02-arquitectura-datos-cpii.md
+→ Ejecuta calculos de: 04-modelos-financieros-cpii.md
+```
+
+---
+
+### 04. Modelos Financieros Detallados
+**Archivo:** `04-modelos-financieros-cpii.md`
+
+**Proposito:** Especificar calculos financieros, proyecciones y analisis economico.
+
+**Contenido Principal:**
+- Modelo Tier A Catapulta (100K EUR, 20% APY, 6 meses)
+- Modelo Tier B Refugio (1M EUR, 8% APY, 12 meses)
+- Calculos de Revenue Share multinivel
+- Estructura de honorarios (5% operacion + 5% venta exclusiva)
+- Gastos operativos (1% plataforma, gestion, marketing)
+- Distribucion de beneficios (50% Fondo Sostenibilidad)
+- Proyecciones patrimoniales (1, 5, 10, 15 años)
+- Simulaciones de crecimiento de red
+- Analisis de sensibilidad
+
+**Para quien:**
+- CFO/Finanzas: Planificacion economica
+- Desarrolladores: Implementar calculos
+- Inversores: Entender rentabilidades
+
+**Referencias internas:**
+```
+→ Basado en conceptos de: 01-ontologia-glosario-cpii.md
+→ Usa datos de: 02-arquitectura-datos-cpii.md
+→ Ejecutado por: 03-flujos-procesos-cpii.md
+```
+
+---
+
+### 05. Guia de Graduacion del Gestor
+**Archivo:** `05-guia-graduacion-gestor.md`
+
+**Proposito:** Documentar el proceso completo de emancipacion profesional a Gestor.
+
+**Contenido Principal:**
+- Niveles de trayectoria profesional (Iniciacion → Consolidacion → Proyeccion)
+- Requisitos criticos de graduacion (1M EUR, 2 años, semaforo verde)
+- Privilegios del gestor (50% beneficio, marca propia, autonomia)
+- Obligaciones y codigo de honor (ADN, monitorizacion, inmortalidad del activo)
+- Circuito economico del gestor
+- Proceso de aplicacion y acreditacion
+
+**Para quien:**
+- Agentes: Entender carrera profesional
+- Gestores actuales: Operar su seccion
+- Comite: Evaluar candidatos
+
+**Referencias internas:**
+```
+→ Concepto definido en: 01-ontologia-glosario-cpii.md
+→ Estructura de datos en: 02-arquitectura-datos-cpii.md
+→ Proceso en: 03-flujos-procesos-cpii.md
+→ Calculos en: 04-modelos-financieros-cpii.md
+```
+
+---
+
+## Indice por Temas
+
+### A. Roles y Actores
+
+| Tema | Documento Principal | Seccion |
+|------|---------------------|---------|
+| Dueños Originales | 01-ontologia | Roles > Dueños/Gestores |
+| Fundadores | 01-ontologia | Roles > Fundadores |
+| Inversor | 01-ontologia | Roles > Inversor/Referidor |
+| Prescriptor | 01-ontologia | Roles > Prescriptor |
+| Agente Promotor | 01-ontologia | Roles > Agente |
+| Gestor de Seccion | 05-guia-graduacion | Todo el documento |
+
+**Referencias cruzadas:**
+- Schemas de datos → 02-arquitectura
+- Ciclos de vida → 03-flujos-procesos
+- Honorarios → 04-modelos-financieros
+
+---
+
+### B. Conceptos Financieros
+
+| Concepto | Documento | Seccion |
+|----------|-----------|---------|
+| Interes Compuesto | 01-ontologia | Conceptos Financieros |
+| Revenue Share | 04-modelos-financieros | Revenue Share Multinivel |
+| Honorarios de Gestion | 04-modelos-financieros | Estructura de Honorarios |
+| Fondo de Sostenibilidad | 01-ontologia | Entidades > Fondo |
+| Tier A Catapulta | 04-modelos-financieros | Modelo Tier A |
+| Tier B Refugio | 04-modelos-financieros | Modelo Tier B |
+| Autofinanciacion | 01-ontologia | Conceptos > Hito Riesgo Cero |
+
+**Referencias cruzadas:**
+- Calculos → 03-flujos-procesos (generarComisionesRed)
+- Datos → 02-arquitectura (Comision, Inversion)
+- Proyecciones → 04-modelos-financieros (simulacion24meses)
+
+---
+
+### C. Procesos Operativos
+
+| Proceso | Documento | Workflow |
+|---------|-----------|----------|
+| Onboarding Inversor | 03-flujos-procesos | onboardingInversor() |
+| Captacion de Activo | 03-flujos-procesos | captarActivo() |
+| Apertura Ventana | 03-flujos-procesos | aperturaVentana() |
+| Liquidacion | 03-flujos-procesos | liquidacionVentana() |
+| Graduacion Gestor | 03-flujos-procesos | procesarGraduacionGestor() |
+| Intervencion Seccion | 03-flujos-procesos | intervenirSeccion() |
+
+**Referencias cruzadas:**
+- Entidades involucradas → 01-ontologia
+- Schemas → 02-arquitectura
+- Calculos financieros → 04-modelos-financieros
+
+---
+
+### D. Tecnologia e Integracion
+
+| Aspecto | Documento | Ubicacion |
+|---------|-----------|-----------|
+| Schemas TypeScript | 02-arquitectura | Todo el documento |
+| Eventos del Sistema | 02-arquitectura | Metadatos > eventos_sistema |
+| Relaciones (Grafo) | 02-arquitectura | Modelos de Relaciones |
+| APIs recomendadas | 02-arquitectura | (implicito en workflows) |
+| Indices de BD | 02-arquitectura | Metadatos > indices_recomendados |
+
+**Para implementacion:**
+1. Leer schemas en 02-arquitectura
+2. Implementar workflows de 03-flujos-procesos
+3. Integrar calculos de 04-modelos-financieros
+4. Consultar glosario en 01-ontologia para dudas
+
+---
+
+## Indice Alfabetico
+
+### A
+- **Activo Inmobiliario:** 01-ontologia (Entidades), 02-arquitectura (Schemas)
+- **Agente Promotor:** 01-ontologia (Roles), 05-guia-graduacion (Carrera)
+- **Arbitraje de Valor:** 01-ontologia (Conceptos Financieros)
+- **Arbol Genealogico:** 02-arquitectura (Modelos de Relaciones)
+- **Autofinanciacion:** 01-ontologia (Hito Riesgo Cero), 04-modelos (mes 12-24)
+
+### B
+- **Beneficio Neto:** 04-modelos-financieros (Distribucion)
+- **Blockchain:** 02-arquitectura (mencionado futuro)
+
+### C
+- **Catapulta (Ciclo A):** 01-ontologia (Procesos), 04-modelos (Tier A)
+- **Comision:** 02-arquitectura (Schema), 03-flujos (generarComisionesRed)
+- **Compliance:** 01-ontologia (Fundadores > Obligaciones)
+- **CPII:** 01-ontologia (definicion raiz)
+
+### D
+- **Documentacion Nivel 2:** 01-ontologia (Activo), 03-flujos (completarNivel2)
+- **Dueños Originales:** 01-ontologia (Roles), todo el sistema
+
+### E
+- **Efecto Bola de Nieve:** 01-ontologia (Procesos), 04-modelos (Simulacion)
+- **Exclusividad Off-Market:** 01-ontologia (Fundadores > Deberes)
+
+### F
+- **Fondo de Sostenibilidad:** 01-ontologia (Entidades), 04-modelos (50% obligatorio)
+- **Fundador:** 01-ontologia (Roles), documento BR-01-club-fundador
+
+### G
+- **Gestor de Seccion:** 05-guia-graduacion (todo), 01-ontologia (Roles)
+- **Gobernanza:** 01-ontologia (Estructuras), 03-flujos (Workflows)
+- **Grafo de Relaciones:** 02-arquitectura (Modelos)
+
+### H
+- **Hito de Autofinanciacion:** Ver Autofinanciacion
+- **Honorarios:** 04-modelos-financieros (Estructura completa)
+
+### I
+- **Interes Compuesto:** 01-ontologia (Conceptos), 04-modelos (Proyecciones)
+- **Inversion:** 02-arquitectura (Schema), 03-flujos (Ciclo de Vida)
+- **Inversor:** 01-ontologia (Roles), 03-flujos (Ciclo de Vida)
+
+### K
+- **KYC:** 01-ontologia (mencionado), 03-flujos (onboarding)
+
+### L
+- **Liquidacion:** 03-flujos (liquidacionVentana)
+
+### M
+- **Meritocracia:** 01-ontologia (Gobernanza), todo el sistema
+
+### N
+- **Nivel 1, 2, 3:** Ver Revenue Share
+
+### O
+- **Off-Market:** 01-ontologia (Exclusividad)
+
+### P
+- **Prescriptor:** 01-ontologia (Roles), documento BR-02-club-prescriptor
+- **Proof of Funds (PoF):** 01-ontologia (Fondo), 03-flujos (Gobernanza)
+- **Proyecciones:** 04-modelos-financieros (1-15 años)
+
+### R
+- **Refugio (Ciclo B):** 01-ontologia (Procesos), 04-modelos (Tier B)
+- **Revenue Share:** 01-ontologia (Conceptos), 04-modelos (Modelo completo)
+
+### S
+- **Seccion Certificada:** 02-arquitectura (Schema), 05-guia-graduacion
+- **Semaforo de Salud:** 05-guia-graduacion (Requisitos)
+- **Simulacion 24 meses:** 02-arquitectura (Dataset), CSV adjunto
+- **Snowball & Catapult:** 01-ontologia (Modelo), 04-modelos (Proyecciones)
+
+### T
+- **Takeover:** 03-flujos (intervenirSeccion), 05-guia (Inmortalidad Activo)
+- **Tier A, B:** Ver Catapulta y Refugio
+
+### V
+- **Ventana de Inversion:** 01-ontologia (Procesos), 03-flujos (Workflows)
+- **Vibecoding:** Todo el sistema (diseñado para integracion)
+
+---
+
+## Guia de Uso por Perfil
+
+### Para Desarrolladores Backend
+**Ruta recomendada:**
+1. `01-ontologia-glosario-cpii.md` → Entender el dominio
+2. `02-arquitectura-datos-cpii.md` → Implementar schemas
+3. `03-flujos-procesos-cpii.md` → Codificar workflows
+4. `04-modelos-financieros-cpii.md` → Integrar calculos
+
+**Archivos clave:** Todos los TypeScript interfaces en 02-arquitectura
+
+### Para Desarrolladores Frontend
+**Ruta recomendada:**
+1. `01-ontologia-glosario-cpii.md` → Vocabulario UI
+2. `02-arquitectura-datos-cpii.md` → Schemas para estado
+3. `03-flujos-procesos-cpii.md` → Flujos de usuario
+
+**Archivos clave:** Schemas de Usuario, Ventana, Activo
+
+### Para Product Managers / Gestores
+**Ruta recomendada:**
+1. `01-ontologia-glosario-cpii.md` → Vision completa
+2. `05-guia-graduacion-gestor.md` → Carrera profesional
+3. `04-modelos-financieros-cpii.md` → Rentabilidades
+
+**Archivos clave:** Todos los documentos resumen ejecutivo
+
+### Para Analistas de Datos
+**Ruta recomendada:**
+1. `02-arquitectura-datos-cpii.md` → Schemas y relaciones
+2. `04-modelos-financieros-cpii.md` → Proyecciones y simulaciones
+3. CSV adjunto → Dataset real
+
+**Archivos clave:** 02-arquitectura, simulacion_cii_24m.csv
+
+### Para Auditores / Compliance
+**Ruta recomendada:**
+1. `01-ontologia-glosario-cpii.md` → Gobernanza
+2. `03-flujos-procesos-cpii.md` → Workflows de decision
+3. `05-guia-graduacion-gestor.md` → Obligaciones
+
+**Archivos clave:** Secciones de Compliance y Gobernanza
+
+---
+
+## Convenciones de Nomenclatura
+
+### En Codigo (TypeScript)
+- **Interfaces:** PascalCase (ej: `Usuario`, `ActivoInmobiliario`)
+- **Enums:** PascalCase (ej: `EstadoActivo`, `TipoRelacion`)
+- **Funciones:** camelCase (ej: `onboardingInversor`, `generarComisionesRed`)
+- **Constantes:** UPPER_SNAKE_CASE (ej: `AHORRO_MENSUAL`, `TIER_A`)
+
+### En Documentacion
+- **Entidades:** Titulo en Castellano (ej: "Activo Inmobiliario")
+- **Roles:** Con mayuscula (ej: "Inversor", "Gestor")
+- **Conceptos:** Entrecomillados primera mencion (ej: "Interes Compuesto")
+
+### IDs y Referencias
+- **Formato:** `uuid-v4` o `slug-readable`
+- **Ejemplo:** `usuario-abc123`, `ventana-2026-q1`, `activo-lordelo-001`
+
+---
+
+## Estado de la Documentacion
+
+| Documento | Estado | Ultima Actualizacion | Completitud |
+|-----------|--------|---------------------|-------------|
+| 01-ontologia-glosario-cpii.md | ✅ Completo | 2026-02-15 | 100% |
+| 02-arquitectura-datos-cpii.md | ✅ Completo | 2026-02-15 | 100% |
+| 03-flujos-procesos-cpii.md | ✅ Completo | 2026-02-15 | 100% |
+| 04-modelos-financieros-cpii.md | 🔄 Por crear | - | 0% |
+| 05-guia-graduacion-gestor.md | 🔄 Por crear | - | 0% |
+| simulacion_cii_24m.csv | ✅ Completo | 2026-02-15 | 100% |
+
+---
+
+*Indice Maestro generado por Sistema de Arquitectura de Informacion CPII v1.0*
+*Ultima actualizacion: 2026-02-15*
+
+
+================================================================================
+=== DOCUMENTO 1: RESUMEN EJECUTIVO CPII ===
+================================================================================
+
+---
+tipo: resumen-ejecutivo
+dominio: club-privado-inversion-inmobiliaria
+version: 1.0.0
+fecha: 2026-02-15
+tags: [cpii, resumen, ejecutivo, vision-general]
+audiencia: ["ejecutivos", "inversores", "stakeholders"]
+---
+
+# Resumen Ejecutivo - Club Privado de Inversion Inmobiliaria (CPII)
+
+## Proposito de Este Documento
+
+Este resumen ejecutivo proporciona una vision consolidada del **Club Privado de Inversion Inmobiliaria (CPII)**, su modelo de negocio, arquitectura organizacional y proyecciones financieras. Esta diseñado para stakeholders que necesitan comprender rapidamente el ecosistema completo sin profundizar en detalles tecnicos.
+
+---
+
+## 1. Vision y Mision
+
+### Vision
+Transformar el ahorro individual en una maquinaria de gestion de activos inmobiliarios de alto impacto, democratizando el acceso a inversiones exclusivas mediante ingenieria financiera estructurada y redes colaborativas.
+
+### Mision
+Construir una comunidad meritocratica donde:
+- El **exito individual** se logra a traves del **exito colectivo**
+- El **ahorro sistematico** se transforma en **patrimonio exponencial**
+- Los **profesionales del sector** pueden escalar a **gestores empresariales**
+
+---
+
+## 2. Modelo de Negocio
+
+### Propuesta de Valor Central
+
+El CPII elimina las barreras tradicionales de entrada a inversiones inmobiliarias de alto rendimiento mediante:
+
+1. **Micro-inversion accesible:** Desde 100€ (modelo recomendado: 50€/mes)
+2. **Interes compuesto acelerado:** Reinversion automatica de beneficios
+3. **Red colaborativa:** Sistema de Revenue Share multinivel (1%, 0.5%, 0.25%)
+4. **Activos exclusivos off-market:** Ventaja competitiva por acceso anticipado
+5. **Carrera profesional integrada:** De inversor a gestor empresarial
+
+### Diferenciadores Competitivos
+
+| Aspecto | Modelo Tradicional | CPII |
+|---------|-------------------|------|
+| **Inversion minima** | 50.000€ - 250.000€ | 100€ |
+| **Acceso a activos** | Portales publicos | Exclusivos off-market |
+| **Rentabilidad** | 3-5% anual | 8-20% anual |
+| **Carrera profesional** | No existe | Gestor con empresa propia |
+| **Red de referidos** | No monetizada | Revenue Share 3 niveles |
+| **Transparencia** | Opaca | Plataforma digital auditable |
+
+---
+
+## 3. Estructura Organizacional
+
+### Jerarquia de Roles
+
+```
+┌─────────────────────────────────┐
+│  DUEÑOS ORIGINALES              │
+│  (David Almeida, Carlos Balboa) │
+│  • Autoridad final              │
+│  • Poder de veto absoluto       │
+│  • Control 50% nuevas secciones │
+└────────────┬────────────────────┘
+             │
+    ┌────────┴────────┐
+    │                 │
+┌───▼──────┐   ┌─────▼─────────┐
+│FUNDADORES│   │GESTORES SECCION│
+│(10 elite)│   │(Graduados 1M€) │
+│• Nucleo  │   │• 50% beneficio │
+│• 50/50   │   │• Marca propia  │
+└───┬──────┘   └─────┬──────────┘
+    │                │
+┌───▼────────────────▼─────────┐
+│    AGENTES PROMOTORES        │
+│ • Captan activos             │
+│ • 2.5% entrada + 5% salida   │
+│ • Carrera hacia gestor       │
+└───────────┬──────────────────┘
+            │
+┌───────────▼──────────────────┐
+│  PRESCRIPTORES E INVERSORES  │
+│ • Red 1x1 mensual            │
+│ • Revenue Share 3 niveles    │
+│ • Ahorro 50€/mes             │
+└──────────────────────────────┘
+```
+
+### Gobernanza
+
+**Tipo:** Empresa privada con verticalidad meritocratica
+
+**Principios:**
+- **Autoridad final:** David Almeida y Carlos Balboa
+- **Poder de veto:** Absoluto de los Dueños Originales
+- **Rol consultivo:** Fundadores y Prescriptores organizados (no vinculante)
+- **Meritocracia:** Escalado por resultados verificables, no antiguedad
+
+---
+
+## 4. Arquitectura Financiera
+
+### Dos Vias de Crecimiento
+
+#### Via 1: Inversor / Prescriptor (Patrimonio Pasivo)
+
+**Perfil:** Personas que buscan vencer la inflacion mediante ahorro disciplinado
+
+**Mecanica:**
+- Ahorro mensual: 50€
+- Acumulacion trimestral: 150€
+- Inversion en ventanas alternas
+- Reinversion automatica de beneficios
+- Comisiones de red como acelerador
+
+**Hito Clave - Mes 12:** Autofinanciacion
+- Comisiones de red = 50€/mes
+- Patrimonio crece sin aportacion de bolsillo
+- "Riesgo Cero" alcanzado
+
+**Proyeccion Patrimonial:**
+
+| Horizonte | Capital Aportado | Patrimonio Estimado | ROI |
+|-----------|------------------|---------------------|-----|
+| 1 año | 600€ | ~684€ | +14% |
+| 5 años | 3.000€ | ~5.200€ | +73% |
+| 10 años | 6.000€ | ~18.500€ | +208% |
+| 15 años | 9.000€ | ~54.000€ | +500% |
+
+#### Via 2: Agente → Gestor (Emancipacion Empresarial)
+
+**Perfil:** Profesionales del sector que aspiran a liderar su propia marca
+
+**Carrera:**
+1. **Iniciacion (0-6 meses):** Captacion de primeros activos, 2.5% por entrada
+2. **Consolidacion (Año 1):** Escalado a multiples operaciones, +5% venta exclusiva
+3. **Graduacion (Año 2):** Alcanzar 1M€ gestionados → Gestor de Seccion
+
+**Requisitos de Graduacion:**
+- Volumen: 1.000.000€ en activos gestionados
+- Continuidad: 2 años consecutivos
+- Calidad: Semaforo verde en protocolos
+
+**Recompensa:**
+- 50% del beneficio neto de su seccion
+- Marca propia (Seccion Certificada)
+- Autonomia operativa (monitoreada)
+- Empresa propia dentro del ecosistema
+
+---
+
+## 5. Modelo Financiero: Ventanas de Inversion
+
+### Sistema "Snowball & Catapult"
+
+El capital fluye entre dos tipos de ciclos alternados trimestralmente:
+
+#### Tier A: Catapulta (Rendimiento Alto)
+
+```yaml
+Capital: 100.000 EUR
+Duracion: 6 meses
+Rendimiento Inversor: 20% APY
+Margen Club: 30%
+Ejemplos: Preventas, Lordelo, Haven Nobre
+```
+
+**Distribucion de 30.000€ (Margen Bruto):**
+- Rendimiento inversor: 10.000€ (20% en 6m)
+- Comisiones red: 1.750€ (1.75%)
+- Gastos operativos: 150€
+- **Beneficio neto: 18.100€**
+  - Fondo Sostenibilidad: 9.050€ (50%)
+  - Gestores: 9.050€ (50%)
+
+#### Tier B: Refugio (Estabilidad)
+
+```yaml
+Capital: 1.000.000 EUR
+Duracion: 12 meses
+Rendimiento Inversor: 8% APY
+Margen Club: 12%
+Ejemplos: Renta estable, activos residenciales
+```
+
+**Distribucion de 120.000€ (Margen Bruto):**
+- Rendimiento inversor: 80.000€ (8% anual)
+- Comisiones red: 17.500€ (1.75%)
+- Gastos operativos: 150€
+- **Beneficio neto: 22.350€**
+  - Fondo Sostenibilidad: 11.175€ (50%)
+  - Gestores: 11.175€ (50%)
+
+### Calendario de Ventanas
+
+```
+Q1 (Ene-Mar) → Catapulta → Liquidacion Jun
+Q2 (Abr-Jun) → Refugio → Liquidacion Jun+1año
+Q3 (Jul-Sep) → Catapulta → Liquidacion Dic
+Q4 (Oct-Dic) → Refugio → Liquidacion Dic+1año
+```
+
+**Caracteristica clave:** Las salidas de catapulta (6 meses) coinciden quirurgicamente con aperturas de nuevas ventanas, permitiendo roll-over inmediato.
+
+---
+
+## 6. Revenue Share: Motor de Red
+
+### Estructura Multinivel (3 Generaciones)
+
+```
+Inversion Base: 100€
+│
+├─[1%]──→ Nivel 1 (Hijo directo) = 1€
+│         │
+│         └─[0.5%]──→ Nivel 2 (Nieto) = 0.5€
+│                     │
+│                     └─[0.25%]──→ Nivel 3 (Bisnieto) = 0.25€
+│
+Total Comisiones: 1.75€ (1.75% del capital)
+```
+
+### Norma de Prescripcion Continua (1x1)
+
+**Regla:** Cada asociado suma 1 nuevo inversor cualificado al mes
+
+**Impacto Exponencial:**
+
+| Mes | Miembros Totales | L1 | L2 | L3 |
+|-----|------------------|----|----|-----|
+| 1 | 1 | 1 | 0 | 0 |
+| 6 | 32 | 6 | 15 | 20 |
+| 12 | 2.048 | 12 | 66 | 220 |
+| 24 | 8.388.608 | 24 | 276 | 2.024 |
+
+**Hito de Autofinanciacion:** Entre mes 18-24, las comisiones superan los 50€ mensuales, logrando que el patrimonio crezca sin aportacion propia.
+
+---
+
+## 7. Fondo de Sostenibilidad
+
+### Definicion y Proposito
+
+**Reserva estrategica que captura el 50% del beneficio neto de cada operacion.**
+
+**Funciones Duales:**
+1. **Contingencia:** Blindaje ante desviaciones o crisis de liquidez
+2. **Capital propio:** Inversion en negocios estrategicos con margenes cortos
+
+### Proof of Funds (PoF)
+
+El Fondo puede respaldar macro-operaciones (ej: 40M€ residencias de estudiantes) mediante garantias de fondos, desbloqueando oportunidades que requieren demostracion de solvencia antes de carta de interes.
+
+**Principio:** Nunca menos del 50% del beneficio neto → Sostenibilidad garantizada
+
+---
+
+## 8. Estructura de Honorarios
+
+### Honorarios de Operacion Inmobiliaria (5%)
+
+Integrados en el precio del activo:
+
+```json
+{
+  "total": "5%",
+  "desglose": {
+    "gestion_inversores": {
+      "porcentaje": "2.5%",
+      "beneficiarios": ["David Almeida", "Carlos Balboa"]
+    },
+    "captacion_activo": {
+      "porcentaje": "2.5%",
+      "beneficiario": "Agente Promotor"
+    }
+  }
+}
+```
+
+### Comision de Venta Exclusiva (5%)
+
+El agente que capto el activo puede ser mandatario de venta en exclusiva:
+- **Comision:** 5% sobre precio de venta
+- **Condiciones:** Seguir directrices del Club, periodo definido
+
+### Gasto de Plataforma (1%)
+
+Desglose fijo en cada financiacion:
+- 0.5% → Leirum
+- 0.5% → Estructura tecnologica propia
+
+---
+
+## 9. Datos de Rendimiento (Simulacion 24 Meses)
+
+### Modelo Base: Ahorro 50€/mes + Prescripcion 1x1
+
+| Hito | Mes | Patrimonio | Red (L1-L2-L3) | Significado |
+|------|-----|------------|----------------|-------------|
+| Primera inversion | 3 | 154€ | 3-3-1 | Ingreso al ciclo |
+| Primera salida | 6 | 324€ | 6-15-20 | Validacion del modelo |
+| **Autofinanciacion** | **12** | **819€** | **12-66-220** | **Comisiones = 50€/mes** |
+| Red consolidada | 24 | 3.722€ | 24-276-2.024 | Crecimiento exponencial |
+
+**Tasa de crecimiento promedio:** 155% anual compuesto
+
+**Contribuciones al patrimonio (mes 24):**
+- Ahorro propio: 32%
+- Comisiones red: 45%
+- Rendimientos inversion: 23%
+
+---
+
+## 10. Riesgos y Mitigaciones
+
+### Riesgos Identificados
+
+| Riesgo | Probabilidad | Impacto | Mitigacion |
+|--------|--------------|---------|------------|
+| Activo no rinde esperado | Media | Alto | Fondo Sostenibilidad (50%), diversificacion |
+| Red crece mas lento | Media | Medio | Formacion continua, herramientas de prospeccion |
+| Gestor falla en seccion | Baja | Alto | Monitorizacion continua, Takeover (control matriz) |
+| Regulacion adversa | Baja | Muy Alto | Cumplimiento KYC, adaptacion juridica proactiva |
+
+### Salvaguardas Estructurales
+
+1. **Fondo de Sostenibilidad (50% obligatorio):** Colchon financiero
+2. **Documentacion Nivel 2:** Solo activos con due diligence completo
+3. **Inmortalidad del Activo:** Takeover si gestor falla
+4. **Plataforma como unica fuente de verdad:** Transparencia total
+5. **Gobernanza vertical:** Decisiones agiles, sin paralisis de consenso
+
+---
+
+## 11. Roadmap Estrategico
+
+### Fase 1: Fundacion (Actual - Q2 2026)
+
+- [x] Definicion de ontologia y arquitectura
+- [x] Documentacion completa de procesos
+- [ ] Seleccion de 10 Fundadores
+- [ ] Lanzamiento plataforma digital v1.0
+- [ ] Primera ventana Q1 2026 (Catapulta)
+
+### Fase 2: Traccion (Q3-Q4 2026)
+
+- [ ] Alcanzar 100 inversores activos
+- [ ] Gestionar 500.000€ en activos
+- [ ] Completar 2 ciclos catapulta completos
+- [ ] Graduar primer Gestor de Seccion
+
+### Fase 3: Escalado (2027)
+
+- [ ] Expansion a 1.000 inversores
+- [ ] Portfolio de 5M€ en activos
+- [ ] 5 secciones certificadas operativas
+- [ ] Integracion blockchain para transparencia
+
+### Fase 4: Consolidacion (2028+)
+
+- [ ] Red de 10.000+ inversores
+- [ ] Portfolio de 50M€+
+- [ ] Expansion geografica (LATAM, resto EU)
+- [ ] IPO o estructura de holding
+
+---
+
+## 12. Factores Criticos de Exito
+
+### Top 5 KPIs del Sistema
+
+1. **Tasa de Prescripcion Activa:** % de miembros que cumplen norma 1x1 mensual
+   - **Objetivo:** >80%
+   
+2. **Patrimonio Medio por Inversor:** Indicador de engagement y reinversion
+   - **Objetivo Año 1:** >1.000€
+   
+3. **Rendimiento Real vs Esperado:** Precision de proyecciones
+   - **Objetivo:** Desviacion <5%
+   
+4. **Salud del Fondo de Sostenibilidad:** Liquidez como % del AUM
+   - **Objetivo:** >10% del Assets Under Management
+   
+5. **Tiempo Medio a Autofinanciacion:** Meses para alcanzar Riesgo Cero
+   - **Objetivo:** <18 meses
+
+---
+
+## 13. Conclusiones Clave
+
+### Para Inversores
+
+✅ **Accesibilidad:** Desde 100€, sin barreras de entrada
+✅ **Rentabilidad superior:** 8-20% anual vs 3-5% tradicional
+✅ **Riesgo mitigado:** Fondo de Sostenibilidad + diversificacion
+✅ **Transparencia total:** Plataforma digital auditable
+✅ **Sin compromiso vitalicio:** Liquidez programada
+
+### Para Profesionales
+
+✅ **Carrera definida:** De agente a gestor empresarial
+✅ **Ingresos diversificados:** Captacion + venta + beneficio seccion
+✅ **Autonomia progresiva:** Marca propia al graduarse
+✅ **Acompañamiento:** Formacion continua y mentorias
+✅ **Modelo replicable:** Escalado mediante secciones certificadas
+
+### Para el Ecosistema
+
+✅ **Gobernanza clara:** Autoridad vertical, decisiones agiles
+✅ **Sostenibilidad estructural:** 50% obligatorio a reservas
+✅ **Inmortalidad de activos:** Takeover como salvaguarda
+✅ **Compliance robusto:** KYC, documentacion Nivel 2, auditorias
+✅ **Tecnologia como aval:** Plataforma es fuente unica de verdad
+
+---
+
+*Resumen Ejecutivo generado por Sistema de Arquitectura de Informacion CPII*
+*Documento consolidado para stakeholders y toma de decisiones estrategicas*
+
+
+================================================================================
+=== DOCUMENTO 2: ONTOLOGIA Y GLOSARIO CENTRAL ===
+================================================================================
+
+---
+tipo: ontologia-glosario
+dominio: club-privado-inversion-inmobiliaria
+version: 1.0.0
+fecha: 2026-02-15
+tags: [cpii, ontologia, glosario, conceptos-core]
+metadatos:
+  autor: "Sistema de Extraccion de Conocimiento"
+  proposito: "Definir vocabulario controlado y taxonomia del CPII"
+  audiencia: ["desarrolladores", "gestores", "inversores", "agentes"]
+---
+
+# Ontologia y Glosario Central del CPII
+
+## Tabla de Contenidos
+
+1. [Entidades Fundamentales](#entidades-fundamentales)
+2. [Roles y Actores](#roles-y-actores)
+3. [Conceptos Financieros](#conceptos-financieros)
+4. [Procesos y Ciclos](#procesos-y-ciclos)
+5. [Estructuras Organizacionales](#estructuras-organizacionales)
+6. [Taxonomia Jerarquica](#taxonomia-jerarquica)
+
+---
+
+## Entidades Fundamentales
+
+### Club Privado de Inversion Inmobiliaria (CPII)
+**Definicion:** Ecosistema de inversion privado que transforma el ahorro individual en una maquinaria de gestion de activos de alto impacto mediante ingenieria economica estructurada.
+
+**Sinonimos:** Club, CPII, Ecosistema Breeder Hub
+
+**Propiedades:**
+- Naturaleza juridica: Empresa privada
+- Gobernanza: Vertical meritocratica
+- Modelo operativo: Venture Builder monitorizado
+
+### Activo Inmobiliario
+**Definicion:** Propiedad estructurada que cumple estandares de rentabilidad, exclusividad y documentacion tecnica del Club.
+
+**Niveles de Definicion:**
+- **Nivel 1:** Informacion basica
+- **Nivel 2:** Documentacion completa (escrituras, planos, licencias, presupuestos auditados)
+
+**Estados:**
+- Draft (Gratuito)
+- Published (Inversion Abierta)
+
+### Fondo de Sostenibilidad
+**Definicion:** Reserva estrategica que captura el 50% del beneficio neto de cada operacion para contingencias e inversion propia del Club.
+
+**Funciones:**
+1. Reserva de contingencia
+2. Capital propio para negocios estrategicos
+3. Respaldo para Proof of Funds (PoF)
+
+---
+
+## Roles y Actores
+
+### 1. Dueños Originales / Gestores Fundadores
+**Actores:** David Almeida, Carlos Balboa
+
+**Responsabilidades:**
+- Autoridad final y poder de veto
+- Arbitraje supremo
+- Control del 50% de cada nueva seccion
+- Decisiones sobre Fondo de Sostenibilidad
+
+**Ingresos:**
+- 2,5% por gestion de inversores en cada operacion
+
+### 2. Fundador (Nucleo de los 10)
+**Definicion:** Grupo selecto por invitacion directa que actua como nucleo promotor del Club.
+
+**Caracteristicas:**
+- Estatus: Por invitacion, no vitalicio
+- Sin cuota de entrada
+- No requiere pertenencia obligatoria a EXP
+
+**Privilegios:**
+- Reparto del 50% de honorarios de entrada de propiedades que presentan
+- 100% de honorarios de salida si gestionan la venta
+- Prioridad operativa para proponer activos
+- Derecho de preferencia para mandatos de venta
+- Acceso a Revenue Share multinivel
+
+**Obligaciones:**
+- Documentacion tecnica completa
+- Informes de gestion mensuales
+- Compliance estricto (reparto 50/50)
+- Exclusividad off-market
+
+**Carrera de Meritos:**
+- Hito: 1 millon de euros en 2 años
+- Recompensa: Gestion de nueva seccion al 50% con Dueños Originales
+
+### 3. Inversor / Referidor
+**Definicion:** Socio que construye patrimonio mediante ahorro sistematico y crecimiento de red.
+
+**Caracteristicas:**
+- Inversion minima: 100€
+- Modelo recomendado: 50€ mensuales
+- Activacion automatica como Prescriptor tras KYC
+
+**Mecanismos:**
+- Interes compuesto
+- Efecto "Bola de Nieve"
+- Ventanas de inversion trimestrales
+- Revenue Share por referidos (3 niveles)
+
+**Hito Clave:**
+- **Mes 12:** Autofinanciacion (comisiones cubren ahorro mensual)
+
+### 4. Prescriptor
+**Definicion:** Inversor habilitado para expandir la red de capital mediante enlaces de invitacion personalizados.
+
+**Activacion:** Automatica tras verificacion KYC
+
+**Norma:** Sumar 1 nuevo inversor cualificado cada mes
+
+**Revenue Share:**
+```json
+{
+  "nivel_1_hijo": "1% del capital invertido",
+  "nivel_2_nieto": "0.5% del capital invertido",
+  "nivel_3_bisnieto": "0.25% del capital invertido"
+}
+```
+
+**Liquidacion:** Al cierre de inversion o reparto de beneficios anual
+
+### 5. Agente Promotor / Captador / Angariador
+**Definicion:** Profesional que aporta activos inmobiliarios debidamente preparados bajo estandares del Club.
+
+**Responsabilidades:**
+- Identificacion de activos off-market
+- Estructuracion documental (Nivel 2)
+- Compliance con protocolos de ingesta
+
+**Ingresos:**
+- **Entrada:** 2,5% por captacion del activo
+- **Salida:** 5% comision de venta en exclusiva (si mandatario)
+
+**Carrera:** Puede escalar a Gestor de Seccion
+
+### 6. Gestor de Seccion
+**Definicion:** Lider graduado que opera una seccion autonoma con marca propia dentro del ecosistema.
+
+**Requisitos de Graduacion:**
+```json
+{
+  "volumen_gestionado": "1.000.000 EUR",
+  "continuidad": "2 años consecutivos",
+  "calidad": "Semaforo verde en protocolos"
+}
+```
+
+**Privilegios:**
+- 50% del beneficio neto de su seccion
+- Marca propia (Seccion Certificada)
+- Autonomia operativa (monitoreada)
+- Capacidad de proponer inversiones
+
+**Obligaciones:**
+- Observancia del ADN del Club
+- Monitorizacion continua por Dueños Originales
+- Compliance con Business Plan
+- Sumision a arbitraje del Club
+
+**Estructura Patrimonial:**
+- 50% Dueños Originales
+- 50% Gestor graduado
+
+---
+
+## Conceptos Financieros
+
+### Interes Compuesto
+**Definicion:** Mecanismo donde beneficios generados se reinvierten automaticamente para acelerar crecimiento patrimonial.
+
+**Formula Conceptual:**
+```
+Patrimonio(t+1) = Patrimonio(t) + Ahorro + Rendimientos + Comisiones_Red
+```
+
+### Revenue Share / Reparto de Beneficios
+**Definicion:** Sistema de incentivos por captacion de capital estructurado en 3 niveles de herencia.
+
+**Estructura Multinivel:**
+```yaml
+nivel_1_directo:
+  porcentaje: 1%
+  base_calculo: "capital aportado por referido"
+  
+nivel_2_indirecto:
+  porcentaje: 0.5%
+  base_calculo: "capital aportado por referido de referido"
+  
+nivel_3_indirecto:
+  porcentaje: 0.25%
+  base_calculo: "capital aportado por referido de nivel 3"
+```
+
+### Honorarios de Gestion
+**Definicion:** Compensacion integrada en el precio del activo para responsables de la operacion.
+
+**Estructura (5% total):**
+```json
+{
+  "gestion_inversores": {
+    "porcentaje": "2.5%",
+    "beneficiarios": ["David Almeida", "Carlos Balboa"],
+    "responsabilidad": "Acompañamiento y seguridad del capital"
+  },
+  "captacion_activo": {
+    "porcentaje": "2.5%",
+    "beneficiario": "Agente Promotor",
+    "responsabilidad": "Estructuracion documental y validacion"
+  }
+}
+```
+
+### Gasto de Plataforma (1% estable)
+**Desglose:**
+- 0,5% → Leirum
+- 0,5% → Estructura tecnologica propia
+
+**Naturaleza:** Gasto de arranque obligatorio en cada financiacion
+
+### Arbitraje de Valor
+**Definicion:** Modelo de generacion de beneficio basado en la diferencia entre rentabilidad del activo y reparto a inversores.
+
+**Ecuacion:**
+```
+Beneficio_Neto = Margen_Bruto - Rendimiento_Inversores - Comisiones_Red - Gastos_Operativos
+```
+
+### Hito de Autofinanciacion / Riesgo Cero
+**Definicion:** Punto donde comisiones de red superan la aportacion mensual del inversor.
+
+**Momento tipico:** Mes 18-24 con modelo 1x1 mensual
+
+**Impacto:** Patrimonio crece sin aportacion de bolsillo
+
+---
+
+## Procesos y Ciclos
+
+### Modelo "Snowball & Catapult"
+**Definicion:** Sistema dual de ventanas de inversion que combina acumulacion con aceleracion estrategica.
+
+### Ventanas de Inversion
+
+#### Ciclo A: Catapulta
+```yaml
+nombre: "Catapulta"
+tipo: "Alto rendimiento"
+duracion: "6 meses"
+rendimiento_inversor: "20% APY"
+margen_club: "30%"
+capital_tipo: "100.000 EUR"
+ejemplos: ["Preventas", "Lordelo", "Haven Nobre"]
+caracteristica_clave: "Salida coincide con nueva ventana (roll-over)"
+```
+
+#### Ciclo B: Refugio
+```yaml
+nombre: "Refugio"
+tipo: "Renta estable"
+duracion: "Anual"
+rendimiento_inversor: "8% APY"
+margen_club: "12%"
+capital_tipo: "1.000.000 EUR"
+ejemplos: ["Activos residenciales", "Renta estable"]
+caracteristica_clave: "Capital en espera o largo plazo"
+```
+
+### Frecuencia de Ventanas
+- **Apertura:** Cada 3 meses
+- **Acumulacion trimestral:** 150€ (50€ x 3 meses)
+- **Alternancia:** Q1→Catapulta, Q2→Refugio, Q3→Catapulta, Q4→Refugio
+
+### Prescripcion Continua (Norma 1x1)
+**Definicion:** Cada asociado suma un nuevo prescriptor al mes.
+
+**Dinamica de Crecimiento:**
+```json
+{
+  "mes_1": {"total_miembros": 1, "estructura": "1-0-0"},
+  "mes_6": {"total_miembros": 32, "estructura": "6-15-20"},
+  "mes_12": {"total_miembros": 2048, "estructura": "12-66-220"},
+  "mes_24": {"total_miembros": 8388608, "estructura": "24-276-2024"}
+}
+```
+
+### Flujo de Capital (Circuito Hidraulico)
+
+#### Fase 1: Ingesta y Captacion
+1. Aporte del activo (Nivel 2)
+2. Integracion en plataforma
+3. Añadir 5% de honorarios al precio
+
+#### Fase 2: Operacion
+1. Captacion de inversores
+2. Inyeccion en ventana correspondiente
+3. Gestion del proyecto
+
+#### Fase 3: Split de Beneficios
+```yaml
+distribucion_beneficio_neto:
+  fondo_sostenibilidad: "50%"
+  beneficio_gestion: "50%"
+  
+calculo_beneficio_neto:
+  base: "Margen_Bruto"
+  deducciones:
+    - "Rendimiento_Inversores"
+    - "Comisiones_Red (1.75%)"
+    - "Gastos_Gestion (100 EUR)"
+    - "Gastos_Marketing (50 EUR)"
+```
+
+### Proceso de Graduacion a Gestor
+
+**Fases:**
+```yaml
+fase_1_iniciacion:
+  duracion: "Mes 0-6"
+  foco: "Microinversion y aprendizaje"
+  
+fase_2_consolidacion:
+  duracion: "Año 1"
+  foco: "Red activa y volumen"
+  
+fase_3_graduacion:
+  duracion: "Año 2"
+  objetivo: "1M EUR gestionados"
+  recompensa: "Gestor con empresa propia"
+```
+
+**Proceso de Acreditacion:**
+1. Auditoria de datos en plataforma
+2. Validacion de casos de exito ante Comite
+3. Entrega de credenciales
+4. Activacion de nuevo nivel de acceso
+
+---
+
+## Estructuras Organizacionales
+
+### Jerarquia de Roles
+```
+Dueños Originales (David Almeida, Carlos Balboa)
+├── Fundadores (Nucleo de 10)
+├── Gestores de Seccion (Graduados)
+│   ├── Agentes Promotores
+│   └── Agentes Junior
+├── Prescriptores Activos
+└── Inversores Base
+```
+
+### Gobernanza
+**Tipo:** Empresa privada con autoridad vertical
+
+**Estructura de Poder:**
+```yaml
+autoridad_final: ["David Almeida", "Carlos Balboa"]
+rol_consultivo: ["Fundadores", "Prescriptores organizados"]
+poder_veto: "Dueños Originales exclusivamente"
+arbitraje: "Comite (David, Carlos, Edmundo)"
+```
+
+### Estructura de Secciones
+```json
+{
+  "matriz": {
+    "nombre": "Club Privado de Inversion Inmobiliaria",
+    "control": "100% Dueños Originales",
+    "funciones": ["Tecnologia", "Marca", "Compliance", "Fondo Sostenibilidad"]
+  },
+  "secciones_certificadas": {
+    "control": "50% Matriz + 50% Gestor",
+    "autonomia": "Operativa monitoreada",
+    "obligaciones": ["ADN del Club", "Business Plan", "Reporting"]
+  }
+}
+```
+
+---
+
+## Taxonomia Jerarquica
+
+### Dominios de Conocimiento
+```
+CPII (Raiz)
+├── Roles
+│   ├── Dueños/Gestores
+│   ├── Fundadores
+│   ├── Inversores
+│   ├── Prescriptores
+│   ├── Agentes
+│   └── Gestores de Seccion
+├── Finanzas
+│   ├── Revenue Share
+│   ├── Honorarios
+│   ├── Ventanas de Inversion
+│   ├── Interes Compuesto
+│   └── Fondo de Sostenibilidad
+├── Operaciones
+│   ├── Captacion de Activos
+│   ├── KYC
+│   ├── Gestion de Red
+│   ├── Ciclos de Inversion
+│   └── Reporting
+├── Gobernanza
+│   ├── Autoridad y Veto
+│   ├── Compliance
+│   ├── Protocolos
+│   └── Arbitraje
+└── Tecnologia
+    ├── Plataforma Digital
+    ├── CRM UXE
+    ├── Blockchain (futuro)
+    └── Automatizacion
+```
+
+### Conceptos por Criticidad
+
+**Criticos (Bloquean operacion):**
+- KYC/Verificacion identidad
+- Nivel 2 de definicion de activos
+- Fondo de Sostenibilidad (50% obligatorio)
+- Autoridad final (Dueños Originales)
+
+**Importantes (Impactan rendimiento):**
+- Prescripcion Continua (1x1)
+- Ventanas de Inversion
+- Revenue Share multinivel
+- Honorarios de gestion
+
+**Complementarios (Mejoran experiencia):**
+- Gala Anual
+- Formacion continua
+- Herramientas de prospeccion
+- Reconocimiento publico
+
+---
+
+*Documento generado por Sistema de Arquitectura de Informacion CPII v1.0*
+*Ultima actualizacion: 2026-02-15*
+
+
+================================================================================
+=== DOCUMENTO 3: ARQUITECTURA DE DATOS ===
+================================================================================
+
+---
+tipo: arquitectura-datos
+dominio: club-privado-inversion-inmobiliaria
+version: 1.0.0
+fecha: 2026-02-15
+tags: [cpii, datos, modelos, schemas, entidades]
+dependencias: ["01-ontologia-glosario-cpii.md"]
+metadatos:
+  proposito: "Definir estructuras de datos y schemas para vibecoding"
+  formato_salida: "JSON/TypeScript compatible"
+---
+
+# Arquitectura de Datos del CPII
+
+## Tabla de Contenidos
+
+1. [Schemas de Entidades Core](#schemas-de-entidades-core)
+2. [Modelos de Negocio](#modelos-de-negocio)
+3. [Estructuras de Datos Financieros](#estructuras-de-datos-financieros)
+4. [Modelos de Relaciones](#modelos-de-relaciones)
+5. [Datos de Simulacion](#datos-de-simulacion)
+
+---
+
+## Schemas de Entidades Core
+
+### Usuario / Socio
+
+```typescript
+interface Usuario {
+  id: string;
+  tipo: 'inversor' | 'prescriptor' | 'agente' | 'gestor' | 'fundador';
+  perfil: PerfilUsuario;
+  kyc: EstadoKYC;
+  red: EstructuraRed;
+  inversiones: Inversion[];
+  comisiones: Comision[];
+  patrimonio: Patrimonio;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+interface PerfilUsuario {
+  nombre: string;
+  email: string;
+  telefono?: string;
+  pais: string;
+  idioma: 'es' | 'pt' | 'en';
+  referidoPor?: string; // ID del prescriptor
+  enlaceInvitacion: string;
+}
+
+interface EstadoKYC {
+  verificado: boolean;
+  documentos: Documento[];
+  fechaVerificacion?: Date;
+  nivelVerificacion: 1 | 2 | 3;
+}
+
+interface EstructuraRed {
+  nivel1: string[]; // IDs de hijos directos
+  nivel2: string[]; // IDs de nietos
+  nivel3: string[]; // IDs de bisnietos
+  totalRed: number;
+  activos: number; // miembros activos en la red
+}
+
+interface Patrimonio {
+  capitalAportado: number;
+  beneficiosAcumulados: number;
+  comisionesRecibidas: number;
+  patrimonioTotal: number;
+  ultimaActualizacion: Date;
+}
+```
+
+### Activo Inmobiliario
+
+```typescript
+interface ActivoInmobiliario {
+  id: string;
+  titulo: string;
+  descripcion: string;
+  tipo: TipoActivo;
+  ubicacion: Ubicacion;
+  valorTasacion: number;
+  documentacion: Documentacion;
+  estado: EstadoActivo;
+  ventana: VentanaInversion;
+  captador: {
+    id: string;
+    nombre: string;
+    honorarios: number; // 2.5%
+  };
+  rentabilidadEsperada: RentabilidadActivo;
+  inversores: InversorActivo[];
+  createdAt: Date;
+  publishedAt?: Date;
+}
+
+type TipoActivo = 
+  | 'preventa'
+  | 'flip'
+  | 'renta-estable'
+  | 'multifamiliar'
+  | 'residencia-estudiantes'
+  | 'comercial'
+  | 'terreno';
+
+interface Ubicacion {
+  pais: 'ES' | 'PT';
+  ciudad: string;
+  region: string;
+  direccion?: string;
+  coordenadas?: {
+    lat: number;
+    lng: number;
+  };
+}
+
+interface Documentacion {
+  nivel: 1 | 2;
+  escrituras: boolean;
+  planos: boolean;
+  licencias: boolean;
+  presupuestos: boolean;
+  estudoMercado: boolean;
+  contratoHonorarios: boolean;
+  documentos: Documento[];
+}
+
+type EstadoActivo = 
+  | 'draft'
+  | 'revision'
+  | 'published'
+  | 'inversion-abierta'
+  | 'inversion-cerrada'
+  | 'en-ejecucion'
+  | 'finalizado'
+  | 'vendido';
+
+interface RentabilidadActivo {
+  tipo: 'catapulta' | 'refugio';
+  rendimientoInversor: number; // % APY
+  margenClub: number; // %
+  duracion: number; // meses
+  proyeccionBeneficio: number;
+}
+
+interface InversorActivo {
+  usuarioId: string;
+  capitalInvertido: number;
+  fraccion: number; // % del total
+  fechaInversion: Date;
+  rendimientoEsperado: number;
+}
+```
+
+### Ventana de Inversion
+
+```typescript
+interface VentanaInversion {
+  id: string;
+  numero: number; // Q1, Q2, Q3, Q4
+  año: number;
+  tipo: 'catapulta' | 'refugio';
+  fechaApertura: Date;
+  fechaCierre: Date;
+  capitalObjetivo: number;
+  capitalCaptado: number;
+  activos: string[]; // IDs de activos
+  estado: 'programada' | 'abierta' | 'cerrada' | 'en-ejecucion' | 'liquidada';
+  rendimiento: {
+    esperado: number; // % APY
+    real?: number; // % APY final
+  };
+  inversores: {
+    usuarioId: string;
+    monto: number;
+  }[];
+}
+
+// Calendario de Ventanas
+interface CalendarioVentanas {
+  año: number;
+  ventanas: {
+    Q1: VentanaInversion; // Catapulta
+    Q2: VentanaInversion; // Refugio
+    Q3: VentanaInversion; // Catapulta
+    Q4: VentanaInversion; // Refugio
+  };
+}
+```
+
+### Inversion
+
+```typescript
+interface Inversion {
+  id: string;
+  usuarioId: string;
+  ventanaId: string;
+  activoId?: string;
+  monto: number;
+  tipo: 'directa' | 'acumulada' | 'comisiones-reinvertidas';
+  fechaInversion: Date;
+  estado: 'pendiente' | 'confirmada' | 'en-ejecucion' | 'liquidada' | 'cancelada';
+  rendimiento: {
+    esperado: number;
+    acumulado: number;
+    liquidado: number;
+  };
+  comisiones: ComisionInversion[];
+  origen: OrigenCapital;
+}
+
+interface OrigenCapital {
+  ahorroPropio: number;
+  comisionesRed: number;
+  beneficiosReinvertidos: number;
+}
+
+interface ComisionInversion {
+  beneficiarioId: string;
+  nivel: 1 | 2 | 3;
+  porcentaje: number; // 1%, 0.5%, 0.25%
+  monto: number;
+  estado: 'pendiente' | 'pagada';
+  fechaPago?: Date;
+}
+```
+
+### Comision
+
+```typescript
+interface Comision {
+  id: string;
+  tipo: 'revenue-share' | 'captacion-activo' | 'venta-exclusiva' | 'gestion-inversores';
+  origen: string; // ID de inversion o activo
+  beneficiarioId: string;
+  pagadorId?: string;
+  monto: number;
+  porcentaje: number;
+  baseCalculo: number;
+  nivel?: 1 | 2 | 3; // para revenue share
+  estado: 'pendiente' | 'aprobada' | 'pagada' | 'cancelada';
+  fechaGeneracion: Date;
+  fechaPago?: Date;
+  metadata: {
+    concepto: string;
+    detalles: Record<string, any>;
+  };
+}
+```
+
+### Seccion Certificada
+
+```typescript
+interface SeccionCertificada {
+  id: string;
+  nombre: string;
+  gestorId: string;
+  fechaGraduacion: Date;
+  marca: {
+    nombre: string;
+    logo?: string;
+    cobranding: boolean; // siempre true
+  };
+  volumenGestionado: {
+    actual: number;
+    historico: HistorialVolumen[];
+    objetivo: number; // 1M EUR
+  };
+  beneficios: {
+    totalGenerado: number;
+    participacionGestor: number; // 50%
+    participacionMatriz: number; // 50%
+  };
+  equipo: {
+    agentes: string[];
+    agentesJunior: string[];
+  };
+  estado: 'activa' | 'monitoreada' | 'intervenida' | 'suspendida';
+  cumplimiento: {
+    semaforoSalud: 'verde' | 'amarillo' | 'rojo';
+    ultimaAuditoria: Date;
+    observaciones: string[];
+  };
+}
+
+interface HistorialVolumen {
+  mes: number;
+  año: number;
+  volumen: number;
+  activos: string[];
+}
+```
+
+---
+
+## Modelos de Negocio
+
+### Modelo Tier A: Catapulta (100K EUR)
+
+```json
+{
+  "nombre": "Ciclo Catapulta",
+  "codigo": "TIER_A",
+  "capital_gestionado": 100000,
+  "duracion_meses": 6,
+  "rendimientos": {
+    "margen_bruto_club": {
+      "porcentaje": 30,
+      "monto": 30000
+    },
+    "rendimiento_inversor": {
+      "porcentaje_apy": 20,
+      "monto_6m": 10000,
+      "equivalente_anual": 20
+    }
+  },
+  "gastos_operativos": {
+    "comisiones_red": {
+      "porcentaje": 1.75,
+      "monto": 1750,
+      "desglose": {
+        "nivel_1": 1000,
+        "nivel_2": 500,
+        "nivel_3": 250
+      }
+    },
+    "gestion_plataforma": {
+      "porcentaje": 1,
+      "monto": 1000,
+      "desglose": {
+        "leirum": 500,
+        "tecnologia_propia": 500
+      }
+    },
+    "gestion_administrativa": 100,
+    "marketing": 50,
+    "total": 2900
+  },
+  "flujo_beneficios": {
+    "beneficio_bruto": 20000,
+    "menos_gastos": 2900,
+    "beneficio_neto": 17100,
+    "fondo_sostenibilidad": {
+      "porcentaje": 50,
+      "monto": 8550
+    },
+    "beneficio_disponible_gestores": 8550
+  }
+}
+```
+
+### Modelo Tier B: Refugio (1M EUR)
+
+```json
+{
+  "nombre": "Ciclo Refugio",
+  "codigo": "TIER_B",
+  "capital_gestionado": 1000000,
+  "duracion_meses": 12,
+  "rendimientos": {
+    "margen_bruto_club": {
+      "porcentaje": 12,
+      "monto": 120000
+    },
+    "rendimiento_inversor": {
+      "porcentaje_apy": 8,
+      "monto_anual": 80000
+    }
+  },
+  "gastos_operativos": {
+    "comisiones_red": {
+      "porcentaje": 1.75,
+      "monto": 17500
+    },
+    "gestion_plataforma": {
+      "porcentaje": 1,
+      "monto": 10000,
+      "desglose": {
+        "leirum": 5000,
+        "tecnologia_propia": 5000
+      }
+    },
+    "gestion_administrativa": 100,
+    "marketing": 50,
+    "total": 27650
+  },
+  "flujo_beneficios": {
+    "beneficio_bruto": 40000,
+    "menos_gastos": 27650,
+    "beneficio_neto": 12350,
+    "fondo_sostenibilidad": {
+      "porcentaje": 50,
+      "monto": 6175
+    },
+    "beneficio_disponible_gestores": 6175
+  }
+}
+```
+
+### Modelo de Revenue Share
+
+```json
+{
+  "nombre": "Sistema Multinivel 1x1",
+  "estructura": {
+    "nivel_1_hijo": {
+      "porcentaje": 1.0,
+      "base_calculo": "capital_invertido_por_referido",
+      "relacion": "directo",
+      "ejemplo_100eur": 1.0
+    },
+    "nivel_2_nieto": {
+      "porcentaje": 0.5,
+      "base_calculo": "capital_invertido_por_referido_nivel_2",
+      "relacion": "indirecto",
+      "ejemplo_100eur": 0.5
+    },
+    "nivel_3_bisnieto": {
+      "porcentaje": 0.25,
+      "base_calculo": "capital_invertido_por_referido_nivel_3",
+      "relacion": "indirecto",
+      "ejemplo_100eur": 0.25
+    }
+  },
+  "liquidacion": {
+    "momento": ["cierre_inversion", "reparto_beneficios_anual"],
+    "automatica": true,
+    "trazabilidad": "enlace_invitacion_digital"
+  },
+  "norma_prescripcion": {
+    "frecuencia": "mensual",
+    "objetivo": "1_nuevo_inversor_por_mes",
+    "minimo": 1,
+    "recomendado": 1
+  }
+}
+```
+
+### Modelo de Honorarios
+
+```json
+{
+  "honorarios_operacion_inmobiliaria": {
+    "porcentaje_total": 5,
+    "incluido_en_precio": true,
+    "desglose": {
+      "gestion_inversores": {
+        "porcentaje": 2.5,
+        "beneficiarios": ["David Almeida", "Carlos Balboa"],
+        "responsabilidad": "Acompañamiento y seguridad del capital"
+      },
+      "captacion_activo": {
+        "porcentaje": 2.5,
+        "beneficiario": "Agente Promotor",
+        "responsabilidad": "Estructuracion documental y validacion del activo"
+      }
+    }
+  },
+  "comision_venta_exclusiva": {
+    "porcentaje": 5,
+    "beneficiario": "Agente que capto el activo",
+    "condiciones": [
+      "Ser agente de venta en exclusiva",
+      "Seguir directrices del Club",
+      "Periodo definido de exclusividad"
+    ],
+    "momento_pago": "cierre_venta_final"
+  },
+  "gasto_plataforma": {
+    "porcentaje": 1,
+    "obligatorio": true,
+    "momento": "financiacion_activo",
+    "desglose": {
+      "leirum": 0.5,
+      "tecnologia_propia": 0.5
+    }
+  }
+}
+```
+
+---
+
+## Estructuras de Datos Financieros
+
+### Simulacion de Crecimiento (Modelo 50 EUR/mes)
+
+```typescript
+interface SimulacionCrecimiento {
+  mes: number;
+  ahorro_mensual: number; // 50 EUR constante
+  comisiones_red: number; // Variable segun crecimiento
+  inversion_trimestral: number; // 0 o 150+ cuando hay ventana
+  patrimonio_acumulado: number;
+  estructura_red: {
+    L1: number; // Nivel 1 - Hijos
+    L2: number; // Nivel 2 - Nietos
+    L3: number; // Nivel 3 - Bisnietos
+  };
+}
+
+// Datos de simulacion reales (24 meses) - Ver seccion Datos de Simulacion
+```
+
+### Calculos de Comisiones
+
+```typescript
+interface CalculoComisiones {
+  inversion_base: number;
+  red: EstructuraRed;
+  comisiones_generadas: {
+    nivel_1: {
+      inversores: number;
+      monto_por_inversor: number;
+      total: number;
+    };
+    nivel_2: {
+      inversores: number;
+      monto_por_inversor: number;
+      total: number;
+    };
+    nivel_3: {
+      inversores: number;
+      monto_por_inversor: number;
+      total: number;
+    };
+    total_comisiones: number;
+  };
+}
+
+function calcularComisionesRed(
+  inversionBase: number,
+  estructuraRed: EstructuraRed
+): CalculoComisiones {
+  const nivel1 = estructuraRed.nivel1.length * inversionBase * 0.01;
+  const nivel2 = estructuraRed.nivel2.length * inversionBase * 0.005;
+  const nivel3 = estructuraRed.nivel3.length * inversionBase * 0.0025;
+  
+  return {
+    inversion_base: inversionBase,
+    red: estructuraRed,
+    comisiones_generadas: {
+      nivel_1: {
+        inversores: estructuraRed.nivel1.length,
+        monto_por_inversor: inversionBase * 0.01,
+        total: nivel1
+      },
+      nivel_2: {
+        inversores: estructuraRed.nivel2.length,
+        monto_por_inversor: inversionBase * 0.005,
+        total: nivel2
+      },
+      nivel_3: {
+        inversores: estructuraRed.nivel3.length,
+        monto_por_inversor: inversionBase * 0.0025,
+        total: nivel3
+      },
+      total_comisiones: nivel1 + nivel2 + nivel3
+    }
+  };
+}
+```
+
+---
+
+## Modelos de Relaciones
+
+### Grafo de Relaciones
+
+```typescript
+interface GrafoRelaciones {
+  nodos: Nodo[];
+  aristas: Arista[];
+}
+
+interface Nodo {
+  id: string;
+  tipo: 'usuario' | 'activo' | 'ventana' | 'seccion' | 'comision';
+  datos: any;
+}
+
+interface Arista {
+  id: string;
+  tipo: TipoRelacion;
+  origen: string; // ID del nodo
+  destino: string; // ID del nodo
+  metadata: Record<string, any>;
+  timestamp: Date;
+}
+
+type TipoRelacion =
+  | 'invita' // Prescriptor → Inversor
+  | 'refiere' // Inversor → Inversor (alias de invita)
+  | 'invierte_en' // Inversor → Ventana/Activo
+  | 'capta' // Agente → Activo
+  | 'gestiona' // Gestor → Seccion
+  | 'gobierna' // Dueños → Club
+  | 'pertenece_a' // Activo → Ventana
+  | 'genera_comision' // Inversion → Comision
+  | 'recibe_comision' // Usuario → Comision
+  | 'forma_parte' // Agente → Seccion
+  | 'supervisa' // Gestor Senior → Agente Junior
+  | 'audita'; // Comite → Seccion/Activo
+```
+
+### Arbol Genealogico (Revenue Share)
+
+```typescript
+interface ArbolGenealogico {
+  raiz: string; // ID del prescriptor original
+  generaciones: Generacion[];
+  profundidad: number;
+  totalDescendientes: number;
+}
+
+interface Generacion {
+  nivel: 1 | 2 | 3;
+  miembros: MiembroGeneracion[];
+  comision_porcentaje: number;
+}
+
+interface MiembroGeneracion {
+  id: string;
+  padre: string;
+  fechaIngreso: Date;
+  estado: 'activo' | 'inactivo';
+  contribucionCapital: number;
+  comisionesGeneradas: number;
+}
+```
+
+---
+
+## Datos de Simulacion
+
+### Dataset Completo 24 Meses
+
+```json
+{
+  "metadata": {
+    "modelo": "Ahorro 50 EUR/mes + Prescripcion 1x1",
+    "supuestos": {
+      "ahorro_mensual_constante": 50,
+      "ventanas_inversion": "trimestral",
+      "alternancia_ciclos": ["catapulta_20%", "refugio_8%"],
+      "prescripcion": "1_nuevo_inversor_por_mes",
+      "replica_red": "todos_prescriben_1x1"
+    },
+    "hitos_clave": [
+      {"mes": 3, "evento": "Primera inversion trimestral"},
+      {"mes": 6, "evento": "Primera salida catapulta"},
+      {"mes": 12, "evento": "Autofinanciacion alcanzada"},
+      {"mes": 24, "evento": "Red consolidada"}
+    ]
+  },
+  "datos": [
+    {"mes": 1, "ahorro": 50, "comisiones": 0.5, "inversion_trim": 0, "patrimonio": 50.5, "red": {"L1": 1, "L2": 0, "L3": 0}},
+    {"mes": 2, "ahorro": 50, "comisiones": 1.25, "inversion_trim": 0, "patrimonio": 101.75, "red": {"L1": 2, "L2": 1, "L3": 0}},
+    {"mes": 3, "ahorro": 50, "comisiones": 2.38, "inversion_trim": 154.12, "patrimonio": 154.12, "red": {"L1": 3, "L2": 3, "L3": 1}},
+    {"mes": 4, "ahorro": 50, "comisiones": 4.0, "inversion_trim": 0, "patrimonio": 208.12, "red": {"L1": 4, "L2": 6, "L3": 4}},
+    {"mes": 5, "ahorro": 50, "comisiones": 6.25, "inversion_trim": 0, "patrimonio": 264.38, "red": {"L1": 5, "L2": 10, "L3": 10}},
+    {"mes": 6, "ahorro": 50, "comisiones": 9.25, "inversion_trim": 169.5, "patrimonio": 323.62, "red": {"L1": 6, "L2": 15, "L3": 20}},
+    {"mes": 7, "ahorro": 50, "comisiones": 13.12, "inversion_trim": 0, "patrimonio": 386.75, "red": {"L1": 7, "L2": 21, "L3": 35}},
+    {"mes": 8, "ahorro": 50, "comisiones": 18.0, "inversion_trim": 0, "patrimonio": 454.75, "red": {"L1": 8, "L2": 28, "L3": 56}},
+    {"mes": 9, "ahorro": 50, "comisiones": 24.0, "inversion_trim": 547.55, "patrimonio": 547.55, "red": {"L1": 9, "L2": 36, "L3": 84}},
+    {"mes": 10, "ahorro": 50, "comisiones": 31.25, "inversion_trim": 0, "patrimonio": 628.8, "red": {"L1": 10, "L2": 45, "L3": 120}},
+    {"mes": 11, "ahorro": 50, "comisiones": 39.88, "inversion_trim": 0, "patrimonio": 718.68, "red": {"L1": 11, "L2": 55, "L3": 165}},
+    {"mes": 12, "ahorro": 50, "comisiones": 50.0, "inversion_trim": 271.12, "patrimonio": 818.68, "red": {"L1": 12, "L2": 66, "L3": 220}},
+    {"mes": 13, "ahorro": 50, "comisiones": 61.75, "inversion_trim": 0, "patrimonio": 930.43, "red": {"L1": 13, "L2": 78, "L3": 286}},
+    {"mes": 14, "ahorro": 50, "comisiones": 75.25, "inversion_trim": 0, "patrimonio": 1055.68, "red": {"L1": 14, "L2": 91, "L3": 364}},
+    {"mes": 15, "ahorro": 50, "comisiones": 90.62, "inversion_trim": 1256.48, "patrimonio": 1256.48, "red": {"L1": 15, "L2": 105, "L3": 455}},
+    {"mes": 16, "ahorro": 50, "comisiones": 108.0, "inversion_trim": 0, "patrimonio": 1414.48, "red": {"L1": 16, "L2": 120, "L3": 560}},
+    {"mes": 17, "ahorro": 50, "comisiones": 127.5, "inversion_trim": 0, "patrimonio": 1591.98, "red": {"L1": 17, "L2": 136, "L3": 680}},
+    {"mes": 18, "ahorro": 50, "comisiones": 149.25, "inversion_trim": 534.75, "patrimonio": 1791.23, "red": {"L1": 18, "L2": 153, "L3": 816}},
+    {"mes": 19, "ahorro": 50, "comisiones": 173.38, "inversion_trim": 0, "patrimonio": 2014.61, "red": {"L1": 19, "L2": 171, "L3": 969}},
+    {"mes": 20, "ahorro": 50, "comisiones": 200.0, "inversion_trim": 0, "patrimonio": 2264.61, "red": {"L1": 20, "L2": 190, "L3": 1140}},
+    {"mes": 21, "ahorro": 50, "comisiones": 229.25, "inversion_trim": 2680.2, "patrimonio": 2680.2, "red": {"L1": 21, "L2": 210, "L3": 1330}},
+    {"mes": 22, "ahorro": 50, "comisiones": 261.25, "inversion_trim": 0, "patrimonio": 2991.45, "red": {"L1": 22, "L2": 231, "L3": 1540}},
+    {"mes": 23, "ahorro": 50, "comisiones": 296.12, "inversion_trim": 0, "patrimonio": 3337.57, "red": {"L1": 23, "L2": 253, "L3": 1771}},
+    {"mes": 24, "ahorro": 50, "comisiones": 334.0, "inversion_trim": 1041.38, "patrimonio": 3721.57, "red": {"L1": 24, "L2": 276, "L3": 2024}}
+  ]
+}
+```
+
+---
+
+*Documento generado por Sistema de Arquitectura de Informacion CPII v1.0*
+*Ultima actualizacion: 2026-02-15*
+
+
+================================================================================
+=== DOCUMENTO 4: FLUJOS DE PROCESOS Y WORKFLOWS ===
+================================================================================
+
+---
+tipo: flujos-procesos
+dominio: club-privado-inversion-inmobiliaria
+version: 1.0.0
+fecha: 2026-02-15
+tags: [cpii, workflows, procesos, operaciones]
+dependencias: ["01-ontologia-glosario-cpii.md", "02-arquitectura-datos-cpii.md"]
+metadatos:
+  proposito: "Documentar flujos operativos y workflows del CPII"
+  formato: "Diagramas textuales + Pseudocodigo"
+---
+
+# Flujos de Procesos del CPII
+
+## Tabla de Contenidos
+
+1. [Ciclo de Vida del Inversor](#ciclo-de-vida-del-inversor)
+2. [Ciclo de Vida del Activo](#ciclo-de-vida-del-activo)
+3. [Proceso de Ventanas de Inversion](#proceso-de-ventanas-de-inversion)
+4. [Flujo de Revenue Share](#flujo-de-revenue-share)
+5. [Proceso de Graduacion a Gestor](#proceso-de-graduacion-a-gestor)
+6. [Workflows de Gobernanza](#workflows-de-gobernanza)
+
+---
+
+## Ciclo de Vida del Inversor
+
+### Diagrama de Estados
+
+```
+┌─────────────┐
+│  Anonimo    │
+└──────┬──────┘
+       │ registro
+       ▼
+┌─────────────┐
+│ Registrado  │
+└──────┬──────┘
+       │ KYC
+       ▼
+┌─────────────┐
+│ Verificado  │──┐
+└──────┬──────┘  │
+       │         │ activacion automatica
+       │         ▼
+       │    ┌─────────────┐
+       │    │ Prescriptor │◄──┐
+       │    └──────┬──────┘   │
+       │           │          │ crecimiento red
+       │           │          │
+       ▼           ▼          │
+┌─────────────────────┐       │
+│ Inversor Activo     │───────┘
+└──────┬──────────────┘
+       │ acumula patrimonio
+       ▼
+┌─────────────────────┐
+│ Autofinanciado      │ (mes 12-24)
+└──────┬──────────────┘
+       │ opcional: escalado profesional
+       ▼
+┌─────────────────────┐
+│ Agente Promotor     │
+└──────┬──────────────┘
+       │ hito 1M EUR en 2 años
+       ▼
+┌─────────────────────┐
+│ Gestor de Seccion   │
+└─────────────────────┘
+```
+
+### Workflow Detallado: Onboarding Inversor
+
+```typescript
+async function onboardingInversor(datos: DatosRegistro): Promise<Usuario> {
+  // FASE 1: Registro
+  const usuario = await crearUsuario({
+    email: datos.email,
+    nombre: datos.nombre,
+    pais: datos.pais,
+    referidoPor: datos.enlaceInvitacion ? extraerReferidorId(datos.enlaceInvitacion) : null
+  });
+  
+  // FASE 2: KYC
+  await solicitarDocumentosKYC(usuario.id);
+  await esperarVerificacionKYC(usuario.id);
+  
+  // FASE 3: Activacion como Prescriptor (automatica)
+  const enlaceInvitacion = await generarEnlaceInvitacion(usuario.id);
+  await actualizarUsuario(usuario.id, {
+    tipo: 'prescriptor',
+    enlaceInvitacion
+  });
+  
+  // FASE 4: Registro en arbol genealogico
+  if (usuario.referidoPor) {
+    await registrarEnRed(usuario.id, usuario.referidoPor);
+  }
+  
+  // FASE 5: Acceso a plataforma
+  await concederAccesoPlataforma(usuario.id, ['dashboard', 'ventanas', 'red']);
+  
+  // FASE 6: Notificacion y formacion
+  await enviarBienvenida(usuario.id);
+  await asignarFormacionInicial(usuario.id);
+  
+  return await obtenerUsuario(usuario.id);
+}
+```
+
+### Workflow: Ciclo de Ahorro e Inversion
+
+```typescript
+async function cicloAhorroInversion(usuarioId: string): Promise<void> {
+  const AHORRO_MENSUAL = 50;
+  
+  while (true) {
+    // Cada mes
+    await registrarAhorro(usuarioId, AHORRO_MENSUAL);
+    
+    const mes = obtenerMesActual();
+    
+    // Cada trimestre (meses 3, 6, 9, 12...)
+    if (mes % 3 === 0) {
+      const capitalDisponible = await calcularCapitalDisponible(usuarioId);
+      const ventanaActiva = await obtenerVentanaActiva();
+      
+      if (ventanaActiva && capitalDisponible >= 100) {
+        await realizarInversion({
+          usuarioId,
+          ventanaId: ventanaActiva.id,
+          monto: capitalDisponible
+        });
+        
+        // Generar comisiones para la red
+        await generarComisionesRed(usuarioId, capitalDisponible);
+      }
+    }
+    
+    // Verificar hito de autofinanciacion
+    const comisionesMensuales = await calcularComisionesMensuales(usuarioId);
+    if (comisionesMensuales >= AHORRO_MENSUAL) {
+      await notificarHitoAutofinanciacion(usuarioId);
+    }
+    
+    await esperarProximoMes();
+  }
+}
+```
+
+### Workflow: Generacion de Comisiones Red
+
+```typescript
+async function generarComisionesRed(inversorId: string, monto: number): Promise<void> {
+  const inversor = await obtenerUsuario(inversorId);
+  
+  if (!inversor.referidoPor) return;
+  
+  // Nivel 1: 1%
+  await crearComision({
+    beneficiarioId: inversor.referidoPor,
+    origen: inversorId,
+    tipo: 'revenue-share',
+    nivel: 1,
+    porcentaje: 1.0,
+    monto: monto * 0.01,
+    baseCalculo: monto
+  });
+  
+  const padre = await obtenerUsuario(inversor.referidoPor);
+  
+  if (padre.referidoPor) {
+    // Nivel 2: 0.5%
+    await crearComision({
+      beneficiarioId: padre.referidoPor,
+      origen: inversorId,
+      tipo: 'revenue-share',
+      nivel: 2,
+      porcentaje: 0.5,
+      monto: monto * 0.005,
+      baseCalculo: monto
+    });
+    
+    const abuelo = await obtenerUsuario(padre.referidoPor);
+    
+    if (abuelo.referidoPor) {
+      // Nivel 3: 0.25%
+      await crearComision({
+        beneficiarioId: abuelo.referidoPor,
+        origen: inversorId,
+        tipo: 'revenue-share',
+        nivel: 3,
+        porcentaje: 0.25,
+        monto: monto * 0.0025,
+        baseCalculo: monto
+      });
+    }
+  }
+}
+```
+
+---
+
+## Ciclo de Vida del Activo
+
+### Diagrama de Estados
+
+```
+┌──────────────┐
+│   Draft      │ (Gratuito, trabajo en curso)
+└──────┬───────┘
+       │ validacion Nivel 2
+       ▼
+┌──────────────┐
+│  Revision    │ (Comite evalua)
+└──────┬───────┘
+       │ aprobacion
+       ▼
+┌──────────────┐
+│  Published   │ (Visible, sin inversion activa)
+└──────┬───────┘
+       │ asignacion a ventana
+       ▼
+┌───────────────────┐
+│ Inversion Abierta │
+└──────┬────────────┘
+       │ capital objetivo alcanzado
+       ▼
+┌───────────────────┐
+│ Inversion Cerrada │
+└──────┬────────────┘
+       │ inicio proyecto
+       ▼
+┌───────────────────┐
+│  En Ejecucion     │
+└──────┬────────────┘
+       │ proyecto completo
+       ▼
+┌───────────────────┐
+│   Finalizado      │ (reparto beneficios)
+└──────┬────────────┘
+       │ mandato venta exclusiva
+       ▼
+┌───────────────────┐
+│     Vendido       │
+└───────────────────┘
+```
+
+### Workflow: Captacion de Activo
+
+```typescript
+async function captarActivo(datos: DatosActivo, agenteId: string): Promise<ActivoInmobiliario> {
+  // FASE 1: Creacion en Draft
+  const activo = await crearActivo({
+    ...datos,
+    estado: 'draft',
+    captador: {
+      id: agenteId,
+      honorarios: datos.valorTasacion * 0.025 // 2.5%
+    },
+    documentacion: {
+      nivel: 1,
+      escrituras: false,
+      planos: false,
+      licencias: false,
+      presupuestos: false,
+      estudoMercado: false
+    }
+  });
+  
+  // FASE 2: Notificacion al agente
+  await notificarAgente(agenteId, {
+    tipo: 'activo_creado',
+    mensaje: 'Completa documentacion Nivel 2 para revision'
+  });
+  
+  return activo;
+}
+```
+
+### Workflow: Completar Documentacion Nivel 2
+
+```typescript
+async function completarNivel2(activoId: string, documentos: Documento[]): Promise<void> {
+  // Validar documentacion obligatoria
+  const requeridos = ['escrituras', 'planos', 'licencias', 'presupuestos', 'estudoMercado', 'contratoHonorarios'];
+  
+  for (const doc of requeridos) {
+    if (!documentos.find(d => d.tipo === doc)) {
+      throw new Error(`Falta documento: ${doc}`);
+    }
+  }
+  
+  // Actualizar activo
+  await actualizarActivo(activoId, {
+    'documentacion.nivel': 2,
+    'documentacion.escrituras': true,
+    'documentacion.planos': true,
+    'documentacion.licencias': true,
+    'documentacion.presupuestos': true,
+    'documentacion.estudoMercado': true,
+    'documentacion.contratoHonorarios': true,
+    'documentacion.documentos': documentos,
+    estado: 'revision'
+  });
+  
+  // Notificar al Comite
+  await notificarComite(activoId);
+}
+```
+
+---
+
+## Proceso de Ventanas de Inversion
+
+### Calendario Anual
+
+```
+Año 2026:
+├── Q1 (Ene-Mar) → Catapulta (20% / 6 meses)
+│   ├── Apertura: 01-Ene-2026
+│   ├── Cierre: 31-Mar-2026
+│   └── Liquidacion esperada: 30-Jun-2026
+│
+├── Q2 (Abr-Jun) → Refugio (8% / 12 meses)
+│   ├── Apertura: 01-Abr-2026
+│   ├── Cierre: 30-Jun-2026
+│   └── Liquidacion esperada: 30-Jun-2027
+│
+├── Q3 (Jul-Sep) → Catapulta (20% / 6 meses)
+│   ├── Apertura: 01-Jul-2026
+│   ├── Cierre: 30-Sep-2026
+│   └── Liquidacion esperada: 31-Dic-2026
+│
+└── Q4 (Oct-Dic) → Refugio (8% / 12 meses)
+    ├── Apertura: 01-Oct-2026
+    ├── Cierre: 31-Dic-2026
+    └── Liquidacion esperada: 31-Dic-2027
+```
+
+### Workflow: Apertura de Ventana
+
+```typescript
+async function aperturaVentana(trimestre: number, año: number): Promise<VentanaInversion> {
+  const tipo = (trimestre % 2 === 1) ? 'catapulta' : 'refugio';
+  
+  const ventana = await crearVentana({
+    numero: trimestre,
+    año,
+    tipo,
+    fechaApertura: obtenerFechaInicioTrimestre(trimestre, año),
+    fechaCierre: obtenerFechaFinTrimestre(trimestre, año),
+    capitalObjetivo: tipo === 'catapulta' ? 100000 : 1000000,
+    estado: 'abierta',
+    rendimiento: {
+      esperado: tipo === 'catapulta' ? 20 : 8
+    }
+  });
+  
+  // Notificar a todos los inversores
+  await notificarAperturaVentana(ventana);
+  
+  // Activar sistema de acumulacion trimestral
+  await activarAcumulacionTrimestral(ventana.id);
+  
+  return ventana;
+}
+```
+
+### Workflow: Liquidacion de Ventana
+
+```typescript
+async function liquidacionVentana(ventanaId: string): Promise<void> {
+  const ventana = await obtenerVentana(ventanaId);
+  
+  // Calcular rendimientos reales
+  const rendimientoReal = await calcularRendimientoReal(ventanaId);
+  
+  // Distribuir beneficios a inversores
+  for (const inv of ventana.inversores) {
+    const beneficio = inv.monto * (rendimientoReal / 100);
+    await acreditarBeneficio(inv.usuarioId, beneficio);
+  }
+  
+  // Liquidar comisiones de red
+  await liquidarComisionesRed(ventanaId);
+  
+  // Calcular beneficio neto del Club
+  const beneficioNeto = await calcularBeneficioNeto(ventanaId);
+  
+  // Dotar Fondo de Sostenibilidad (50%)
+  await dotarFondoSostenibilidad(beneficioNeto * 0.5);
+  
+  // Distribuir beneficio a gestores (50%)
+  await distribuirBeneficioGestores(ventanaId, beneficioNeto * 0.5);
+  
+  // Actualizar estado
+  await actualizarVentana(ventanaId, {
+    estado: 'liquidada',
+    'rendimiento.real': rendimientoReal
+  });
+  
+  // Notificar inversores
+  await notificarLiquidacion(ventanaId);
+}
+```
+
+---
+
+## Flujo de Revenue Share
+
+### Diagrama de Propagacion
+
+```
+Inversor Original (100 EUR)
+│
+├─[1%]─→ Padre (Nivel 1) = 1 EUR
+│        │
+│        └─[0.5%]─→ Abuelo (Nivel 2) = 0.5 EUR
+│                   │
+│                   └─[0.25%]─→ Bisabuelo (Nivel 3) = 0.25 EUR
+│
+Total Comisiones Red: 1.75 EUR (1.75%)
+```
+
+### Workflow: Calculo y Liquidacion de Comisiones
+
+```typescript
+async function calcularYLiquidarComisiones(inversionId: string): Promise<void> {
+  const inversion = await obtenerInversion(inversionId);
+  const inversor = await obtenerUsuario(inversion.usuarioId);
+  
+  const comisiones: Comision[] = [];
+  
+  // Nivel 1
+  if (inversor.referidoPor) {
+    comisiones.push(await crearComision({
+      tipo: 'revenue-share',
+      origen: inversionId,
+      beneficiarioId: inversor.referidoPor,
+      nivel: 1,
+      porcentaje: 1.0,
+      baseCalculo: inversion.monto,
+      monto: inversion.monto * 0.01,
+      estado: 'pendiente'
+    }));
+    
+    // Nivel 2
+    const padre = await obtenerUsuario(inversor.referidoPor);
+    if (padre.referidoPor) {
+      comisiones.push(await crearComision({
+        tipo: 'revenue-share',
+        origen: inversionId,
+        beneficiarioId: padre.referidoPor,
+        nivel: 2,
+        porcentaje: 0.5,
+        baseCalculo: inversion.monto,
+        monto: inversion.monto * 0.005,
+        estado: 'pendiente'
+      }));
+      
+      // Nivel 3
+      const abuelo = await obtenerUsuario(padre.referidoPor);
+      if (abuelo.referidoPor) {
+        comisiones.push(await crearComision({
+          tipo: 'revenue-share',
+          origen: inversionId,
+          beneficiarioId: abuelo.referidoPor,
+          nivel: 3,
+          porcentaje: 0.25,
+          baseCalculo: inversion.monto,
+          monto: inversion.monto * 0.0025,
+          estado: 'pendiente'
+        }));
+      }
+    }
+  }
+  
+  // Vincular comisiones a inversion
+  await actualizarInversion(inversionId, {
+    comisiones: comisiones.map(c => c.id)
+  });
+  
+  // Programar pago (al cierre o reparto anual)
+  for (const comision of comisiones) {
+    await programarPagoComision(comision.id);
+  }
+}
+```
+
+---
+
+## Proceso de Graduacion a Gestor
+
+### Workflow Completo
+
+```typescript
+async function procesarGraduacionGestor(candidatoId: string): Promise<void> {
+  // FASE 1: Verificacion de Requisitos
+  const cumpleRequisitos = await verificarRequisitosGestor(candidatoId);
+  
+  if (!cumpleRequisitos.valido) {
+    throw new Error(`No cumple requisitos: ${cumpleRequisitos.razones.join(', ')}`);
+  }
+  
+  // FASE 2: Auditoria de Datos
+  const auditoria = await auditarHistorialCandidato(candidatoId);
+  
+  // FASE 3: Presentacion ante Comite
+  const presentacion = await programarPresentacionComite(candidatoId);
+  
+  // FASE 4: Decision del Comite
+  const decision = await esperarDecisionComite(presentacion.id);
+  
+  if (!decision.aprobado) {
+    await notificarRechazoGraduacion(candidatoId, decision.observaciones);
+    return;
+  }
+  
+  // FASE 5: Creacion de Seccion Certificada
+  const seccion = await crearSeccionCertificada({
+    nombre: `${auditoria.candidato.nombre} - Seccion`,
+    gestorId: candidatoId,
+    fechaGraduacion: new Date(),
+    marca: {
+      nombre: decision.nombreMarca,
+      cobranding: true
+    },
+    estado: 'activa'
+  });
+  
+  // FASE 6: Actualizacion de Usuario
+  await actualizarUsuario(candidatoId, {
+    tipo: 'gestor',
+    seccionId: seccion.id
+  });
+  
+  // FASE 7: Configuracion de Beneficios
+  await configurarBeneficiosGestor(seccion.id, {
+    participacion: 0.5, // 50%
+    cuentaBancaria: decision.datosBancarios
+  });
+  
+  // FASE 8: Acreditacion y Comunicacion
+  await entregarCredenciales(candidatoId, seccion.id);
+  await notificarGraduacionExitosa(candidatoId);
+  await publicarGraduacionEnClub(seccion);
+}
+```
+
+### Workflow: Verificacion de Requisitos
+
+```typescript
+async function verificarRequisitosGestor(usuarioId: string): Promise<{valido: boolean, razones: string[]}> {
+  const usuario = await obtenerUsuario(usuarioId);
+  const razones: string[] = [];
+  
+  // Requisito 1: Volumen gestionado
+  const volumen = await calcularVolumenGestionado(usuarioId);
+  if (volumen.total < 1000000) {
+    razones.push(`Volumen insuficiente: ${volumen.total} EUR (requiere 1M EUR)`);
+  }
+  
+  // Requisito 2: Continuidad 2 años
+  const continuidad = await verificarContinuidad(usuarioId, 24); // 24 meses
+  if (!continuidad.cumple) {
+    razones.push(`Continuidad insuficiente: ${continuidad.mesesConsecutivos} meses (requiere 24)`);
+  }
+  
+  // Requisito 3: Semaforo de salud
+  const salud = await obtenerSemaforoSalud(usuarioId);
+  if (salud !== 'verde') {
+    razones.push(`Semaforo en ${salud} (requiere verde)`);
+  }
+  
+  // Requisito 4: KYC actualizado
+  const kyc = usuario.kyc;
+  if (!kyc.verificado || kyc.nivelVerificacion < 2) {
+    razones.push('KYC no actualizado o nivel insuficiente');
+  }
+  
+  return {
+    valido: razones.length === 0,
+    razones
+  };
+}
+```
+
+---
+
+## Workflows de Gobernanza
+
+### Proceso de Toma de Decisiones
+
+```typescript
+interface Decision {
+  id: string;
+  tipo: 'aprobacion-activo' | 'graduacion-gestor' | 'intervencion-seccion' | 'otro';
+  solicitante: string;
+  fecha: Date;
+  comite: string[]; // IDs de miembros del comite
+  votos: Voto[];
+  decision: 'pendiente' | 'aprobada' | 'rechazada';
+  observaciones: string[];
+}
+
+async function procesarDecisionComite(decisionId: string): Promise<void> {
+  const decision = await obtenerDecision(decisionId);
+  
+  // Notificar al Comite (David, Carlos, Edmundo)
+  await notificarComite({
+    tipo: decision.tipo,
+    detalles: decision,
+    accion: 'revision-requerida'
+  });
+  
+  // Esperar votos (poder de veto de David y Carlos)
+  await esperarVotos(decisionId);
+  
+  // Evaluar decision
+  const resultado = evaluarDecision(decision);
+  
+  // Ejecutar accion segun resultado
+  if (resultado.aprobada) {
+    await ejecutarAccionAprobada(decision);
+  } else {
+    await notificarRechazo(decision.solicitante, resultado.razones);
+  }
+}
+
+function evaluarDecision(decision: Decision): {aprobada: boolean, razones: string[]} {
+  const david = decision.votos.find(v => v.miembroId === 'david');
+  const carlos = decision.votos.find(v => v.miembroId === 'carlos');
+  
+  // Poder de veto absoluto
+  if (david?.voto === 'rechazar' || carlos?.voto === 'rechazar') {
+    return {
+      aprobada: false,
+      razones: [david?.observaciones, carlos?.observaciones].filter(Boolean)
+    };
+  }
+  
+  // Ambos deben aprobar
+  if (david?.voto === 'aprobar' && carlos?.voto === 'aprobar') {
+    return {
+      aprobada: true,
+      razones: []
+    };
+  }
+  
+  return {
+    aprobada: false,
+    razones: ['Decision pendiente de voto completo']
+  };
+}
+```
+
+### Proceso de Intervencion (Takeover)
+
+```typescript
+async function intervenirSeccion(seccionId: string, motivo: string): Promise<void> {
+  const seccion = await obtenerSeccion(seccionId);
+  
+  // Registrar incidente
+  await registrarIncidente({
+    tipo: 'intervencion',
+    seccionId,
+    motivo,
+    fecha: new Date()
+  });
+  
+  // Suspender operaciones
+  await actualizarSeccion(seccionId, {
+    estado: 'intervenida',
+    'cumplimiento.semaforoSalud': 'rojo'
+  });
+  
+  // Notificar al gestor
+  await notificarIntervencion(seccion.gestorId, {
+    motivo,
+    plazoCorreccion: '30 dias'
+  });
+  
+  // Tomar control de activos criticos
+  const activosCriticos = await identificarActivosCriticos(seccionId);
+  for (const activo of activosCriticos) {
+    await reasignarGestion(activo.id, 'comite-temporal');
+  }
+  
+  // Proteger inversores
+  await asegurarLiquidezInversores(seccionId);
+  
+  // Programar auditoria completa
+  await programarAuditoriaSeccion(seccionId);
+}
+```
+
+---
+
+*Documento generado por Sistema de Arquitectura de Informacion CPII v1.0*
+*Ultima actualizacion: 2026-02-15*
+
+
+================================================================================
+FIN DEL DOCUMENTO COMPLETO
+================================================================================
+
+Total de documentos fusionados: 5
+Fecha de generacion: 2026-02-16
+Optimizado para: Google NotebookLM
+Estructura: Plain text con separadores claros
+Audiencia: Desarrolladores, gestores, inversores, analistas

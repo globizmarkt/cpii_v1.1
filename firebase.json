@@ -1,0 +1,26 @@
+{
+  "firestore": {
+    "rules": "firestore.rules"
+  },
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "src/**",
+      "package*.json",
+      "tailwind.config.js",
+      "postcss.config.js",
+      "*.md",
+      ".env*"
+    ],
+    "redirects": [
+      {
+        "source": "**/access_form.html",
+        "destination": "/access-form.html",
+        "type": 301
+      }
+    ]
+  }
+}

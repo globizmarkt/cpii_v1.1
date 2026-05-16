@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CPII Portugal - Registro Privado</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "gold": "#C1A85D",
+                        "gold-hover": "#A8924D",
+                        "gold-light": "#FFF8E1",
+                        "carbon": "#1C1C1C",
+                        "dark-grey": "#3A3A3A",
+                        "text-main": "#FFFFFF",
+                        "text-muted": "#A1A1AA",
+                    },
+                    fontFamily: {
+                        "sans": ["Inter", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        "gold": "0 0 15px rgba(193, 168, 93, 0.15)",
+                        "gold-lg": "0 10px 25px -5px rgba(193, 168, 93, 0.2)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, .serif-font {
+            font-family: 'Playfair Display', serif;
+        }.custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #2D2D2D;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #525252;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #737373;
+        }
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover, 
+        input:-webkit-autofill:focus, 
+        input:-webkit-autofill:active{
+            -webkit-box-shadow: 0 0 0 30px #2A2A2A inset !important;
+            -webkit-text-fill-color: white !important;
+            caret-color: white;
+        }
+    </style>
+</head>
+<body class="bg-carbon text-text-main flex min-h-screen flex-col overflow-x-hidden antialiased selection:bg-gold/30 selection:text-gold">
+<header class="sticky top-0 z-50 flex items-center justify-between border-b border-white/5 bg-carbon/90 px-6 py-4 backdrop-blur-md lg:px-10">
+<div class="flex items-center gap-3">
+<div class="flex size-10 items-center justify-center rounded-full border border-gold/30 bg-gradient-to-br from-dark-grey to-black text-gold shadow-gold">
+<span class="material-symbols-outlined text-2xl">apartment</span>
+</div>
+<div>
+<h2 class="text-xl font-bold tracking-wide text-white font-serif">CPII <span class="font-light text-gold text-sm tracking-widest uppercase ml-1">Portugal</span></h2>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden items-center gap-2 text-xs font-medium text-gold/80 sm:flex tracking-widest uppercase">
+<span class="material-symbols-outlined text-sm">lock</span>
+<span>Private Access</span>
+</div>
+<div class="h-6 w-px bg-white/10 hidden sm:block"></div>
+<button class="flex items-center gap-2 rounded border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-white transition hover:border-gold hover:text-gold">
+<span>PT</span>
+<span class="text-white/20">|</span>
+<span class="font-normal text-white/40 hover:text-white/60">ES</span>
+</button>
+</div>
+</header>
+<main class="flex flex-1 flex-col lg:flex-row">
+<div class="relative flex w-full flex-col justify-between overflow-hidden bg-carbon px-6 py-10 lg:w-5/12 lg:px-12 lg:py-16 xl:w-1/2">
+<div class="absolute -left-20 top-20 h-96 w-96 rounded-full bg-gold/5 blur-3xl"></div>
+<div class="absolute bottom-0 right-0 h-64 w-full bg-gradient-to-t from-black to-transparent"></div>
+<div class="relative z-10 flex flex-col gap-8">
+<div class="inline-flex w-fit items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-gold shadow-[0_0_10px_rgba(193,168,93,0.2)]">
+<span class="material-symbols-outlined text-sm">workspace_premium</span>
+                Convite Obrigatório
+            </div>
+<div class="space-y-6">
+<h1 class="text-4xl font-medium leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl font-serif">
+                    O poder da <span class="text-gold italic">Rede</span> ao seu alcance.
+                </h1>
+<p class="max-w-md text-lg leading-relaxed text-text-muted font-light">
+                    Aceda a oportunidades exclusivas de Fintech e Real Estate de alto rendimento. Junte-se a uma comunidade de investidores e agentes seletos.
+                </p>
+</div>
+<ul class="flex flex-col gap-4 mt-4">
+<li class="flex items-start gap-3 group">
+<span class="material-symbols-outlined mt-0.5 text-gold group-hover:text-white transition-colors">check_circle</span>
+<span class="font-light text-white/90">Rentabilidade verificada e auditada.</span>
+</li>
+<li class="flex items-start gap-3 group">
+<span class="material-symbols-outlined mt-0.5 text-gold group-hover:text-white transition-colors">check_circle</span>
+<span class="font-light text-white/90">Gestão de ativos automatizada.</span>
+</li>
+<li class="flex items-start gap-3 group">
+<span class="material-symbols-outlined mt-0.5 text-gold group-hover:text-white transition-colors">check_circle</span>
+<span class="font-light text-white/90">Networking com líderes do setor.</span>
+</li>
+</ul>
+</div>
+<div class="relative mt-12 hidden h-64 w-full overflow-hidden rounded-xl border border-white/10 lg:block xl:h-80 shadow-2xl">
+<div class="absolute inset-0 bg-gradient-to-tr from-black/80 via-black/20 to-transparent z-10"></div>
+<div class="absolute bottom-6 left-6 z-20 text-white">
+<p class="font-serif text-xl italic text-gold">Club de Investimento Global</p>
+<p class="text-xs uppercase tracking-widest opacity-80 mt-1">Conectando capital e talento.</p>
+</div>
+<div class="h-full w-full bg-cover bg-center opacity-80 transition-transform duration-1000 hover:scale-105" data-alt="Modern skyscrapers reflecting the sky, representing fintech and high-end real estate" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDUqMEsmKWFcg9daqUCLClvlUy7luxeId353Mk85lNEbxXucXqfDApY9lyGN2rygKU6JBKE1BVxN3LySbYqAML0pgz7l-3491qqk6Y2en7IZSSjiL1vsDzDgC96ZO2Q4U1DFY2pw197T1X3Ch9EOn9YaZxVuZM43_FJzAx1WLRPjeuCLG7jPLPe_fquLc6rZI99c3Kxl-970L9vBkRANTtgPKaQMRtU4VjSK-7g2zFUOeikllWeZMRfxekSIKhv_lIi-9Qdhsv85o0'); filter: grayscale(100%) contrast(120%);">
+</div>
+</div>
+</div>
+<div class="flex w-full items-center justify-center bg-[#151515] px-4 py-10 lg:w-7/12 lg:px-8 xl:w-1/2 relative">
+<div class="absolute top-0 right-0 w-full h-full overflow-hidden pointer-events-none opacity-5">
+<div class="absolute top-10 right-10 w-96 h-96 border border-gold rounded-full"></div>
+<div class="absolute bottom-10 left-10 w-64 h-64 border border-gold rounded-full"></div>
+</div>
+<div class="relative w-full max-w-[520px] rounded-xl bg-dark-grey p-6 shadow-gold border border-gold/20 sm:p-8 lg:p-10 backdrop-blur-sm">
+<div class="mb-8 text-center sm:text-left border-b border-white/10 pb-4">
+<h2 class="text-2xl text-white font-serif italic">Solicitar Acesso</h2>
+<p class="mt-2 text-sm text-text-muted font-light">Complete os seus dados para validar o seu convite.</p>
+</div>
+<form class="flex flex-col gap-5">
+<div class="flex flex-col gap-2">
+<label class="text-xs uppercase tracking-wider font-medium text-gold">Selecione o seu perfil</label>
+<div class="grid grid-cols-2 rounded bg-[#2A2A2A] p-1 border border-white/5">
+<label class="cursor-pointer">
+<input checked="" class="peer sr-only" name="profile_type" type="radio" value="investor"/>
+<div class="flex items-center justify-center rounded py-2.5 text-sm font-medium text-text-muted transition-all peer-checked:bg-gold peer-checked:text-black peer-checked:shadow-sm">
+                                Investidor
+                            </div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="profile_type" type="radio" value="agent"/>
+<div class="flex items-center justify-center rounded py-2.5 text-sm font-medium text-text-muted transition-all peer-checked:bg-gold peer-checked:text-black peer-checked:shadow-sm">
+                                Agente Promotor
+                            </div>
+</label>
+</div>
+</div>
+<div class="grid gap-5 sm:grid-cols-2">
+<div class="sm:col-span-2">
+<label class="mb-1.5 block text-xs uppercase tracking-wider font-medium text-text-muted" for="fullname">Nome Completo</label>
+<div class="relative group">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-white/30 group-focus-within:text-gold transition-colors">
+<span class="material-symbols-outlined text-xl">person</span>
+</div>
+<input class="block w-full rounded border border-white/10 bg-[#2A2A2A] py-3 pl-10 text-sm text-white placeholder-white/20 focus:border-gold focus:ring-1 focus:ring-gold focus:outline-none transition-all" id="fullname" placeholder="Ex. João Silva" type="text"/>
+</div>
+</div>
+<div class="sm:col-span-2">
+<label class="mb-1.5 block text-xs uppercase tracking-wider font-medium text-text-muted" for="email">Email</label>
+<div class="relative group">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-white/30 group-focus-within:text-gold transition-colors">
+<span class="material-symbols-outlined text-xl">mail</span>
+</div>
+<input class="block w-full rounded border border-white/10 bg-[#2A2A2A] py-3 pl-10 text-sm text-white placeholder-white/20 focus:border-gold focus:ring-1 focus:ring-gold focus:outline-none transition-all" id="email" placeholder="nome@empresa.com" type="email"/>
+</div>
+</div>
+<div class="sm:col-span-2">
+<label class="mb-1.5 block text-xs uppercase tracking-wider font-medium text-text-muted" for="phone">Telemóvel</label>
+<div class="flex gap-2 group">
+<select class="w-24 rounded border border-white/10 bg-[#2A2A2A] py-3 pl-3 pr-8 text-sm text-white focus:border-gold focus:ring-1 focus:ring-gold focus:outline-none custom-scrollbar">
+<option>+351</option>
+<option>+34</option>
+<option>+1</option>
+<option>+44</option>
+</select>
+<input class="block flex-1 rounded border border-white/10 bg-[#2A2A2A] py-3 px-4 text-sm text-white placeholder-white/20 focus:border-gold focus:ring-1 focus:ring-gold focus:outline-none transition-all" id="phone" placeholder="000 000 000" type="tel"/>
+</div>
+</div>
+</div>
+<div class="relative py-4">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-white/10"></div>
+</div>
+<div class="relative flex justify-center">
+<span class="bg-dark-grey px-3 text-[10px] uppercase tracking-widest text-gold/70">Validação</span>
+</div>
+</div>
+<div>
+<label class="mb-1.5 flex items-center justify-between text-xs uppercase tracking-wider font-medium text-text-muted" for="referral">
+<span>Quem o convidou?</span>
+<span class="text-[10px] font-normal text-gold">*Campo obrigatório</span>
+</label>
+<div class="relative group">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-white/30 group-focus-within:text-gold transition-colors">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="block w-full rounded border border-gold/30 bg-gold/5 py-3.5 pl-10 pr-12 text-sm text-white placeholder-white/30 focus:border-gold focus:bg-[#2A2A2A] focus:ring-1 focus:ring-gold focus:outline-none transition-all" id="referral" placeholder="Pesquisar por nome ou ID de Prescritor" type="text"/>
+<div class="absolute inset-y-0 right-0 flex items-center pr-3">
+<span class="material-symbols-outlined cursor-help text-white/30 hover:text-gold text-lg transition-colors" title="Introduza o ID único do seu prescritor">help</span>
+</div>
+</div>
+<p class="mt-2 text-xs text-text-muted/60">
+                        Se não tiver um código de convite, <a class="font-medium text-gold hover:text-white transition-colors underline decoration-gold/30 underline-offset-2" href="#">contacte o suporte</a>.
+                    </p>
+</div>
+<div class="flex items-start gap-3 mt-2">
+<div class="flex h-5 items-center">
+<input class="h-4 w-4 rounded border-white/20 bg-[#2A2A2A] text-gold focus:ring-gold focus:ring-offset-dark-grey" id="terms" type="checkbox"/>
+</div>
+<label class="text-xs text-text-muted font-light" for="terms">
+                        Aceito a <a class="font-medium text-white hover:text-gold transition-colors" href="#">Política de Privacidade</a> e os <a class="font-medium text-white hover:text-gold transition-colors" href="#">Termos de Serviço</a>. Entendo que a minha solicitação está sujeita a aprovação.
+                    </label>
+</div>
+<button class="group mt-4 flex w-full items-center justify-center gap-2 rounded bg-gold py-4 text-sm font-bold uppercase tracking-wider text-black transition-all hover:bg-gold-hover hover:shadow-[0_0_20px_rgba(193,168,93,0.4)] active:scale-[0.98]" type="button">
+<span>Solicite Acesso</span>
+<span class="material-symbols-outlined text-lg transition-transform group-hover:translate-x-1">arrow_forward</span>
+</button>
+</form>
+<div class="mt-8 pt-6 border-t border-white/5 text-center">
+<p class="text-[10px] uppercase tracking-[0.2em] text-white/20">Confidencial — Solo para membros autorizados</p>
+<div class="flex justify-center gap-6 mt-4">
+<a class="text-xs font-medium text-text-muted hover:text-gold transition-colors" href="#">Privacidade</a>
+<a class="text-xs font-medium text-text-muted hover:text-gold transition-colors" href="#">Termos</a>
+<a class="text-xs font-medium text-text-muted hover:text-gold transition-colors" href="#">Ajuda</a>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+</body></html>
