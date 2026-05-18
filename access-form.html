@@ -553,7 +553,7 @@
     ══════════════════════════════════════════════════════════════════════════ -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
         // Configuración oficial del proyecto cpii-landing
         const firebaseConfig = {
@@ -571,6 +571,55 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+
+        // GA-02 — Bridge: mapea payload legacy → CONTACT_SCHEMA canónico
+        function buildContactsPayload(leadData) {
+            const fullName  = (leadData.full_name || '').trim();
+            const spaceIdx  = fullName.indexOf(' ');
+            const firstName = spaceIdx > -1 ? fullName.slice(0, spaceIdx)  : fullName;
+            const lastName  = spaceIdx > -1 ? fullName.slice(spaceIdx + 1) : '';
+            const slug      = fullName.normalize('NFD').replace(/[̀-ͯ]/g, '')
+                                .toLowerCase().trim()
+                                .replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-');
+
+            return {
+                tenant_id:         'cpii_v1.1',
+                slug:              slug,
+                referralCode:      slug ? 'CPII-' + slug : '',
+                fullName:          fullName,
+                firstName:         firstName,
+                lastName:          lastName,
+                email:             (leadData.email || '').toLowerCase().trim(),
+                phone:             (leadData.perfil && leadData.perfil.telefono) || '',
+                country:           (leadData.perfil && leadData.perfil.pais)     || 'PT',
+                preferredLanguage: 'pt',
+                l1Slug:            (leadData.perfil && leadData.perfil.embajador) || null,
+                l1Id:              null,
+                l2Id:              null,
+                l3Id:              null,
+                directReferralCount: 0,
+                firstTouchChannel: 'referral',
+                utmSource:         '',
+                utmMedium:         '',
+                utmCampaign:       '',
+                investorProfile: {
+                    type: leadData.tipo === 'inversor' ? 'individual' : 'institutional',
+                    accreditedStatus: 'unverified',
+                },
+                compliance: { kycStatus: 'pending', pepStatus: false, amlFlag: false },
+                currentStage:   'lead_captured',
+                stageUpdatedAt: serverTimestamp(),
+                assignedTo:     '',
+                priority:       'medium',
+                score:          0,
+                isActive:       true,
+                createdAt:      serverTimestamp(),
+                updatedAt:      serverTimestamp(),
+                createdBy:      'access-form',
+                tags:           [],
+                _searchTokens:  [],
+            };
+        }
 
         function validateForm() {
             let valid = true;
@@ -629,9 +678,15 @@
             };
 
             try {
-                // 1. Guardar en Firestore
+                // 1. Guardar en Firestore (leads — legacy) + contacts (CONTACT_SCHEMA canónico)
                 await addDoc(collection(db, "leads"), leadData);
                 console.log("[CPII] ✅ Lead persistido en base de datos.");
+
+                // GA-02 — Bridge: escribe también a colección contacts con schema canónico
+                // Fire-and-forget: no bloquea el flujo principal si falla
+                addDoc(collection(db, "contacts"), buildContactsPayload(leadData))
+                    .then(ref => console.log("[CPII] ✅ Contacto canónico registrado:", ref.id))
+                    .catch(err => console.warn("[CPII] ⚠️ contacts write fallida (non-blocking):", err.message));
 
                 // 2. Disparar alerta a tu Telegram (Mobile Notification)
                 const telegramRes = await fetch(TELEGRAM_FUNCTION_URL, {
