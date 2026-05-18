@@ -1,39 +1,74 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    
+
     // === 🛡️ FUNCIONES DE SEGURIDAD SOBERANAS ===
-    
+
     function belongsToTenant() {
-      return request.auth != null && 
+      return request.auth != null &&
              request.auth.token.tenant_id == (resource.exists ? resource.data.tenant_id : request.resource.data.tenant_id);
     }
-    
+
     function isStaff() {
-      return request.auth != null && 
-             request.auth.token.role == 'staff';
+      return request.auth != null &&
+             request.auth.token.role in ['staff', 'manager', 'admin', 'superadmin'];
     }
-    
+
+    function isTenantCpii() {
+      return request.resource.data.tenant_id == 'cpii_v1.1';
+    }
+
     // === 🚪 RUTAS DE ACCESO ===
-    
+
+    // leads — colección legacy (captación anónima desde access-form)
     match /leads/{leadId} {
-      // PERMISO A: Captación Anónima Blindada (Sutura Sentinel)
-      allow create: if request.auth == null 
+      // Captación anónima: campos mínimos + tenant correcto + RGPD consent
+      allow create: if request.auth == null
                     && request.resource.data.keys().hasAll(['email', 'full_name', 'rgpd_consent', 'tenant_id'])
-                    && request.resource.data.tenant_id == 'cpii_v1.0'
+                    && isTenantCpii()
                     && request.resource.data.email is string
                     && request.resource.data.full_name is string
                     && request.resource.data.rgpd_consent == true;
 
-      // PERMISO B: Lectura y Escritura para Staff (CRM)
       allow read, update, delete: if belongsToTenant() && isStaff();
     }
-    
+
+    // contacts — colección canónica CRM (CONTACT_SCHEMA)
+    match /contacts/{contactId} {
+      // Captación anónima desde access-form (GA-02): campos mínimos + tenant correcto
+      allow create: if request.auth == null
+                    && request.resource.data.keys().hasAll(['email', 'tenant_id', 'createdBy'])
+                    && isTenantCpii()
+                    && request.resource.data.email is string
+                    && request.resource.data.createdBy == 'access-form';
+
+      // Staff: lectura + escritura completa (CRM)
+      allow read, write: if belongsToTenant() && isStaff();
+
+      // Historial inmutable de eventos
+      match /events/{eventId} {
+        allow create: if belongsToTenant() && isStaff();
+        allow read:   if belongsToTenant() && isStaff();
+        // update y delete denegados — append-only
+      }
+    }
+
     match /staff/{staffId} {
       allow read, write: if belongsToTenant() && isStaff();
     }
 
-    // === 🚫 DEFAULT-DENY (Cierre total para cualquier otra ruta) ===
+    // _slug_reservations — centinela de unicidad (solo staff)
+    match /_slug_reservations/{slug} {
+      allow read, write: if belongsToTenant() && isStaff();
+    }
+
+    // kpi_daily — preagregados dashboard (solo lectura staff)
+    match /kpi_daily/{dateId} {
+      allow read:  if belongsToTenant() && isStaff();
+      allow write: if belongsToTenant() && isStaff();
+    }
+
+    // === 🚫 DEFAULT-DENY ===
     match /{path=**} {
       allow read, write: if false;
     }
