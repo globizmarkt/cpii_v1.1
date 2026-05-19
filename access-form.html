@@ -1,8 +1,13 @@
 <!--
 ================================================================================
   ARCHIVO:  apps/cpii/scenes/access-form.html
-  VERSIÓN:  1.5.0
+  VERSIÓN:  1.6.0
   FECHA:    2026-05-19
+  CAMBIOS v1.6.0: Cierre Hermético (REBORN-02.3).
+                  UX-01: meta notranslate — blinda contra secuestro de Google Translate.
+                  UX-02: Botón submit-btn usa class-toggle + finally block — elimina
+                         congelación en estado cargando tras submit.
+                  UX-03: Conmutador de visibilidad (ojo) para input #vip-pass.
   CAMBIOS v1.5.0: Doble Esclusa — auto-redirect a golden-gate.html (REBORN-02.2).
                   Tras MASTER_KEY válida, setTimeout 1500ms redirige automáticamente
                   a result.url + locale=. El enlace manual se mantiene como fallback.
@@ -22,6 +27,7 @@
 
 <head>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="google" content="notranslate" />
     <meta name="description"
         content="Solicita acceso al Club Privado de Inversión Inmobiliaria CPII Portugal. Formulario de registro exclusivo para inversores y promotores." />
     <title>CPII Portugal — Solicitar Acceso</title>
@@ -356,7 +362,7 @@
                                 solicitud</span><span
                                 class="material-symbols-outlined transition-transform group-hover:translate-x-1"
                                 style="font-size:15px;font-variation-settings:'FILL' 0,'wght' 400">arrow_forward</span></span>
-                        <span class="btn-loader"><span class="spinner"></span><span
+                        <span class="btn-loader hidden"><span class="spinner"></span><span
                                 data-i18n="form.btn.sending">Enviando…</span></span>
                     </button>
 
@@ -383,9 +389,14 @@
                         <div class="relative">
                           <span class="material-symbols-outlined absolute inset-y-0 left-3 flex items-center text-lux-muted" style="font-size:16px;font-variation-settings:'FILL' 0,'wght' 300">lock</span>
                           <input id="vip-pass" type="password" autocomplete="off"
-                            class="w-full rounded-lg border border-lux-gold/20 bg-lux-darker py-3 pl-9 pr-4 text-sm text-lux-gold caret-lux-gold placeholder-lux-muted focus:border-lux-gold focus:outline-none transition-all"
+                            class="w-full rounded-lg border border-lux-gold/20 bg-lux-darker py-3 pl-9 pr-10 text-sm text-lux-gold caret-lux-gold placeholder-lux-muted focus:border-lux-gold focus:outline-none transition-all"
                             data-i18n-placeholder="gate.input_placeholder"
                             placeholder="Clave de acceso" />
+                          <button id="vip-eye-toggle" type="button"
+                            class="absolute inset-y-0 right-3 flex items-center text-lux-muted hover:text-lux-gold transition-colors"
+                            aria-label="Mostrar/ocultar clave" tabindex="-1">
+                            <span id="vip-eye-icon" class="material-symbols-outlined" style="font-size:16px;font-variation-settings:'FILL' 0,'wght' 300">visibility</span>
+                          </button>
                         </div>
                         <button id="vip-submit" type="button"
                           class="w-full rounded-lg bg-lux-gold py-3 text-xs font-bold uppercase tracking-[0.15em] text-lux-dark transition-all hover:bg-lux-gold-light active:scale-[0.98]"
@@ -653,8 +664,11 @@
             if (!validateForm()) return;
 
             const btn = document.getElementById("submit-btn");
+            const btnText   = btn.querySelector('.btn-text');
+            const btnLoader = btn.querySelector('.btn-loader');
             btn.disabled = true;
-            btn.innerHTML = '<span class="animate-spin mr-2">⌛</span> Validando...';
+            if (btnText)   btnText.classList.add('hidden');
+            if (btnLoader) btnLoader.classList.remove('hidden');
 
             const country = document.getElementById("country").value;
             const phoneFull = document.getElementById("phone_prefix").value + document.getElementById("phone").value.trim();
@@ -728,9 +742,14 @@
 
             } catch (error) {
                 console.error("[CPII] Error en el sistema de captación:", error);
-                btn.disabled = false;
-                btn.innerHTML = "Validar Pedido";
                 alert("Error al procesar. Por favor, inténtelo de nuevo.");
+            } finally {
+                // UX-02 FIX (REBORN-02.3): restaurar estado del botón siempre.
+                // Elimina el riesgo de congelación al usar class-toggle en vez de
+                // innerHTML mutation (que destruía los data-i18n del botón).
+                btn.disabled = false;
+                if (btnText)   btnText.classList.remove('hidden');
+                if (btnLoader) btnLoader.classList.add('hidden');
             }
         });
     </script>
@@ -761,6 +780,17 @@
         panel.classList.toggle('hidden', !isHidden);
         chevron.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
       });
+
+      // --- UX-03: Conmutador de visibilidad para MASTER_KEY (REBORN-02.3) ---
+      const eyeToggle = $('vip-eye-toggle');
+      const eyeIcon   = $('vip-eye-icon');
+      if (eyeToggle && eyeIcon) {
+        eyeToggle.addEventListener('click', function() {
+          const show = input.type === 'password';
+          input.type = show ? 'text' : 'password';
+          eyeIcon.textContent = show ? 'visibility_off' : 'visibility';
+        });
+      }
 
       // --- Submit vía Enter ---
       input.addEventListener('keydown', function(e) {
