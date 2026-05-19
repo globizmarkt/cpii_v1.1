@@ -14,8 +14,15 @@ rules_version = '2';
 // Principio          : Aislamiento Lógico Perimetral — JWT como muro criptográfico
 //                      Coexistencia Controlada v1.0/v1.1 — Opción A (REBORN-02.2)
 // Timestamp          : 2026-05-19
-// Versión            : 3.1.0 — REBORN-02.2 BACKWARD COMPAT
+// Versión            : 3.2.0 — REBORN-02.3 HOTFIX resource.exists
 // ============================================================================
+// CHANGELOG v3.2.0 (HOTFIX resource.exists — REBORN-02.3):
+//   FIX: belongsToTenant() — eliminado ternario resource.exists que no es
+//        propiedad válida en Security Rules. Provoca Null Reference en lecturas
+//        → PERMISSION_DENIED. Reemplazado por: resource != null &&
+//        request.auth.token.tenant_id == resource.data.tenant_id.
+//        La guarda `resource != null` cubre docs inexistentes sin lanzar error.
+// ─────────────────────────────────────────────────────────────────────────────
 // CHANGELOG v3.1.0 (OPCIÓN A — COEXISTENCIA CONTROLADA):
 //   CONTEXT: v1.0 activo en producción (cpii.digital) + v1.1 en staging (Vercel).
 //            Ambos conectan al mismo proyecto Firebase 'cpii-landing'.
@@ -65,8 +72,8 @@ service cloud.firestore {
     function belongsToTenant() {
       return request.auth != null &&
              request.auth.token.tenant_id in ['cpii_v1.0', 'cpii_v1.1'] &&
-             request.auth.token.tenant_id == (resource.exists ? resource.data.tenant_id
-                                                               : request.resource.data.tenant_id);
+             resource != null &&
+             request.auth.token.tenant_id == resource.data.tenant_id;
     }
 
     // Verifica que el documento a crear lleva el tenant_id correcto.
