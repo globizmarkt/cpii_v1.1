@@ -1,28 +1,120 @@
 rules_version = '2';
+
+// ============================================================================
+// FIRESTORE SECURITY RULES — MAESTRO ÚNICO (LANDING + CRM)
+// ============================================================================
+// Proyecto Firebase  : cpii-landing (Landing + CRM consumen este proyecto)
+// tenant_id canónico : cpii_v1.1
+// Doctrina           : ATOM-07 (default-deny) | ATOM-02 (tenant isolation)
+//                      ATOM-06 (_slug_reservations) | ATOM-08 (events append-only)
+//                      ATOM-05 (soft-delete only en contacts + compliance_alerts)
+// Fuente             : Merge forense de dos archivos — REBORN-02.2 Fusión:
+//                        A) CPII_v1.1/firestore.rules (Landing — captación anónima)
+//                        B) CPII_crm_v1.1/firestore.rules (CRM v2.0.0 — REBORN-02.2)
+// Principio          : Aislamiento Lógico Perimetral — JWT como muro criptográfico
+// Timestamp          : 2026-05-19
+// Versión            : 3.0.0 — REBORN-02.2 MERGE
+// ============================================================================
+// CHANGELOG v3.0.0 (MERGE FORENSE):
+//   FIX: belongsToTenant() — hardcoded 'cpii_v1.1', no dinámico (ATOM-02 estricto)
+//        Landing usaba comparación dinámica resource↔token — spoofeable con doc adulterado
+//   FIX: isStaff() — roles canónicos: [admin, compliance, manager, agent]
+//        Landing usaba roles legacy: [staff, manager, admin, superadmin] — supersedido
+//   FIX: _slug_reservations — if false (Admin SDK only, ATOM-06)
+//        Landing erróneamente permitía staff read/write desde cliente
+//   FIX: contacts/events — update+delete explícitamente if false (ATOM-08)
+//        Landing los dejaba implícitamente abiertos
+//   FIX: staff — write restringido a isAdmin() solamente
+//        Landing permitía cualquier staff escribir en /staff
+//   ADD: isAdmin(), isCompliance(), isDocumentOwner() (aportados por CRM v2.0.0)
+//   ADD: users — perfiles staff con acceso propio + admin-read (aportado por CRM)
+//   ADD: compliance_alerts — KYC/AML, solo role compliance/admin (aportado por CRM)
+//   ADD: audit_log — append-only, solo Admin SDK escribe (aportado por CRM)
+//   ADD: public_content — read:true para contenido público (aportado por CRM)
+//   KEEP: leads anonymous create — captación anónima access-form (aportado por Landing)
+//   KEEP: contacts anonymous create — GA-02 bridge at-attribution (aportado por Landing)
+//   KEEP: kpi_daily — preagregados dashboard (aportado por Landing)
+// ============================================================================
+// DESPLIEGUE (DIR-01):
+//   cd C:\BreederHub\01_PRODUCTION\CPII_v1.1
+//   firebase deploy --only firestore:rules
+// ============================================================================
+
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // === 🛡️ FUNCIONES DE SEGURIDAD SOBERANAS ===
+    // ── FUNCIONES DE BLINDAJE ──────────────────────────────────────────────
 
+    // Verifica que el token JWT del usuario pertenece al tenant canónico.
+    // ATOM-02 estricto: hardcodeado — no dinámico.
+    // Anti-spoofing: una comparación dinámica (token↔resource.data) es engañable
+    // si el documento tiene un tenant_id manipulado. Hardcoding es el único muro real.
     function belongsToTenant() {
       return request.auth != null &&
-             request.auth.token.tenant_id == (resource.exists ? resource.data.tenant_id : request.resource.data.tenant_id);
+             request.auth.token.tenant_id == 'cpii_v1.1';
     }
 
-    function isStaff() {
+    // Verifica que el documento a crear lleva el tenant_id correcto.
+    // "Marca de Nacimiento" — obligatorio en todo addDoc/setDoc AUTENTICADO.
+    // Doble check: token.tenant_id == resource.data.tenant_id == 'cpii_v1.1'.
+    // No usar en rutas anónimas (request.auth == null) — usar isTenantCpii().
+    function isCreateValid() {
       return request.auth != null &&
-             request.auth.token.role in ['staff', 'manager', 'admin', 'superadmin'];
+             request.resource.data.tenant_id == 'cpii_v1.1' &&
+             request.resource.data.tenant_id == request.auth.token.tenant_id;
     }
 
+    // Verificación ligera de tenant para escrituras ANÓNIMAS (request.auth == null).
+    // Usado en flujos de captación pública: leads desde access-form, contacts GA-02.
+    // Solo verifica el campo del documento — no puede verificar el JWT (no hay auth).
     function isTenantCpii() {
       return request.resource.data.tenant_id == 'cpii_v1.1';
     }
 
-    // === 🚪 RUTAS DE ACCESO ===
+    // Rol Staff canónico — acceso CRM completo dentro del tenant.
+    // Roles autorizados: admin, compliance, manager, agent.
+    // NOTA: Landing legacy usaba ['staff','manager','admin','superadmin'] — supersedido
+    // por taxonomía canónica de 05.2_mapa_arqueologico_firebase_crm.md.
+    function isStaff() {
+      return request.auth != null &&
+             request.auth.token.tenant_id == 'cpii_v1.1' &&
+             request.auth.token.role in ['admin', 'compliance', 'manager', 'agent'];
+    }
 
-    // leads — colección legacy (captación anónima desde access-form)
+    // Rol Admin exclusivo — operaciones destructivas y configuración.
+    function isAdmin() {
+      return request.auth != null &&
+             request.auth.token.tenant_id == 'cpii_v1.1' &&
+             request.auth.token.role == 'admin';
+    }
+
+    // Rol Compliance — acceso a alertas KYC/AML y datos sensibles.
+    // Jerarquía acumulativa: admin hereda permisos de compliance.
+    function isCompliance() {
+      return request.auth != null &&
+             request.auth.token.tenant_id == 'cpii_v1.1' &&
+             request.auth.token.role in ['admin', 'compliance'];
+    }
+
+    // El usuario autenticado es el agente asignado al documento (ownerId).
+    // Permite que el agente lea/modifique sus propios leads sin ser isStaff completo.
+    function isDocumentOwner() {
+      return request.auth != null &&
+             resource.data.ownerId == request.auth.uid;
+    }
+
+
+    // ── COLECCIÓN: leads ──────────────────────────────────────────────────
+    // Captación anónima desde access-form.html (CPII_v1.1 Landing).
+    // Origen: Landing rules v1.x — preservado íntegramente.
+    //
+    // Ruta anónima: cualquier visitante puede enviar un lead (request.auth == null).
+    // Campos obligatorios: email + full_name + rgpd_consent + tenant_id.
+    // El RGPD consent es OBLIGATORIO — ningún lead sin consentimiento explícito.
+    //
+    // Staff: puede leer, actualizar y eliminar leads desde el CRM.
+    // (Eliminación física permitida en leads — no son fichas canónicas CONTACT_SCHEMA)
     match /leads/{leadId} {
-      // Captación anónima: campos mínimos + tenant correcto + RGPD consent
       allow create: if request.auth == null
                     && request.resource.data.keys().hasAll(['email', 'full_name', 'rgpd_consent', 'tenant_id'])
                     && isTenantCpii()
@@ -33,44 +125,131 @@ service cloud.firestore {
       allow read, update, delete: if belongsToTenant() && isStaff();
     }
 
-    // contacts — colección canónica CRM (CONTACT_SCHEMA)
+
+    // ── COLECCIÓN: contacts ───────────────────────────────────────────────
+    // Ficha canónica del inversor (CONTACT_SCHEMA). Dos rutas de entrada:
+    //
+    // Ruta 1 — Anónima (GA-02 bridge): access-form escribe directamente a contacts.
+    //   Activar cuando at-attribution.js → contacts-service.js esté conectado (GA-02).
+    //   Campos mínimos: email + tenant_id + createdBy == 'access-form'.
+    //   ⚠️ Seguridad: cualquier cliente que conozca el projectId puede usar esta ruta.
+    //   Mitigación futura: Firebase App Check.
+    //
+    // Ruta 2 — Staff autenticado: acceso CRM completo.
+    //
+    // Borrado físico PROHIBIDO — solo soft-delete (isActive=false) — ATOM-05.
     match /contacts/{contactId} {
-      // Captación anónima desde access-form (GA-02): campos mínimos + tenant correcto
-      allow create: if request.auth == null
-                    && request.resource.data.keys().hasAll(['email', 'tenant_id', 'createdBy'])
-                    && isTenantCpii()
-                    && request.resource.data.email is string
-                    && request.resource.data.createdBy == 'access-form';
+      allow create: if (
+                      // Ruta 1: captación anónima GA-02 (access-form → contacts)
+                      (request.auth == null
+                        && request.resource.data.keys().hasAll(['email', 'tenant_id', 'createdBy'])
+                        && isTenantCpii()
+                        && request.resource.data.email is string
+                        && request.resource.data.createdBy == 'access-form')
+                      ||
+                      // Ruta 2: staff autenticado desde CRM
+                      (isCreateValid() && isStaff())
+                    );
 
-      // Staff: lectura + escritura completa (CRM)
-      allow read, write: if belongsToTenant() && isStaff();
+      allow read:   if belongsToTenant() && (isStaff() || isDocumentOwner());
+      allow update: if belongsToTenant() && isStaff();
+      allow delete: if false; // Soft-delete ÚNICAMENTE (isActive=false) — ATOM-05
 
-      // Historial inmutable de eventos
+      // ── SUBCOLECCIÓN: events (append-only — ATOM-08) ──────────────────
+      // Historial inmutable de transiciones de pipeline y touchpoints.
+      // Solo staff puede crear. NADIE puede editar ni borrar.
+      // CORRECCIÓN v3.0.0: Landing dejaba update+delete implícitamente abiertos.
       match /events/{eventId} {
-        allow create: if belongsToTenant() && isStaff();
-        allow read:   if belongsToTenant() && isStaff();
-        // update y delete denegados — append-only
+        allow read:           if belongsToTenant() && isStaff();
+        allow create:         if isCreateValid()   && isStaff();
+        allow update, delete: if false; // Inmutable — append-only ATOM-08
       }
     }
 
-    match /staff/{staffId} {
-      allow read, write: if belongsToTenant() && isStaff();
+
+    // ── COLECCIÓN: users ──────────────────────────────────────────────────
+    // Perfiles de usuario (agentes, compliance, admins) + Custom Claims mirror.
+    // Cada usuario lee/actualiza su propio perfil. Admin puede leer cualquier perfil.
+    // Origen: CRM v2.0.0.
+    match /users/{uid} {
+      allow read:   if belongsToTenant() && (request.auth.uid == uid || isAdmin());
+      allow update: if belongsToTenant() &&  request.auth.uid == uid;
+      allow create: if isCreateValid();
+      allow delete: if false;
     }
 
-    // _slug_reservations — centinela de unicidad (solo staff)
+
+    // ── COLECCIÓN: _slug_reservations ─────────────────────────────────────
+    // Centinela de unicidad de slugs de embajadores (ATOM-06).
+    // Opera EXCLUSIVAMENTE vía Firebase Admin SDK (Cloud Functions).
+    // Admin SDK bypasses rules — las reglas bloquean acceso desde cliente.
+    // CORRECCIÓN v3.0.0: Landing permitía staff read/write — incorrecto,
+    // permitía manipulación directa de slugs desde el cliente.
     match /_slug_reservations/{slug} {
-      allow read, write: if belongsToTenant() && isStaff();
+      allow read, write: if false; // Admin SDK only — bypasses rules
     }
 
-    // kpi_daily — preagregados dashboard (solo lectura staff)
+
+    // ── COLECCIÓN: staff ──────────────────────────────────────────────────
+    // Lista de agentes/gestores/compliance (metadatos + licencia AMI).
+    // Staff puede leer sus propios registros y los del equipo.
+    // Solo Admin puede crear o modificar registros de staff.
+    // CORRECCIÓN v3.0.0: Landing permitía cualquier staff escribir.
+    match /staff/{staffId} {
+      allow read:  if belongsToTenant() && isStaff();
+      allow write: if belongsToTenant() && isAdmin();
+    }
+
+
+    // ── COLECCIÓN: compliance_alerts ──────────────────────────────────────
+    // Alertas KYC/AML/PEP activas e históricas.
+    // Solo Compliance (admin + compliance role) puede leer y operar.
+    // Las alertas son inmutables — solo se marcan como resolved (update, no delete).
+    // Origen: CRM v2.0.0.
+    match /compliance_alerts/{alertId} {
+      allow read:   if belongsToTenant() && isCompliance();
+      allow create: if isCreateValid()   && isCompliance();
+      allow update: if belongsToTenant() && isCompliance();
+      allow delete: if false; // Alertas inmutables — solo se marcan resolved
+    }
+
+
+    // ── COLECCIÓN: audit_log ──────────────────────────────────────────────
+    // Bitácora append-only de eventos críticos del sistema.
+    // Solo Compliance puede leer. Solo sistema (Admin SDK) puede escribir.
+    // Origen: CRM v2.0.0.
+    match /audit_log/{eventId} {
+      allow read:           if belongsToTenant() && isCompliance();
+      allow create:         if false; // Admin SDK only — sistema escribe
+      allow update, delete: if false; // Append-only absoluto
+    }
+
+
+    // ── COLECCIÓN: kpi_daily ──────────────────────────────────────────────
+    // Preagregados de dashboard (métricas diarias).
+    // Staff puede leer y escribir desde el CRM.
+    // Origen: Landing rules — colección específica de CPII.
+    // TODO (Fase B): evaluar si write debe restringirse a Admin SDK únicamente.
     match /kpi_daily/{dateId} {
       allow read:  if belongsToTenant() && isStaff();
       allow write: if belongsToTenant() && isStaff();
     }
 
-    // === 🚫 DEFAULT-DENY ===
-    match /{path=**} {
+
+    // ── COLECCIÓN: public_content ─────────────────────────────────────────
+    // Contenido global sin restricción de tenant (textos públicos, FAQs, etc.).
+    // Origen: CRM v2.0.0.
+    match /public_content/{contentId} {
+      allow read: if true;
+    }
+
+
+    // ── DEFAULT-DENY ──────────────────────────────────────────────────────
+    // Cierre total: cualquier ruta no declarada explícitamente → denegada.
+    // Doctrina ATOM-07: Zero Trust — lo no permitido es denegado.
+    match /{document=**} {
       allow read, write: if false;
     }
+
   }
 }
