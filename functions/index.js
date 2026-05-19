@@ -72,7 +72,10 @@ exports.validateAdminGate = onRequest(
             return res.status(400).send({ success: false, message: "Bad Request" });
         }
 
-        if (key === MASTER_KEY.value()) {
+        // BUG-04 FIX: .trim() en ambos lados — defensivo contra trailing
+        // whitespace/newline en el valor almacenado en Secret Manager.
+        // La UI de GCP puede guardar "cpii-staff\n" sin mostrarlo visualmente.
+        if (key.trim() === MASTER_KEY.value().trim()) {
             logger.info("Acceso ADMIN concedido");
             return res.status(200).send({
                 success: true,
