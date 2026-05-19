@@ -820,7 +820,15 @@
           input.focus();
         } finally {
           submit.disabled = false;
-          submit.textContent = submit.dataset.i18n ? submit.dataset.i18n : 'Desbloquear';
+          // BUG FIX (REBORN-02.2): dataset.i18n devuelve la clave cruda
+          // ("gate.btn_unlock"), no el valor traducido. CSS `uppercase` la
+          // renderizaba como "GATE.BTN_UNLOCK". Solución: re-aplicar el motor
+          // i18n.js global (applyTranslations está en scope global de i18n.js).
+          if (typeof applyTranslations === 'function') {
+            applyTranslations(localStorage.getItem('cpii_locale') || 'pt');
+          } else {
+            submit.textContent = 'Desbloquear';
+          }
         }
       });
     })();
