@@ -9,3 +9,6 @@ session_memory/
 
 # Backup local — no se despliega en Vercel
 backup_pre_sutura/
+
+# Credenciales de Administrador Firebase (Extremadamente Confidencial)
+serviceAccountKey.json
