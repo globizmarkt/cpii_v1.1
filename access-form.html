@@ -411,7 +411,7 @@
                           <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1,'wght' 400">check_circle</span>
                           <span class="text-xs font-bold uppercase tracking-widest" data-i18n="gate.success_msg">Acceso concedido</span>
                         </div>
-                        <a id="vip-crm-link" href="https://crm.cpii.digital/golden-gate.html" target="_self"
+                        <a id="vip-crm-link" href="#" target="_self"
                           class="inline-flex items-center justify-center gap-2 rounded-lg border border-lux-gold/30 bg-lux-gold/10 px-6 py-3 text-xs font-bold uppercase tracking-[0.15em] text-lux-gold transition-all hover:bg-lux-gold hover:text-lux-dark"
                           data-i18n="gate.btn_enter">
                           Entrar al CRM
@@ -828,10 +828,13 @@
             errMsg.classList.add('hidden');
             success.classList.remove('hidden');
 
-            // Recuperar la mochila (idioma) y atarla al enlace de la frontera
+            // Recuperar la mochila (idioma) y construir URL de destino
+            // HOTFIX (REBORN-02.3): .trim() defensivo contra trailing newlines
+            // de Secret Manager (mismo patrón que BUG-04). URL estrictamente
+            // result.url + '?locale=' — sin prefijos hardcodeados ni separadores
+            // condicionales que puedan concatenar basura.
             const currentLang = localStorage.getItem('cpii_locale') || 'pt';
-            const separator = result.url.includes('?') ? '&' : '?';
-            const destinoUrl = `${result.url}${separator}locale=${currentLang}`;
+            const destinoUrl = result.url.trim() + '?locale=' + currentLang;
             $('vip-crm-link').href = destinoUrl;
 
             // Higiene de seguridad
