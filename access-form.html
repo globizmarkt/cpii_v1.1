@@ -1,8 +1,13 @@
 <!--
 ================================================================================
   ARCHIVO:  apps/cpii/scenes/access-form.html
-  VERSIÓN:  1.4.1
-  FECHA:    2026-03-01
+  VERSIÓN:  1.5.0
+  FECHA:    2026-05-19
+  CAMBIOS v1.5.0: Doble Esclusa — auto-redirect a golden-gate.html (REBORN-02.2).
+                  Tras MASTER_KEY válida, setTimeout 1500ms redirige automáticamente
+                  a result.url + locale=. El enlace manual se mantiene como fallback.
+                  BUG-03 fix: applyTranslations() en finally (no dataset.i18n crudo).
+                  BUG-04 fix: validateAdminGate .trim() en función serverless.
   CAMBIOS v1.4.0: Fix móvil — 4 correcciones de usabilidad (diagnóstico Gemini).
                   1. Card padding dinámico p-5 sm:p-8 lg:p-10
                   2. Phone prefix w-[90px] sm:w-[108px]
@@ -796,7 +801,8 @@
             // Recuperar la mochila (idioma) y atarla al enlace de la frontera
             const currentLang = localStorage.getItem('cpii_locale') || 'pt';
             const separator = result.url.includes('?') ? '&' : '?';
-            $('vip-crm-link').href = `${result.url}${separator}locale=${currentLang}`;
+            const destinoUrl = `${result.url}${separator}locale=${currentLang}`;
+            $('vip-crm-link').href = destinoUrl;
 
             // Higiene de seguridad
             input.value = '';
@@ -807,6 +813,12 @@
               detail: { gate: 'golden-gate', timestamp: Date.now() },
               bubbles: true,
             }));
+
+            // Auto-redirect — Doble Esclusa (REBORN-02.2)
+            // 1.5s de gracia para que el usuario lea "Acceso concedido" antes de cruzar
+            setTimeout(function () {
+              window.location.href = destinoUrl;
+            }, 1500);
           } else {
             // Respuesta negativa del árbitro
             errMsg.classList.remove('hidden');
