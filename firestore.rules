@@ -4,7 +4,7 @@ rules_version = '2';
 // FIRESTORE SECURITY RULES — MAESTRO ÚNICO (LANDING + CRM)
 // ============================================================================
 // Proyecto Firebase  : cpii-landing (Landing + CRM consumen este proyecto)
-// tenant_id canónico : cpii_v1.1
+// tenant_id canónico : cpii_v1.0 (legacy, activo) + cpii_v1.1 (staging/prod v1.1)
 // Doctrina           : ATOM-07 (default-deny) | ATOM-02 (tenant isolation)
 //                      ATOM-06 (_slug_reservations) | ATOM-08 (events append-only)
 //                      ATOM-05 (soft-delete only en contacts + compliance_alerts)
@@ -12,28 +12,34 @@ rules_version = '2';
 //                        A) CPII_v1.1/firestore.rules (Landing — captación anónima)
 //                        B) CPII_crm_v1.1/firestore.rules (CRM v2.0.0 — REBORN-02.2)
 // Principio          : Aislamiento Lógico Perimetral — JWT como muro criptográfico
+//                      Coexistencia Controlada v1.0/v1.1 — Opción A (REBORN-02.2)
 // Timestamp          : 2026-05-19
-// Versión            : 3.0.0 — REBORN-02.2 MERGE
+// Versión            : 3.1.0 — REBORN-02.2 BACKWARD COMPAT
 // ============================================================================
+// CHANGELOG v3.1.0 (OPCIÓN A — COEXISTENCIA CONTROLADA):
+//   CONTEXT: v1.0 activo en producción (cpii.digital) + v1.1 en staging (Vercel).
+//            Ambos conectan al mismo proyecto Firebase 'cpii-landing'.
+//            Deploy desde CPII_v1.1/ sobreescribe reglas para TODOS los clientes.
+//   UPD: belongsToTenant() — allowlist ['cpii_v1.0','cpii_v1.1'] + match dinámico
+//        con tenant_id del documento. Doble muro: tenant conocido Y aislamiento
+//        cruzado (v1.0 staff no puede leer docs v1.1 y viceversa).
+//   UPD: isCreateValid() — acepta ambos tenants en el allowlist.
+//        Sigue exigiendo token.tenant_id == resource.data.tenant_id (marca nacimiento).
+//   UPD: isTenantCpii() — acepta ambos tenants para escrituras anónimas.
+//        El formulario v1.0 escribe tenant_id='cpii_v1.0' — ya no bloqueado.
+//   UPD: isStaff() — añadido rol legacy 'staff' (v1.0) al array canónico.
+//        Roles completos: ['staff','admin','compliance','manager','agent'].
+//   KEEP: isAdmin(), isCompliance() — hardcodeados a cpii_v1.1 (roles CRM inexistentes en v1.0)
+// ─────────────────────────────────────────────────────────────────────────────
 // CHANGELOG v3.0.0 (MERGE FORENSE):
 //   FIX: belongsToTenant() — hardcoded 'cpii_v1.1', no dinámico (ATOM-02 estricto)
-//        Landing usaba comparación dinámica resource↔token — spoofeable con doc adulterado
 //   FIX: isStaff() — roles canónicos: [admin, compliance, manager, agent]
-//        Landing usaba roles legacy: [staff, manager, admin, superadmin] — supersedido
 //   FIX: _slug_reservations — if false (Admin SDK only, ATOM-06)
-//        Landing erróneamente permitía staff read/write desde cliente
 //   FIX: contacts/events — update+delete explícitamente if false (ATOM-08)
-//        Landing los dejaba implícitamente abiertos
 //   FIX: staff — write restringido a isAdmin() solamente
-//        Landing permitía cualquier staff escribir en /staff
 //   ADD: isAdmin(), isCompliance(), isDocumentOwner() (aportados por CRM v2.0.0)
-//   ADD: users — perfiles staff con acceso propio + admin-read (aportado por CRM)
-//   ADD: compliance_alerts — KYC/AML, solo role compliance/admin (aportado por CRM)
-//   ADD: audit_log — append-only, solo Admin SDK escribe (aportado por CRM)
-//   ADD: public_content — read:true para contenido público (aportado por CRM)
-//   KEEP: leads anonymous create — captación anónima access-form (aportado por Landing)
-//   KEEP: contacts anonymous create — GA-02 bridge at-attribution (aportado por Landing)
-//   KEEP: kpi_daily — preagregados dashboard (aportado por Landing)
+//   ADD: users, compliance_alerts, audit_log, public_content (aportados por CRM)
+//   KEEP: leads anonymous create, contacts GA-02, kpi_daily (aportados por Landing)
 // ============================================================================
 // DESPLIEGUE (DIR-01):
 //   cd C:\BreederHub\01_PRODUCTION\CPII_v1.1
@@ -45,40 +51,53 @@ service cloud.firestore {
 
     // ── FUNCIONES DE BLINDAJE ──────────────────────────────────────────────
 
-    // Verifica que el token JWT del usuario pertenece al tenant canónico.
-    // ATOM-02 estricto: hardcodeado — no dinámico.
-    // Anti-spoofing: una comparación dinámica (token↔resource.data) es engañable
-    // si el documento tiene un tenant_id manipulado. Hardcoding es el único muro real.
+    // Verifica que el token JWT del usuario pertenece a un tenant canónico autorizado
+    // Y que coincide con el tenant_id del documento al que intenta acceder.
+    //
+    // Doble muro de seguridad (Opción A — coexistencia v1.0/v1.1):
+    //   1. Allowlist: token.tenant_id debe ser uno de los tenants conocidos
+    //      (anti-spoofing — un tenant arbitrario 'cpii_hack' no pasa)
+    //   2. Match dinámico: token.tenant_id == doc.tenant_id
+    //      (aislamiento cruzado — staff v1.0 no puede leer docs v1.1 y viceversa)
+    //
+    // resource.exists ternario: maneja tanto lecturas (resource.data) como
+    // operaciones sobre docs inexistentes (request.resource.data en create).
     function belongsToTenant() {
       return request.auth != null &&
-             request.auth.token.tenant_id == 'cpii_v1.1';
+             request.auth.token.tenant_id in ['cpii_v1.0', 'cpii_v1.1'] &&
+             request.auth.token.tenant_id == (resource.exists ? resource.data.tenant_id
+                                                               : request.resource.data.tenant_id);
     }
 
     // Verifica que el documento a crear lleva el tenant_id correcto.
     // "Marca de Nacimiento" — obligatorio en todo addDoc/setDoc AUTENTICADO.
-    // Doble check: token.tenant_id == resource.data.tenant_id == 'cpii_v1.1'.
+    // Regla: token.tenant_id debe estar en el allowlist Y coincidir con el campo del doc.
+    // Garantiza que un usuario v1.0 no puede crear un doc con tenant_id='cpii_v1.1'.
     // No usar en rutas anónimas (request.auth == null) — usar isTenantCpii().
     function isCreateValid() {
       return request.auth != null &&
-             request.resource.data.tenant_id == 'cpii_v1.1' &&
+             request.auth.token.tenant_id in ['cpii_v1.0', 'cpii_v1.1'] &&
              request.resource.data.tenant_id == request.auth.token.tenant_id;
     }
 
     // Verificación ligera de tenant para escrituras ANÓNIMAS (request.auth == null).
     // Usado en flujos de captación pública: leads desde access-form, contacts GA-02.
     // Solo verifica el campo del documento — no puede verificar el JWT (no hay auth).
+    // Acepta ambos tenants: v1.0 (formulario activo en producción) y v1.1 (staging).
     function isTenantCpii() {
-      return request.resource.data.tenant_id == 'cpii_v1.1';
+      return request.resource.data.tenant_id in ['cpii_v1.0', 'cpii_v1.1'];
     }
 
-    // Rol Staff canónico — acceso CRM completo dentro del tenant.
-    // Roles autorizados: admin, compliance, manager, agent.
-    // NOTA: Landing legacy usaba ['staff','manager','admin','superadmin'] — supersedido
-    // por taxonomía canónica de 05.2_mapa_arqueologico_firebase_crm.md.
+    // Rol Staff — acceso operativo dentro del tenant del usuario.
+    // Roles canónicos v1.1: admin, compliance, manager, agent.
+    // Rol legacy v1.0:      staff (rol único del sistema anterior).
+    // Array completo: ['staff','admin','compliance','manager','agent'].
+    // isAdmin() e isCompliance() siguen hardcodeados a cpii_v1.1 —
+    // esos roles no existen en v1.0 y no deben heredarse.
     function isStaff() {
       return request.auth != null &&
-             request.auth.token.tenant_id == 'cpii_v1.1' &&
-             request.auth.token.role in ['admin', 'compliance', 'manager', 'agent'];
+             request.auth.token.tenant_id in ['cpii_v1.0', 'cpii_v1.1'] &&
+             request.auth.token.role in ['staff', 'admin', 'compliance', 'manager', 'agent'];
     }
 
     // Rol Admin exclusivo — operaciones destructivas y configuración.
